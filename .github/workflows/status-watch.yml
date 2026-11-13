@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/monitor.py'
       - 'tests/test_monitor.py'
+      - 'scripts/continue_watch.py'
       - '.github/workflows/status-watch.yml'
   schedule:
     # Offset from the top of the hour to reduce schedule congestion.
@@ -14,6 +15,10 @@ on:
     - cron: '2,12,17,27,32,42,47,57 * * * *'
   workflow_dispatch:
     inputs:
+      auto_cycle:
+        description: 'Continue the automatic monitoring cycle'
+        type: boolean
+        default: false
       telegram_test:
         description: 'Send one clearly labelled Telegram delivery test'
         type: boolean
@@ -21,6 +26,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: public-service-status-watch
@@ -29,17 +35,22 @@ concurrency:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 7
     env:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       HC_PING_URL: ${{ secrets.HC_PING_URL }}
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          ref: main
       - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.12'
+      - name: Record monitoring cycle start
+        run: echo "POLL_CYCLE_START=$(date +%s)" >> "$GITHUB_ENV"
       - name: Run regression tests
+        id: tests
         run: python -m unittest discover -s tests -v
       - name: Check Telegram configuration
         run: |
@@ -50,7 +61,8 @@ jobs:
         env:
           TELEGRAM_DASHBOARD: 'true'
           KOREA_ONLY: 'true'
-          MONITOR_ACTIVE_ONLY: ${{ github.event_name == 'schedule' && github.event.schedule == '2,12,17,27,32,42,47,57 * * * *' }}
+          MONITOR_AUTO_CYCLE: 'true'
+          MONITOR_ACTIVE_ONLY: ${{ inputs.auto_cycle || github.event_name == 'schedule' }}
         if: env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
         run: python scripts/monitor.py
       - name: Verify Telegram delivery
@@ -70,3 +82,8 @@ jobs:
       - name: Signal successful run to Healthchecks.io
         if: success() && env.HC_PING_URL != ''
         run: curl --fail --silent --show-error --max-time 10 "$HC_PING_URL"
+      - name: Continue five-minute monitoring cycle
+        if: always() && !cancelled() && steps.tests.outcome == 'success' && env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
+        env:
+          WATCH_TOKEN: ${{ github.token }}
+        run: python scripts/continue_watch.py

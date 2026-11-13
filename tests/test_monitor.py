@@ -495,3 +495,50 @@ class SeverityAssessmentTests(unittest.TestCase):
         item = {"status": "monitoring", "impact": "major", "first_observed_at": "2026-11-12T00:00:00+00:00",
                 "body": "All users were unable to access email."}
         self.assertEqual("주요", monitor.severity_assessment(item, datetime(2026, 11, 13, tzinfo=timezone.utc))["label"])
+
+class PollTimingTests(unittest.TestCase):
+    def test_full_check_due_and_intermediate_cycles(self):
+        from datetime import datetime, timezone, timedelta
+        initial = datetime(2026, 11, 13, tzinfo=timezone.utc)
+        state = {"full_checked_at": initial.isoformat()}
+        self.assertFalse(monitor.full_check_due(state, initial + timedelta(minutes=5)))
+        self.assertFalse(monitor.full_check_due(state, initial + timedelta(minutes=10)))
+        self.assertTrue(monitor.full_check_due(state, initial + timedelta(minutes=15)))
+        self.assertTrue(monitor.full_check_due({}, initial))
+
+    def test_actual_check_and_vendor_update_times_are_separate(self):
+        state = {"checked_at": "2026-11-13T04:25:00+00:00", "source_checks": {"Microsoft 365": "2026-11-13T04:24:59+00:00"},
+                 "active": {"one": {"service": "Microsoft 365", "incident": {
+                     "id": "one", "name": "Admin Center", "status": "service_degradation",
+                     "body": "", "updated_at": "2026-11-13T04:10:00+00:00"}}}}
+        message = monitor.dashboard_text(state)
+        self.assertIn("정보 갱신: 2026-11-13 13:25", message)
+        self.assertIn("마지막 확인: 11/13 13:24", message)
+        self.assertIn("공식 공지: 11/13 13:10", message)
+
+    def test_due_automatic_cycle_checks_all_sources(self):
+        with tempfile.TemporaryDirectory() as td:
+            state_path = Path(td) / "state.json"
+            state_path.write_text(json.dumps({"initialized": True, "active": {}, "seen": [],
+                                             "full_checked_at": "2000-01-01T00:00:00+00:00"}))
+            with patch.dict(os.environ, {"MONITOR_ACTIVE_ONLY": "true", "MONITOR_AUTO_CYCLE": "true"}), patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "incidents", return_value=[]) as poll, patch.object(monitor, "send"):
+                self.assertEqual(0, monitor.run())
+                self.assertEqual(10, poll.call_count)
+                state = json.loads(state_path.read_text(encoding="utf-8"))
+                self.assertEqual(10, len(state["source_checks"]))
+                self.assertNotEqual("2000-01-01T00:00:00+00:00", state["full_checked_at"])
+
+
+class WatchContinuationTests(unittest.TestCase):
+    def test_newer_pending_run_takes_over_without_duplicates(self):
+        import continue_watch
+        self.assertTrue(continue_watch.newer_pending_run([{"id": 11, "status": "queued"}], 10))
+        self.assertFalse(continue_watch.newer_pending_run([{"id": 9, "status": "in_progress"}, {"id": 11, "status": "completed"}], 10))
+
+    def test_dispatch_uses_auto_cycle_without_exposing_credentials(self):
+        import continue_watch
+        env = {"POLL_CYCLE_START": "0", "WATCH_TOKEN": "fixture-only", "GITHUB_REPOSITORY": "fixture/repo", "GITHUB_RUN_ID": "10"}
+        with patch.dict(os.environ, env), patch.object(continue_watch.time, "time", return_value=301), patch.object(continue_watch, "request", side_effect=[{"workflow_runs": []}, {}]) as request:
+            self.assertEqual(0, continue_watch.continue_watch())
+            args = request.call_args.args
+            self.assertEqual({"ref": "main", "inputs": {"auto_cycle": "true"}}, args[2])

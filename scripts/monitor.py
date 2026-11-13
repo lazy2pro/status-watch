@@ -446,11 +446,32 @@ def issue_grade(item: dict) -> tuple[int, str, str]:
     return assessment["rank"], assessment["icon"], assessment["label"]
 
 
+def full_check_due(state: dict, now: datetime) -> bool:
+    try:
+        last = datetime.fromisoformat(str(state.get("full_checked_at", "")).replace("Z", "+00:00"))
+        if last.tzinfo is None:
+            return True
+        # Cycle starts are five minutes apart; tolerate small setup-time drift.
+        return (now - last).total_seconds() >= 14 * 60
+    except (ValueError, TypeError):
+        return True
+
+
+def display_time(value: str | None, *, full: bool = False) -> str:
+    try:
+        stamp = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        if stamp.tzinfo is None:
+            return "미확인"
+        return stamp.astimezone(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M" if full else "%m/%d %H:%M")
+    except (ValueError, TypeError):
+        return "미확인"
+
+
 def dashboard_text(state: dict) -> str:
     current = visible_records(state)
     stamp = datetime.fromisoformat(state["checked_at"]).astimezone(timezone(timedelta(hours=9)))
     title = "🇰🇷 한국 영향 확인 상태판" if state.get("korea_only") else "📊 서비스 이슈 상태판"
-    lines = [title, stamp.strftime("%m/%d %H:%M") + " · 한국 시간", ""]
+    lines = [title, "정보 갱신: " + display_time(state["checked_at"], full=True) + " (한국 시간)", ""]
     if state.get("collection_failure"):
         lines.extend(["⚠️ 일부 피드 수집 실패 · 이전 정보가 포함될 수 있습니다.", ""])
     services = []
@@ -460,14 +481,19 @@ def dashboard_text(state: dict) -> str:
         priority = issue_grade(ranked[0])[0] if ranked else 5
         services.append((priority, source, ranked))
     for _, source, items in sorted(services, key=lambda row: row[0]):
+        checked = display_time(state.get("source_checks", {}).get(source["service"]))
         if not items:
-            lines.append(source["service"] + " 🟢")
+            lines.append(source["service"] + " 🟢 · 확인 " + checked)
             continue
         _, icon, _ = issue_grade(items[0])
         # Unknown impact is a caution light, without asserting a severity grade.
         if icon == "❔":
             icon = "🟡"
         lines.append(source["service"] + " " + icon)
+        lines.append("  마지막 확인: " + checked + " (한국 시간)")
+        published = [str(i.get("updated_at", "")) for i in items if i.get("updated_at")]
+        if published:
+            lines.append("  공식 공지: " + display_time(max(published)) + " (한국 시간)")
         brief = service_brief(source["service"], items)
         lines.extend("  " + line.removeprefix("상태: ") for line in brief[:2])
         lines.extend([source["page"], ""])
@@ -497,6 +523,8 @@ def run() -> int:
     except (OSError, json.JSONDecodeError) as e:
         print(f"state load failed: {e}", file=sys.stderr)
         return 2
+    poll_started = datetime.now(timezone.utc)
+    source_checks = dict(previous.get("source_checks", {}))
     old_active = previous.get("active", {})
     # Migrate legacy AWS update IDs without emitting one false recovery per update.
     legacy_aws = [v["incident"] for v in old_active.values()
@@ -519,6 +547,8 @@ def run() -> int:
     def relevant(service, item):
         return not korea_only or korea_impact(service, item)["confirmed"]
     active_only = os.getenv("MONITOR_ACTIVE_ONLY", "") == "true"
+    if active_only and os.getenv("MONITOR_AUTO_CYCLE", "") == "true":
+        active_only = not full_check_due(previous, poll_started)
     sources = SOURCES
     if active_only and not previous.get("collection_failure"):
         active_services = {item.get("service") for item in old_active.values() if relevant(item["service"], item["incident"])}
@@ -527,6 +557,7 @@ def run() -> int:
             print("No active incidents; waiting for the next full check")
             return 0
     old_seen = set(previous.get("seen", []))
+    print("Poll mode: " + ("active-only" if active_only else "full") + f"; {len(sources)} services")
     selected_services = {source["service"] for source in sources}
     current: dict[str, dict] = {key: value for key, value in old_active.items() if value.get("service") not in selected_services}
     failures = []
@@ -535,6 +566,7 @@ def run() -> int:
         service = source["service"]
         try:
             found = incidents(source)
+            source_checks[service] = datetime.now(timezone.utc).isoformat()
             service_ids = set()
             resolved_ids = {f"{service}:{i['id']}" for i in found if service == "Microsoft 365" and i.get("status") == "resolved"}
             for item in found:
@@ -614,6 +646,10 @@ def run() -> int:
     active_signatures = {v["signature"] for v in current.values()}
     seen = list(dict.fromkeys(x for x in seen if x in active_signatures or x == collection_failure))[-500:]
     new_state = {"initialized": True, "checked_at": datetime.now(timezone.utc).isoformat(), "active": current, "seen": seen, "collection_failure": collection_failure}
+    new_state["source_checks"] = source_checks
+    new_state["full_checked_at"] = previous.get("full_checked_at")
+    if not active_only and not failures:
+        new_state["full_checked_at"] = poll_started.isoformat()
     new_state["korea_only"] = korea_only
     if korea_only:
         for record in current.values():
