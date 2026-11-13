@@ -17,21 +17,27 @@ jobs:
   monitor:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      HC_PING_URL: ${{ secrets.HC_PING_URL }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Check Telegram configuration
+        run: |
+          if [ -z "$TELEGRAM_BOT_TOKEN" ] || [ -z "$TELEGRAM_CHAT_ID" ]; then
+            echo "::warning::Add TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in repository Actions secrets to enable monitoring."
+          fi
       - name: Poll public status sources and notify
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        if: env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
         run: python scripts/monitor.py
       - name: Commit status state
         if: always()
-        continue-on-error: true
         run: |
-          if ! git diff --quiet -- state.json; then
+          if [ -n "$(git status --porcelain -- state.json)" ]; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add state.json
@@ -40,7 +46,5 @@ jobs:
           fi
       - name: Signal successful run to Healthchecks.io
         if: success() && env.HC_PING_URL != ''
-        env:
-          HC_PING_URL: ${{ secrets.HC_PING_URL }}
         run: curl --fail --silent --show-error --max-time 10 "$HC_PING_URL"
 
