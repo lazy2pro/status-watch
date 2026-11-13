@@ -421,7 +421,7 @@ def dashboard_text(state: dict) -> str:
         services.append((priority, source, ranked))
     for _, source, items in sorted(services, key=lambda row: row[0]):
         if not items:
-            lines.append(source["service"] + " ⚪")
+            lines.append(source["service"] + " 🟢")
             continue
         _, icon, _ = issue_grade(items[0])
         # Unknown impact is a caution light, without asserting a severity grade.

@@ -273,7 +273,7 @@ class DashboardGradeTests(unittest.TestCase):
         self.assertIn("Cloudflare 🔴", text)
         self.assertNotIn("🟡 경미", text)
         self.assertIn("AWS 🟡", text)
-        self.assertIn("Azure ⚪", text)
+        self.assertIn("Azure 🟢", text)
 
 class MicrosoftRecoveryTests(unittest.TestCase):
     def test_old_resolved_update_cannot_hide_new_active_update(self):
@@ -413,7 +413,7 @@ class KoreaImpactTests(unittest.TestCase):
         text = monitor.dashboard_text(state)
         self.assertIn("한국 영향 확인 상태판", text)
         self.assertNotIn("Prague", text)
-        self.assertIn("Zoom ⚪", text)
+        self.assertIn("Zoom 🟢", text)
         self.assertNotIn("🔴", text)
 
     def test_filter_removal_is_not_reported_as_recovery(self):
