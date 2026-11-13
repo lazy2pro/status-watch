@@ -186,3 +186,30 @@ class AlertFormattingTests(unittest.TestCase):
         self.assertLess(len(message), 650)
         self.assertIn("…", message)
         self.assertIn("https://example.test", message)
+
+class ActiveOnlyTests(unittest.TestCase):
+    def test_only_active_services_are_polled_and_recovery_is_not_repeated(self):
+        source = {"service": "Active", "kind": "rss", "url": "unused", "page": "unused"}
+        item = {"id": "one", "name": "Outage", "status": "investigating", "body": "", "updated_at": ""}
+        with tempfile.TemporaryDirectory() as td:
+            state_path = Path(td) / "state.json"
+            state_path.write_text(json.dumps({"initialized": True, "active": {
+                "Active:one": {"service": "Active", "incident": item, "signature": monitor.fingerprint("Active", item)}
+            }, "seen": []}))
+            with patch.dict(os.environ, {"MONITOR_ACTIVE_ONLY": "true"}), patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "SOURCES", [source, {**source, "service": "Healthy"}]), patch.object(monitor, "incidents", return_value=[]) as poll, patch.object(monitor, "send") as send:
+                self.assertEqual(0, monitor.run())
+                poll.assert_called_once_with(source)
+                send.assert_called_once()
+                poll.reset_mock()
+                send.reset_mock()
+                self.assertEqual(0, monitor.run())
+                poll.assert_not_called()
+                send.assert_not_called()
+
+    def test_collection_failure_rechecks_all_services(self):
+        with tempfile.TemporaryDirectory() as td:
+            state_path = Path(td) / "state.json"
+            state_path.write_text(json.dumps({"initialized": True, "active": {}, "seen": [], "collection_failure": "prior"}))
+            with patch.dict(os.environ, {"MONITOR_ACTIVE_ONLY": "true"}), patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "incidents", return_value=[]) as poll, patch.object(monitor, "send"):
+                self.assertEqual(0, monitor.run())
+                self.assertEqual(10, poll.call_count)

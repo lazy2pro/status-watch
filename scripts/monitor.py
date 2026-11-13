@@ -264,11 +264,19 @@ def run() -> int:
         old_active = {k: v for k, v in old_active.items() if v.get("service") != "AWS"}
         for item in aws_latest(legacy_aws):
             old_active[f"AWS:{item['id']}"] = {"service": "AWS", "incident": item, "signature": fingerprint("AWS", item)}
+    active_only = os.getenv("MONITOR_ACTIVE_ONLY", "") == "true"
+    sources = SOURCES
+    if active_only and not previous.get("collection_failure"):
+        active_services = {item.get("service") for item in old_active.values()}
+        sources = [source for source in SOURCES if source["service"] in active_services]
+        if not sources:
+            print("No active incidents; waiting for the next full check")
+            return 0
     old_seen = set(previous.get("seen", []))
     current: dict[str, dict] = {}
     failures = []
     transition_messages = []
-    for source in SOURCES:
+    for source in sources:
         service = source["service"]
         try:
             found = incidents(source)

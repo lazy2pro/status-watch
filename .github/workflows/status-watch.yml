@@ -4,6 +4,8 @@ on:
   schedule:
     # Offset from the top of the hour to reduce schedule congestion.
     - cron: '7,22,37,52 * * * *'
+    # Between full checks, poll only services with active incidents.
+    - cron: '2,12,17,27,32,42,47,57 * * * *'
   workflow_dispatch:
     inputs:
       telegram_test:
@@ -39,6 +41,8 @@ jobs:
             echo "::warning::Add TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in repository Actions secrets to enable monitoring."
           fi
       - name: Poll public status sources and notify
+        env:
+        MONITOR_ACTIVE_ONLY: ${{ github.event_name == 'schedule' && github.event.schedule == '2,12,17,27,32,42,47,57 * * * *' }}
         if: env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
         run: python scripts/monitor.py
       - name: Verify Telegram delivery
