@@ -1,4 +1,3 @@
-Attempting to perform the InitializeDefaultDrives operation on the 'FileSystem' provider failed.
 # Public Service Status Watch
 
 An unauthenticated, public-feed monitor for 10 major service providers. It polls every 15 minutes in GitHub Actions and sends new incidents, material updates, recoveries, and collection failures to Telegram. Incident state lives in `state.json` in the repository. No company account or administrator access is used.
