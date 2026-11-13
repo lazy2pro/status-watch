@@ -1,19 +1,19 @@
 {
   "initialized": true,
-  "checked_at": "2026-11-13T03:25:09.549878+00:00",
+  "checked_at": "2026-11-13T04:14:44.636417+00:00",
   "active": {
     "Microsoft 365:m365:eacd93ef535d24a994019412": {
-      "signature": "62da28d72c6fa915275ee93584ab3a14591c74727b4d259c86960b2f0556a73b",
+      "signature": "b4261ae22b93cc20a157e32c8af826e40540d9f6d93c19a1755dcb53e36c3f85",
       "incident": {
         "id": "m365:eacd93ef535d24a994019412",
         "name": "Microsoft Admin Center",
         "status": "service_degradation",
         "impact": "unknown",
-        "updated_at": "2026-11-13T03:07:45+00:00",
+        "updated_at": "2026-11-13T04:11:46+00:00",
         "url": "https://status.cloud.microsoft/",
-        "body": "<div>User impact: Users may be unable to connect to multiple Microsoft 365 services. <div><br></div><div>More info: Features of the Microsoft 365 services below that interact with Exchange Online and email services are impacted. Elements of those services that do not depend on interaction with Exchange Online remain functional.</div><div>&nbsp;</div><div>- Exchange Online: Users may be unable to access their mailbox using Outlook on the web, Outlook desktop (MAPI), Exchange ActiveSync (EAS), or REST-based connections, and email delivery may be delayed.</div><div>- Microsoft 365 admin center: Admins may be unable to load some admin center pages.</div><div>- Microsoft 365 apps: Users may be unable to view their recently used files.</div><div>- Microsoft 365 Apps Admin Center: Multiple services including Cloud Update, Cloud Policy, and Inventory are affected.</div><div>- Microsoft 365 Education: Features including Assignments, Reading Progress, and Speaker Progress may be impacted.</div><div>- Microsoft Copilot 365: Users may be unable to load Copilot Chat or receive responses in the web and desktop apps, and Copilot experiences may be unable to access work data such as email, calendar, and files.</div><div>- Microsoft Defender for Office 365: Safe Links may be unable to verify URLs, which may impact users clicking links in Outlook and Teams.</div><div>- Microsoft Defender XDR: Users may be unable to load Microsoft Defender portal pages or solution tabs.</div><div>- Microsoft Fabric: Users may encounter failures when exporting reports with sensitivity labels to PDF or PowerPoint, when updating artifacts with sensitivity labels, or opening pbix with sensitivity label in Power BI Desktop. As a workaround, users can remove the sensitivity label from the affected item to complete the operation, if their organization's data protection policies allow it.</div><div>- Microsoft Graph: API requests that access Exchange Online data, such as mail, calendar, and contacts, may time out and prevent users from managing Teams, Channels, Membership, Apps management and send activity notifications using Graph API.</div><div>- Microsoft Intune: Scenarios including device enrollment, device check-in, and device compliance policies may have been intermittently impacted.</div><div>- Microsoft Planner: Users are experiencing Plan and Task operation reliability issues.</div><div>- Microsoft Purview: Multiple Purview services including Authorization, auto-labeling, Data Loss Prevention (DLP) across Microsoft 365 services, Communication Compliance, Information Protection label and auto-labeling policies, Role-Based Access Control (RBAC) and Data Classification are impacted, and users may be unable to open or load Microsoft Purview portal pages or protected content. Audit searches, protected content creation, eDiscovery tasks such as search and export, Data Classification and On Demand Scan features may also be impacted.</div><div>- Microsoft Teams: Most of the core functionality including joining calls, meetings, group chats, and channel messages are not impacted. Scenarios that depend on Exchange Online, including Calendar related failures with scheduling, invites, viewing, and meeting edits. Creation of Live or Virtual events fail. Failures with Copilot responses for outlook, calendar, or M365 files, read history, or adding to new chats. Navigating to App chats, adding new contacts or syncing contacts in settings fail. Standard channels are working fine but users may experience the inability to create or delete private or shared channels. </div><div>- Microsoft To Do: The app may not load, and users may see operation failures.</div><div>- Power BI: All users may intermittently be unable to export reports with MIP sensitivity labels to PDF in Power BI.</div><div>- SharePoint Online: Features that depend on Exchange Online may be impacted. Accessing files stored directly in SharePoint Online remains functional.</div><div>- Universal Print: Users may encounter errors submitting print jobs or using admin features.</div><div>- Windows 365: Customers who have configured their tenant and Cloud PCs to use Microsoft Purview Customer Key for Windows 365 Cloud PCs may have users who are unable to connect to their Cloud PCs.</div><div><br></div><div>Current status: We’ve monitored the status of the changes applied to improve serviceability and confirmed that change is not taking as expected. We’re identifying alternate workstreams that can be applied to increase capacity in the face of sustained traffic management imbalances. </div><div><br></div><div>Scope of impact: This issue may affect users attempting to access the affected Microsoft 365 services.</div><div><br></div>Next update by: Friday, November 13, 2026, at 3:30 AM UTC<br></div>",
+        "body": "<div>More info: Features of the Microsoft 365 services below that interact with Exchange Online and email services are impacted. Elements of those services that do not depend on interaction with Exchange Online remain functional.<div>&nbsp;</div><div>- Exchange Online: Users may be unable to access their mailbox using Outlook on the web, Outlook desktop (MAPI), Exchange ActiveSync (EAS), or REST-based connections, and email delivery may be delayed.</div><div>- Microsoft 365 admin center: Admins may be unable to load some admin center pages.</div><div>- Microsoft 365 apps: Users may be unable to view their recently used files.</div><div>- Microsoft 365 Apps Admin Center: Multiple services including Cloud Update, Cloud Policy, and Inventory are affected.</div><div>- Microsoft 365 Education: Features including Assignments, Reading Progress, and Speaker Progress may be impacted.</div><div>- Microsoft Copilot 365: Users may be unable to load Copilot Chat or receive responses in the web and desktop apps, and Copilot experiences may be unable to access work data such as email, calendar, and files.</div><div>- Microsoft Defender for Office 365: Safe Links may be unable to verify URLs, which may impact users clicking links in Outlook and Teams.</div><div>- Microsoft Defender XDR: Users may be unable to load Microsoft Defender portal pages or solution tabs.</div><div>- Microsoft Fabric: Users may encounter failures when exporting reports with sensitivity labels to PDF or PowerPoint, when updating artifacts with sensitivity labels, or opening pbix with sensitivity label in Power BI Desktop. As a workaround, users can remove the sensitivity label from the affected item to complete the operation, if their organization's data protection policies allow it.</div><div>- Microsoft Graph: API requests that access Exchange Online data, such as mail, calendar, and contacts, may time out and prevent users from managing Teams, Channels, Membership, Apps management and send activity notifications using Graph API.</div><div>- Microsoft Intune: Scenarios including device enrollment, device check-in, and device compliance policies may have been intermittently impacted.</div><div>- Microsoft Planner: Users are experiencing Plan and Task operation reliability issues.</div><div>- Microsoft Purview: Multiple Purview services including Authorization, auto-labeling, Data Loss Prevention (DLP) across Microsoft 365 services, Communication Compliance, Information Protection label and auto-labeling policies, Role-Based Access Control (RBAC) and Data Classification are impacted, and users may be unable to open or load Microsoft Purview portal pages or protected content. Audit searches, protected content creation, eDiscovery tasks such as search and export, Data Classification and On Demand Scan features may also be impacted.</div><div>- Microsoft Teams: Most of the core functionality including joining calls, meetings, group chats, and channel messages are not impacted. Scenarios that depend on Exchange Online, including Calendar related failures with scheduling, invites, viewing, and meeting edits. Creation of Live or Virtual events fail. Failures with Copilot responses for outlook, calendar, or M365 files, read history, or adding to new chats. Navigating to App chats, adding new contacts or syncing contacts in settings fail. Standard channels are working fine but users may experience the inability to create or delete private or shared channels. </div><div>- Microsoft To Do: The app may not load, and users may see operation failures.</div><div>- Power BI: All users may intermittently be unable to export reports with MIP sensitivity labels to PDF in Power BI.</div><div>- SharePoint Online: Features that depend on Exchange Online may be impacted. Accessing files stored directly in SharePoint Online remains functional.</div><div>- Universal Print: Users may encounter errors submitting print jobs or using admin features.</div><div>- Windows 365: Customers who have configured their tenant and Cloud PCs to use Microsoft Purview Customer Key for Windows 365 Cloud PCs may have users who are unable to connect to their Cloud PCs.</div><div><br></div><div>Current status: As part of our investigation into the sustained traffic management imbalances, we’re reviewing traffic flows and affected infrastructure to identify opportunities to optimize routing. This includes verifying the reasons for service failures so we can develop specific actions to improve stability.</div><div><br></div><div>We will continue to share more information as soon as we have it, and for now we can confirm that there is no indication this is the result of malicious activity. We’ll continue to apply learnings towards remediation actions as we confirm effectiveness mitigation actions.<br></div><div><br></div><div>Previous status<span>: We’ve monitored the status of the changes applied to improve serviceability and confirmed that change is not taking as expected. We’re identifying alternate workstreams that can be applied to increase capacity in the face of sustained traffic management imbalances.</span></div><div><br></div><div>Scope of impact: This issue may affect users attempting to access the affected Microsoft 365 services.</div><div><br></div>Next update by: Friday, November 13, 2026, at 4:30 AM UTC<br></div>",
         "source_status": "ServiceDegradation",
-        "published_at": "Fri, 13 Nov 2026 03:07:45 Z"
+        "published_at": "Fri, 13 Nov 2026 04:11:46 Z"
       },
       "service": "Microsoft 365",
       "korea_impact": {
@@ -78,23 +78,6 @@
         "basis": "해외 AWS 리전 공지"
       }
     },
-    "Cloudflare:9zxr2bkqoct7": {
-      "signature": "33370fc8476eff687c01eaf8c3eafadea4bf002ddf90a3ca1ebdfd7c92453107",
-      "incident": {
-        "id": "9zxr2bkqoct7",
-        "name": "Durable Objects increased error rates in North America",
-        "status": "monitoring",
-        "impact": "minor",
-        "updated_at": "2026-11-12T22:40:03.086Z",
-        "url": "https://www.cloudflarestatus.com/incidents/9zxr2bkqoct7",
-        "body": "Durable Objects saw an increased error rate in North American colos due to a sudden increase in traffic. Impact has subsided. We are now monitoring."
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국 영향 근거 미확인"
-      }
-    },
     "Cloudflare:0ocqieaifg7h": {
       "signature": "1c082cf343e40a192bc23f07877a85e6f549abada0b9851d43b0bd22267d7604",
       "incident": {
@@ -113,13 +96,13 @@
       }
     },
     "Cloudflare:component:1km35smx8p41": {
-      "signature": "178bd4f0f7f5c74836638a306edc0754316d27458570284cea6bc05439a22d7a",
+      "signature": "7d551d084d65230c5b4d84c7291947e90b2c7b8fd804d44367cbe2d17ba0893c",
       "incident": {
         "id": "component:1km35smx8p41",
         "name": "Cloudflare Sites and Services status",
         "status": "degraded_performance",
         "impact": "degraded_performance",
-        "updated_at": "2026-11-13T01:44:17.916Z",
+        "updated_at": "2026-11-13T03:44:49.800Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "Sites and services that Cloudflare customers use to interact with the Cloudflare Network and its provided services"
       },
@@ -299,23 +282,6 @@
         "basis": "한국으로 특정되지 않은 지역 구성요소"
       }
     },
-    "Cloudflare:component:xpjxwz2x742k": {
-      "signature": "f68d72300aac6528b56c4ac24560845450201e7aeb4e19843d1e5571e2ed2b75",
-      "incident": {
-        "id": "component:xpjxwz2x742k",
-        "name": "Beirut, Lebanon - (BEY) status",
-        "status": "under_maintenance",
-        "impact": "under_maintenance",
-        "updated_at": "2026-11-13T01:34:30.770Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": ""
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국으로 특정되지 않은 지역 구성요소"
-      }
-    },
     "Cloudflare:component:5r6d2zthcqm4": {
       "signature": "466a3a941f1c83aaf1202cbb54c6a8001837b0fe658a2c4de56f7814cd92553a",
       "incident": {
@@ -324,23 +290,6 @@
         "status": "partial_outage",
         "impact": "partial_outage",
         "updated_at": "2026-11-11T23:57:01.227Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": ""
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국으로 특정되지 않은 지역 구성요소"
-      }
-    },
-    "Cloudflare:component:0jnk3ys3msdv": {
-      "signature": "1d5ef64dafd122bb63029e23ea16dad568a5d1e07cd1f4edf44ffdcf362c3772",
-      "incident": {
-        "id": "component:0jnk3ys3msdv",
-        "name": "Dakar, Senegal - (DKR) status",
-        "status": "partial_outage",
-        "impact": "partial_outage",
-        "updated_at": "2026-11-13T02:04:31.156Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
@@ -384,6 +333,23 @@
         "basis": "한국으로 특정되지 않은 지역 구성요소"
       }
     },
+    "Cloudflare:component:ns7bhkw6xxkj": {
+      "signature": "6380894e71fecf48a32d025868ade6a58b390151d2c3a81cd7c9b5c3d7e4496e",
+      "incident": {
+        "id": "component:ns7bhkw6xxkj",
+        "name": "Campinas, Brazil - (VCP) status",
+        "status": "partial_outage",
+        "impact": "partial_outage",
+        "updated_at": "2026-11-13T03:51:30.742Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": ""
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
     "Cloudflare:component:47440brmvtq2": {
       "signature": "800b31fd61a2831f35811bcebce1acdf1f63cd2fd8a055eb6b4b0ee35e1fe7aa",
       "incident": {
@@ -409,23 +375,6 @@
         "status": "partial_outage",
         "impact": "partial_outage",
         "updated_at": "2026-11-11T14:17:00.845Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": ""
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국으로 특정되지 않은 지역 구성요소"
-      }
-    },
-    "Cloudflare:component:2661q193p08w": {
-      "signature": "843f4e3e83d5622f8b83e2fd694ed12a970a79ed8f81e2ed4d12c155cdecd37c",
-      "incident": {
-        "id": "component:2661q193p08w",
-        "name": "Johannesburg, South Africa - (JNB) status",
-        "status": "under_maintenance",
-        "impact": "under_maintenance",
-        "updated_at": "2026-11-13T01:54:30.740Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
@@ -470,13 +419,30 @@
       }
     },
     "Cloudflare:component:rq86nd41r4t4": {
-      "signature": "6136fe6aaeca5ac8dcdeda9ea70f87d01c633f218a7d615065bb2eae833edf13",
+      "signature": "431a72f36dff2685048d05a0ad6a39bbcc0e95b899aa33d7427cde031d1da80f",
       "incident": {
         "id": "component:rq86nd41r4t4",
         "name": "Lagos, Nigeria - (LOS) status",
-        "status": "partial_outage",
-        "impact": "partial_outage",
-        "updated_at": "2026-11-13T02:16:30.828Z",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-13T03:50:39.962Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": ""
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
+    "Cloudflare:component:n5017xzrnrsc": {
+      "signature": "2d3cc328eb6e575f2e9b75694f2312b2be0e5e55dc16956243e5aea615032879",
+      "incident": {
+        "id": "component:n5017xzrnrsc",
+        "name": "Curitiba, Brazil - (CWB) status",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-13T03:38:01.029Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
@@ -528,6 +494,23 @@
         "status": "partial_outage",
         "impact": "partial_outage",
         "updated_at": "2026-10-28T14:35:29.913Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": ""
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
+    "Cloudflare:component:gg8xxj0j3d32": {
+      "signature": "a84784f78e0839ed2a86a711ab6ddbe18404d9d2c5fea4c3a6e562258b3c2be1",
+      "incident": {
+        "id": "component:gg8xxj0j3d32",
+        "name": "Riyadh, Saudi Arabia - (RUH) status",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-13T04:06:30.712Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
@@ -674,13 +657,13 @@
       }
     },
     "Cloudflare:component:qshn45g5q59m": {
-      "signature": "2ada575eec0ad768c53c22182ebe5d9fa330aa8e1400ee2e0c799dfcf2313981",
+      "signature": "43d358c3be1597057e46f7fa94e1cbaa851761c79ce292dd25ad25d788b56bc0",
       "incident": {
         "id": "component:qshn45g5q59m",
         "name": "Lisbon, Portugal - (LIS) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-13T03:25:01.207Z",
+        "updated_at": "2026-11-13T03:26:00.941Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
@@ -809,6 +792,23 @@
         "basis": "한국으로 특정되지 않은 지역 구성요소"
       }
     },
+    "Cloudflare:component:q1xjqdrjh4v0": {
+      "signature": "a44764cacf1644196c81e9571bed4e5d7da386b9ecbf6bc42cf2c33d4ae66563",
+      "incident": {
+        "id": "component:q1xjqdrjh4v0",
+        "name": "Yamoussoukro, Côte d’Ivoire - (ASK) status",
+        "status": "partial_outage",
+        "impact": "partial_outage",
+        "updated_at": "2026-11-13T03:26:09.809Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": ""
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
     "Cloudflare:component:pd8tz1050d4g": {
       "signature": "ae8fb75207312c26fe0f2950b2d91082b22165ed3f78bbea50cde33f19fd73dc",
       "incident": {
@@ -885,6 +885,23 @@
         "status": "partial_outage",
         "impact": "partial_outage",
         "updated_at": "2026-11-11T14:19:30.767Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": ""
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
+    "Cloudflare:component:jdn42y3nlhjm": {
+      "signature": "39fa393dde171f2e8d403511c7e6c0ab60be9bd259fcb591540802f4b11f7caf",
+      "incident": {
+        "id": "component:jdn42y3nlhjm",
+        "name": "Ribeirao Preto, Brazil - (RAO) status",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-13T03:45:09.867Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
@@ -1047,23 +1064,6 @@
         "basis": "한국으로 특정되지 않은 지역 구성요소"
       }
     },
-    "Cloudflare:component:3s8mgt6mwbfg": {
-      "signature": "2c3cb8d38030ab05d08a9510c7ebb0be6aad1514c0515c2ea3957e70199de508",
-      "incident": {
-        "id": "component:3s8mgt6mwbfg",
-        "name": "Timbo, Brazil - (NVT) status",
-        "status": "partial_outage",
-        "impact": "partial_outage",
-        "updated_at": "2026-11-13T03:21:00.868Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": ""
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국으로 특정되지 않은 지역 구성요소"
-      }
-    },
     "Cloudflare:component:ss09y7v3wzwd": {
       "signature": "ca5f36b4d78355e3bb51a014c2989ff6445cab38b2d58dbf1a62ba783cb4f27f",
       "incident": {
@@ -1210,23 +1210,6 @@
         "updated_at": "2026-11-11T13:09:04.520Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "Cloudflare Workers provides a serverless execution environment that allows you to create new applications or augment existing ones without configuring or maintaining infrastructure"
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국 영향 근거 미확인"
-      }
-    },
-    "Cloudflare:component:bty1yz6dhh0v": {
-      "signature": "db3817543d7a792f54b6ae90601f8a7c645be127e34a63f1be132cb8b527db12",
-      "incident": {
-        "id": "component:bty1yz6dhh0v",
-        "name": "Durable Objects status",
-        "status": "degraded_performance",
-        "impact": "degraded_performance",
-        "updated_at": "2026-11-12T22:39:40.553Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": "Durable Objects provide low-latency coordination and consistent permanent storage for the Workers platform."
       },
       "service": "Cloudflare",
       "korea_impact": {
@@ -1387,6 +1370,23 @@
         "basis": "한국으로 특정되지 않은 지역 구성요소"
       }
     },
+    "OpenAI:01M79GYA0GA772Y6D089AH5478": {
+      "signature": "6acaf33aa441b907299d55fd74c14b79dd602110b11e22b5383c6bef92f094a8",
+      "incident": {
+        "id": "01M79GYA0GA772Y6D089AH5478",
+        "name": "Sites: Publishing failing",
+        "status": "identified",
+        "impact": "minor",
+        "updated_at": "2026-11-13T03:59:08Z",
+        "url": "https://status.openai.com/",
+        "body": "We have identified that users are experiencing elevated errors for the impacted services.\n\nWe are working on implementing a mitigation."
+      },
+      "service": "OpenAI",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
+    },
     "OpenAI:01M78GAT3AK9P9W8Z230KHFVE8": {
       "signature": "169196c4bb09daa29271a90c6b2cacc49506a4c7722e490129e36c20abc6b180",
       "incident": {
@@ -1405,15 +1405,15 @@
       }
     },
     "Zoom:8n4n9nsqcl33": {
-      "signature": "182cb42f479a9ddad67664b0929df1c557a7cb2de7b3a00ac57e65f661da125f",
+      "signature": "6f35de0adc880a8b40d146d86a0066aface6b0cbb6540e879af9379b2e2f93d4",
       "incident": {
         "id": "8n4n9nsqcl33",
         "name": "Service Degradation Affecting Microsoft Integrations due to an underlying vendor issue.",
         "status": "identified",
         "impact": "minor",
-        "updated_at": "2026-11-12T15:54:37.880-08:00",
+        "updated_at": "2026-11-12T20:02:54.277-08:00",
         "url": "https://stspg.io/jth16cll1kcf",
-        "body": "We continue to work with our underlying vendor affecting Microsoft Integrations.\n\nOur team is actively working on a resolution, and we will keep you informed with timely updates as progress is made. \n\nThank you for your patience."
+        "body": "We continue to work with our underlying vendor affecting Microsoft Integrations. \n\nOur team is actively working on a resolution, and we will keep you informed with timely updates as progress is made.\n\nThank you for your patience."
       },
       "service": "Zoom",
       "korea_impact": {
@@ -1525,100 +1525,100 @@
     }
   },
   "seen": [
+    "35072af7855a6440009f79800f87f7a6b693842acd30dd6b610b9b9360a070cd",
+    "9035c47b124bc4d7c480a01f23232a4509881b300be5af778241b8d38a601536",
+    "83e0eb65d8f99be71bbfac3c596bc807e9a7ba60c017569f7b0b08cf9bf76038",
+    "272b73394df9d4dbfdbf8a6699a6b30dd91a5abed3b709d70c389a6f8dcd0aa0",
+    "169196c4bb09daa29271a90c6b2cacc49506a4c7722e490129e36c20abc6b180",
+    "ba4b526b85598f3541307971a5d750aff063db8e92a787d790f791a447c70e39",
+    "1c082cf343e40a192bc23f07877a85e6f549abada0b9851d43b0bd22267d7604",
+    "9aa2b63bb082e57afc18c281dc8ae2386afecbf3eaf54b68627f358628068a3f",
+    "ebd794bc6bb5e0a191eeb3ef94b64bd4c6e86ed213cc1881c64f426463a5b380",
     "f4a9aa9fda272c2eca52c59e3e83af56fe08cbc8b770b0772d4a276b3e620160",
-    "fe83d99c2d8b7cb72e759e54fafa1da771c42a85b3e54c251d51473c52d180fd",
-    "5618aa8c4cb3c6b00975a76ca5b7c4af2fca91b7756ee67ea633d06883b6f5b6",
-    "18ee360ca192f03b9fb1b5aed6cfcf7f7ecaa218adf82758174ec2c4d73c9899",
-    "e6c75e5cd45d9bcf893564447ec275860acbfffa3987e1e273f3a2ffd911f78c",
-    "c89833b1d43fb21e197138ce225ecf8fd549ebd89d3c4e937f7f21e3f636127c",
-    "47299c82cda60ef01490a0fd80a147302848dc10fda4bff45a3ab1301d5a625d",
-    "1dbc37a438ae0130a9d3e29d2452834ba48decf9de6372584bbc0e274256b0ec",
-    "466a3a941f1c83aaf1202cbb54c6a8001837b0fe658a2c4de56f7814cd92553a",
-    "4c42765673083748bc54d0a1192e8dad83e5f005b5e178f141a2c960c050429e",
-    "1d5ef64dafd122bb63029e23ea16dad568a5d1e07cd1f4edf44ffdcf362c3772",
-    "0b970bc07fcc7396bb83a7fcd6514796b9724af786ae28b83fd2e49920913d4f",
-    "3e4c42a140703418b57c65dada680751e0ee979ae84a76bff143e8d1635d79eb",
-    "6136fe6aaeca5ac8dcdeda9ea70f87d01c633f218a7d615065bb2eae833edf13",
-    "f68d72300aac6528b56c4ac24560845450201e7aeb4e19843d1e5571e2ed2b75",
-    "182cb42f479a9ddad67664b0929df1c557a7cb2de7b3a00ac57e65f661da125f",
+    "d7d2192cc7fa5bc3ee59fb873ab9f994584b2646cddc35b7cfb6a4606b2f299b",
+    "e2d74bebeb4b310545e9ff5c2454740d04671013f695b910113535d1ac8b6f74",
+    "12512ba250c88ad308c99f41621f2dfaa431539f8debcdff35917e45117ac17b",
     "dbb464d52dfdfa1f6d80f4c993187540e39b01b6ae94aa6667611ad50c394fcd",
+    "3bee33e34728b264a355a5d0020fe8c44acfde2aabce14cd23639e6dcaa0f327",
+    "4c42765673083748bc54d0a1192e8dad83e5f005b5e178f141a2c960c050429e",
+    "ffc6db3819bac23170f128123444e5b1ca7012865f036e937b62a9f90b9734fa",
+    "20ab6a67fb14e37e52529788ba9bc597d12f6d90557941d1f052b0eab7e4bd90",
+    "435db7dc99eb6318e3bc5b151f79b6fc8062a4a1cc55d36517ceec2c748dda8a",
+    "021697ea2be2781caaceca3444d43949a932f71fae5e8b4253855c50ffafabe6",
+    "c89833b1d43fb21e197138ce225ecf8fd549ebd89d3c4e937f7f21e3f636127c",
+    "50aaf706b04c26c454d13388d7aac7563cfa201581b089fc4a6071bd68bd6c59",
+    "94684638afc13ae1e65b23040b5541fc40a77ff100521339a33204d0ab4dfda2",
+    "ae8fb75207312c26fe0f2950b2d91082b22165ed3f78bbea50cde33f19fd73dc",
+    "18ee360ca192f03b9fb1b5aed6cfcf7f7ecaa218adf82758174ec2c4d73c9899",
+    "d2f989c1d76a1070875738d3be64eb37c31ba70f5ff038b466d69080ee580254",
+    "2128d0cb9ea701a6a8c9eddc93f85ea438b88be140698105485c9eb4f4a6e6d1",
+    "0b970bc07fcc7396bb83a7fcd6514796b9724af786ae28b83fd2e49920913d4f",
+    "ff1728ff5c48d97a2c1f20b49b5981dd4d9f5cf20785a69ae830df11759f4730",
+    "af7755775f56d6e69b942bd98291831458796a14774474b281a85a639e5fcd3e",
+    "687292ea7f24894dc6c85fa18bd88bbc0534d9b422b09a5a05516059df81b94c",
+    "afbd77ae8a8041307979ce34b625402bf58a7cdcadfcea8de041cbda0bda7210",
+    "3e4c42a140703418b57c65dada680751e0ee979ae84a76bff143e8d1635d79eb",
+    "fe83d99c2d8b7cb72e759e54fafa1da771c42a85b3e54c251d51473c52d180fd",
+    "d0bffeaa388a5001a3258401fcee8dc75b2a66d63d2730615ebb76adf489e694",
+    "a2d91c3322f306222cc758928cd1838097c9d7a78bf1eb8229e8460b09ed0a1f",
+    "6cc154b3b748995da8838e3edb513f175901c9819d318864fa3e4f50f2b52f36",
+    "f7d6ce0ed7d41704461735d920011fad8f845d9ae1ead591bc24e21e5a1c545a",
+    "ca5f36b4d78355e3bb51a014c2989ff6445cab38b2d58dbf1a62ba783cb4f27f",
+    "f86f2c785f36a3da51c58ede009e5299e046cd0b6ed44e40594565962ed83f8a",
+    "1dbc37a438ae0130a9d3e29d2452834ba48decf9de6372584bbc0e274256b0ec",
+    "ceef6d22240c764a8bbbb436f3171b7e3eb122c68f9f85b12e544100289e1ddc",
+    "47299c82cda60ef01490a0fd80a147302848dc10fda4bff45a3ab1301d5a625d",
+    "0bb655efd6db637aac8c148bf64eba090d4305e3e248038686fcc3504703b7df",
     "7b6f8c101209226a4f13a5f781dcca1f72366b0b80fe791f310cc346d3f49bb1",
+    "20fb0e5cd41fdd03122283e795f0d74966da0cb4b5e34bff29ab1388ce95e635",
+    "0a151d3633240c34451de5fdfba48f6f37399d57b92e684b3f52e081f030ebf8",
+    "7fa560569ddad69b5f257d556a994ece1919c0b35f443fce26dc2ccc10cd58ef",
+    "bc20535cb74152fdec49db6a03dd6fd440f6e06395a68ad32f211b3ac91ec68a",
+    "5fca3125f15d3e0642726c8cc47dd1f20e7e6da694d203d874551f3bf6968e8f",
     "249865bb4d1ae3853e63fbaa8a9634b17fe307bdeb1264118f3a0ada5adb0777",
     "1241383282c553a0559bbf3b6093b50dff9d46871a86a037378e32b988b69821",
-    "169196c4bb09daa29271a90c6b2cacc49506a4c7722e490129e36c20abc6b180",
-    "db3817543d7a792f54b6ae90601f8a7c645be127e34a63f1be132cb8b527db12",
-    "0bb655efd6db637aac8c148bf64eba090d4305e3e248038686fcc3504703b7df",
-    "d2f989c1d76a1070875738d3be64eb37c31ba70f5ff038b466d69080ee580254",
-    "f19d37632e483466902f5fad6e7e1ab4076abbfb703cd84d0583e40390d701b3",
-    "afbd77ae8a8041307979ce34b625402bf58a7cdcadfcea8de041cbda0bda7210",
-    "8769b309772973900620709b3fb12c95578209cfdf5bdf2dffdae356adff16ba",
-    "800d9e78ed14ee4633696f5955216937586b644301de2969da866010a5032f2c",
-    "c4ac4330ee2b2083f4805688875e7fc860a9cf9f3a7fabd81d83e7287a00d3da",
-    "12512ba250c88ad308c99f41621f2dfaa431539f8debcdff35917e45117ac17b",
-    "9e6fb8956e9caa65c453d195888b10a7c3418a7f743dc22caeaecc7c4c64404c",
-    "33370fc8476eff687c01eaf8c3eafadea4bf002ddf90a3ca1ebdfd7c92453107",
-    "c6070022a5633541286406ce13a821b41374fe7fa7fd9aad6120fb244337ef9b",
+    "800b31fd61a2831f35811bcebce1acdf1f63cd2fd8a055eb6b4b0ee35e1fe7aa",
     "6a619b2909d23a06ca45cee514b109da213d78c4fb0728cbfd435531e8cde3be",
-    "ae9deeed0b28b769633b044b0c7f30c23ff244dacf3daf7b1df317fe473696d1",
-    "2f8a761169c43ec3368b564b60d44ccc40d18eaa6b0f15e2e43c3a2f6399e13b",
-    "bc20535cb74152fdec49db6a03dd6fd440f6e06395a68ad32f211b3ac91ec68a",
-    "94684638afc13ae1e65b23040b5541fc40a77ff100521339a33204d0ab4dfda2",
-    "6cc154b3b748995da8838e3edb513f175901c9819d318864fa3e4f50f2b52f36",
-    "3977899588791b12f5e814bd122ffa31cc0daef0d4e2d1b3e623059a6013be0b",
-    "178bd4f0f7f5c74836638a306edc0754316d27458570284cea6bc05439a22d7a",
-    "ba4b526b85598f3541307971a5d750aff063db8e92a787d790f791a447c70e39",
-    "9aa2b63bb082e57afc18c281dc8ae2386afecbf3eaf54b68627f358628068a3f",
-    "0a151d3633240c34451de5fdfba48f6f37399d57b92e684b3f52e081f030ebf8",
-    "f7d6ce0ed7d41704461735d920011fad8f845d9ae1ead591bc24e21e5a1c545a",
-    "35072af7855a6440009f79800f87f7a6b693842acd30dd6b610b9b9360a070cd",
-    "4c64bc1cd242462f9a2cbafd7f561d2e9939fe416953cd42b754b92562a84ad4",
-    "9035c47b124bc4d7c480a01f23232a4509881b300be5af778241b8d38a601536",
-    "e933bd371f3536eb0cf3af61ba6d58592004874943ab78b355a49685575a1261",
-    "3bee33e34728b264a355a5d0020fe8c44acfde2aabce14cd23639e6dcaa0f327",
-    "ca5f36b4d78355e3bb51a014c2989ff6445cab38b2d58dbf1a62ba783cb4f27f",
-    "a2d91c3322f306222cc758928cd1838097c9d7a78bf1eb8229e8460b09ed0a1f",
-    "4f47653e47cd22e8723ab90c9483b90aa310f1d782e860ee1a5fb5a21d89a2d4",
-    "20ab6a67fb14e37e52529788ba9bc597d12f6d90557941d1f052b0eab7e4bd90",
-    "6d894b02d84a3fe43089225f52f13a42dcc8625d083bf687ac1a870189c79b36",
-    "40890489e6ec90bcb79cb804f600d40ced4d4893f1cbad320edfd3ad5ba34ded",
-    "ebd794bc6bb5e0a191eeb3ef94b64bd4c6e86ed213cc1881c64f426463a5b380",
-    "687292ea7f24894dc6c85fa18bd88bbc0534d9b422b09a5a05516059df81b94c",
-    "50aaf706b04c26c454d13388d7aac7563cfa201581b089fc4a6071bd68bd6c59",
-    "4129db723a0e0faa323d54be4cddc4cb97705a90ebf14e5ab8d13ad48488e150",
-    "7fa560569ddad69b5f257d556a994ece1919c0b35f443fce26dc2ccc10cd58ef",
-    "7b8607fff478c3a951980ce46529cf8271bfae33353006d56305cbde4a6c6bf0",
-    "d7d2192cc7fa5bc3ee59fb873ab9f994584b2646cddc35b7cfb6a4606b2f299b",
-    "1c082cf343e40a192bc23f07877a85e6f549abada0b9851d43b0bd22267d7604",
-    "ae8fb75207312c26fe0f2950b2d91082b22165ed3f78bbea50cde33f19fd73dc",
-    "272b73394df9d4dbfdbf8a6699a6b30dd91a5abed3b709d70c389a6f8dcd0aa0",
-    "f86f2c785f36a3da51c58ede009e5299e046cd0b6ed44e40594565962ed83f8a",
-    "20fb0e5cd41fdd03122283e795f0d74966da0cb4b5e34bff29ab1388ce95e635",
     "50539ef6e2eee8d47bce8744b324a8e9797e4f6364ce37def40a4f451b821bf2",
-    "435db7dc99eb6318e3bc5b151f79b6fc8062a4a1cc55d36517ceec2c748dda8a",
-    "62da28d72c6fa915275ee93584ab3a14591c74727b4d259c86960b2f0556a73b",
-    "af7755775f56d6e69b942bd98291831458796a14774474b281a85a639e5fcd3e",
-    "ff1728ff5c48d97a2c1f20b49b5981dd4d9f5cf20785a69ae830df11759f4730",
-    "eec9323bd77255f99c23e790294d662c128f6a749c1e509a163e785dc1761a80",
-    "83e0eb65d8f99be71bbfac3c596bc807e9a7ba60c017569f7b0b08cf9bf76038",
+    "2f8a761169c43ec3368b564b60d44ccc40d18eaa6b0f15e2e43c3a2f6399e13b",
+    "1078e97dd485ebffd91f6e94f530cb7c004a288af9cd49f9467572a3ce50ec02",
+    "4129db723a0e0faa323d54be4cddc4cb97705a90ebf14e5ab8d13ad48488e150",
+    "4c64bc1cd242462f9a2cbafd7f561d2e9939fe416953cd42b754b92562a84ad4",
     "db6c951fc0249654994bbdbf8bc707fbacea0a8298b76beefd1cd547823180e3",
     "345f95b70e1cabc54ee2be22e109ea6b5a2660eba1eff8330cd179237a0014ce",
-    "ffc6db3819bac23170f128123444e5b1ca7012865f036e937b62a9f90b9734fa",
-    "800b31fd61a2831f35811bcebce1acdf1f63cd2fd8a055eb6b4b0ee35e1fe7aa",
-    "d0bffeaa388a5001a3258401fcee8dc75b2a66d63d2730615ebb76adf489e694",
-    "5fca3125f15d3e0642726c8cc47dd1f20e7e6da694d203d874551f3bf6968e8f",
-    "ceef6d22240c764a8bbbb436f3171b7e3eb122c68f9f85b12e544100289e1ddc",
-    "e2d74bebeb4b310545e9ff5c2454740d04671013f695b910113535d1ac8b6f74",
-    "843f4e3e83d5622f8b83e2fd694ed12a970a79ed8f81e2ed4d12c155cdecd37c",
-    "021697ea2be2781caaceca3444d43949a932f71fae5e8b4253855c50ffafabe6",
-    "1078e97dd485ebffd91f6e94f530cb7c004a288af9cd49f9467572a3ce50ec02",
-    "2ada575eec0ad768c53c22182ebe5d9fa330aa8e1400ee2e0c799dfcf2313981",
-    "2128d0cb9ea701a6a8c9eddc93f85ea438b88be140698105485c9eb4f4a6e6d1",
-    "2c3cb8d38030ab05d08a9510c7ebb0be6aad1514c0515c2ea3957e70199de508"
+    "e6c75e5cd45d9bcf893564447ec275860acbfffa3987e1e273f3a2ffd911f78c",
+    "3977899588791b12f5e814bd122ffa31cc0daef0d4e2d1b3e623059a6013be0b",
+    "e933bd371f3536eb0cf3af61ba6d58592004874943ab78b355a49685575a1261",
+    "9e6fb8956e9caa65c453d195888b10a7c3418a7f743dc22caeaecc7c4c64404c",
+    "4f47653e47cd22e8723ab90c9483b90aa310f1d782e860ee1a5fb5a21d89a2d4",
+    "ae9deeed0b28b769633b044b0c7f30c23ff244dacf3daf7b1df317fe473696d1",
+    "466a3a941f1c83aaf1202cbb54c6a8001837b0fe658a2c4de56f7814cd92553a",
+    "800d9e78ed14ee4633696f5955216937586b644301de2969da866010a5032f2c",
+    "8769b309772973900620709b3fb12c95578209cfdf5bdf2dffdae356adff16ba",
+    "6d894b02d84a3fe43089225f52f13a42dcc8625d083bf687ac1a870189c79b36",
+    "7b8607fff478c3a951980ce46529cf8271bfae33353006d56305cbde4a6c6bf0",
+    "f19d37632e483466902f5fad6e7e1ab4076abbfb703cd84d0583e40390d701b3",
+    "c6070022a5633541286406ce13a821b41374fe7fa7fd9aad6120fb244337ef9b",
+    "40890489e6ec90bcb79cb804f600d40ced4d4893f1cbad320edfd3ad5ba34ded",
+    "eec9323bd77255f99c23e790294d662c128f6a749c1e509a163e785dc1761a80",
+    "c4ac4330ee2b2083f4805688875e7fc860a9cf9f3a7fabd81d83e7287a00d3da",
+    "5618aa8c4cb3c6b00975a76ca5b7c4af2fca91b7756ee67ea633d06883b6f5b6",
+    "b4261ae22b93cc20a157e32c8af826e40540d9f6d93c19a1755dcb53e36c3f85",
+    "7d551d084d65230c5b4d84c7291947e90b2c7b8fd804d44367cbe2d17ba0893c",
+    "6380894e71fecf48a32d025868ade6a58b390151d2c3a81cd7c9b5c3d7e4496e",
+    "431a72f36dff2685048d05a0ad6a39bbcc0e95b899aa33d7427cde031d1da80f",
+    "2d3cc328eb6e575f2e9b75694f2312b2be0e5e55dc16956243e5aea615032879",
+    "a84784f78e0839ed2a86a711ab6ddbe18404d9d2c5fea4c3a6e562258b3c2be1",
+    "43d358c3be1597057e46f7fa94e1cbaa851761c79ce292dd25ad25d788b56bc0",
+    "a44764cacf1644196c81e9571bed4e5d7da386b9ecbf6bc42cf2c33d4ae66563",
+    "39fa393dde171f2e8d403511c7e6c0ab60be9bd259fcb591540802f4b11f7caf",
+    "6acaf33aa441b907299d55fd74c14b79dd602110b11e22b5383c6bef92f094a8",
+    "6f35de0adc880a8b40d146d86a0066aface6b0cbb6540e879af9379b2e2f93d4"
   ],
   "collection_failure": null,
   "korea_only": true,
   "dashboard": {
     "message_id": 25,
-    "signature": "aaaa622fef869affed4dfa649a088f47a44a43d500290d4eba7784872ad35ca1"
+    "signature": "174aa0333a5423ed8692c48f61d660d6a87385462320b86537935a554c4e815e"
   }
 }
