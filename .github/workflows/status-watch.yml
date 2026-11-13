@@ -1,0 +1,46 @@
+name: Public service status watch
+
+on:
+  schedule:
+    # Offset from the top of the hour to reduce schedule congestion.
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: public-service-status-watch
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Poll public status sources and notify
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/monitor.py
+      - name: Commit status state
+        if: always()
+        continue-on-error: true
+        run: |
+          if ! git diff --quiet -- state.json; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add state.json
+            git commit -m 'Update service status state'
+            git push
+          fi
+      - name: Signal successful run to Healthchecks.io
+        if: success() && env.HC_PING_URL != ''
+        env:
+          HC_PING_URL: ${{ secrets.HC_PING_URL }}
+        run: curl --fail --silent --show-error --max-time 10 "$HC_PING_URL"
+
