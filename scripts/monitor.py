@@ -13,6 +13,7 @@ import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -63,7 +64,7 @@ def rss_incidents(raw: bytes) -> list[dict]:
             link = link_el.attrib.get("href", "") if link_el is not None else ""
         guid = text(item.find("guid")) or text(item.find("{http://www.w3.org/2005/Atom}id")) or link or title
         description = text(item.find("description")) or text(item.find("{http://www.w3.org/2005/Atom}summary"))
-        results.append({"id": guid, "name": title, "status": "investigating", "impact": "unknown", "updated_at": "", "url": link, "body": description})
+        results.append({"id": guid, "name": title, "status": "investigating", "impact": "unknown", "updated_at": "", "url": link, "body": description, "source_status": text(item.find("status")), "published_at": text(item.find("pubDate"))})
     return results
 
 
@@ -88,11 +89,45 @@ def aws_latest(items: list[dict]) -> list[dict]:
     return [item for (_, resolved), item in latest.values() if not resolved]
 
 
+def microsoft_notice(item: dict) -> dict:
+    # The public feed GUID changes on updates to the same service bulletin.
+    identity = item.get("url", "").rstrip("/") + "|" + item.get("name", "").strip().casefold()
+    key = "m365:" + hashlib.sha256(identity.encode()).hexdigest()[:24]
+    source_status = str(item.get("source_status", "")).lower()
+    statuses = {"servicedegradation": "service_degradation", "serviceinterruption": "service_interruption",
+                "restoringservice": "restoring", "extendedrecovery": "restoring",
+                "verifyingservice": "monitoring", "investigating": "investigating",
+                "servicerestored": "resolved", "serviceoperational": "resolved", "resolved": "resolved"}
+    stamp = item.get("updated_at", "")
+    if item.get("published_at"):
+        try:
+            stamp = parsedate_to_datetime(item["published_at"]).isoformat()
+        except (ValueError, TypeError):
+            pass
+    return {**item, "id": key, "status": statuses.get(source_status, item.get("status", "investigating")), "updated_at": stamp}
+
+
+def microsoft_latest(items: list[dict]) -> list[dict]:
+    latest = {}
+    for raw in items:
+        item = microsoft_notice(raw)
+        try:
+            stamp = datetime.fromisoformat(item["updated_at"]).timestamp()
+        except (ValueError, TypeError):
+            stamp = 0
+        rank = (stamp, item["status"] != "resolved")
+        if item["id"] not in latest or rank > latest[item["id"]][0]:
+            latest[item["id"]] = (rank, item)
+    return [item for _, item in latest.values()]
+
+
 def incidents(source: dict) -> list[dict]:
     raw = get(source["url"])
     kind = source["kind"]
     if kind == "rss":
         found = rss_incidents(raw)
+        if source["service"] == "Microsoft 365":
+            return microsoft_latest(found)
         return aws_latest(found) if source["service"] == "AWS" else found
     data = json.loads(raw)
     if kind == "json_array":
@@ -224,38 +259,76 @@ def clean_notice(value: str) -> str:
     return "\n".join(line for line in lines if line)
 
 
-def alert(service: str, incident: dict, label: str) -> str:
-    headings = {"NEW INCIDENT": "🔴 새 장애", "INCIDENT UPDATE": "🟠 장애 내용 변경",
-                "INCIDENT REOPENED": "🔴 장애 재발", "INCIDENT RECOVERED": "🟢 복구 확인"}
-    statuses = {"investigating": "조사 중", "identified": "원인 확인",
-                "monitoring": "복구 후 관찰 중", "resolved": "해결됨",
-                "degraded_performance": "성능 저하", "partial_outage": "일부 장애",
-                "major_outage": "중대 장애", "under_maintenance": "점검 중",
-                "service_information": "서비스 공지"}
-    recovered = label == "INCIDENT RECOVERED"
-    name = clean_notice(incident.get("name", "")).removesuffix(" status")
-    lines = [f"{headings.get(label, label)} · {service}", name]
-    if recovered:
-        lines.append("이전 장애·점검 항목이 공식 피드의 활성 목록에서 해제됐습니다.")
-    else:
-        status = incident.get("status", "")
-        lines.append("상태: " + statuses.get(status, status or "확인 중"))
-        body = clean_notice(incident.get("body", ""))
-        if body:
-            excerpt = body[:450]
-            if len(body) > 450:
-                excerpt = excerpt.rsplit(" ", 1)[0] + "…"
-            lines.extend(["", "공식 공지(원문)", excerpt])
-    stamp = incident.get("updated_at", "")
-    if stamp and not recovered:
-        try:
-            stamp = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
-            if stamp.tzinfo is not None:
-                lines.append("공지 시각: " + stamp.astimezone(timezone(timedelta(hours=9))).strftime("%m/%d %H:%M") + " (한국 시간)")
-        except ValueError:
-            pass
-    lines.extend(["", "자세히: " + incident.get("url", "")])
+STATUS_LABELS = {"investigating": "조사 중", "identified": "원인 확인 · 조치 중",
+                 "monitoring": "복구 후 검증 중", "service_degradation": "성능 저하 지속",
+                 "service_interruption": "서비스 장애 지속", "restoring": "복구 작업 중",
+                 "recovery_unconfirmed": "복구 미확인 · 계속 추적",
+                 "degraded_performance": "성능 저하", "partial_outage": "일부 장애",
+                 "major_outage": "주요 기능 장애", "under_maintenance": "점검 중",
+                 "service_information": "서비스 공지", "resolved": "공식 복구 확인"}
+
+
+def service_brief(service: str, items: list[dict]) -> list[str]:
+    if not items:
+        return ["상태: 현재 활성 공지 없음"]
+    ranked = sorted(items, key=lambda i: issue_grade(i)[0])
+    states = list(dict.fromkeys(STATUS_LABELS.get(str(i.get("status", "")).lower(), "서비스 공지 확인 중") for i in ranked))
+    lines = ["상태: " + " · ".join(states[:3])]
+    types = []
+    titles = " ".join(clean_notice(i.get("name", "")) for i in items).lower()
+    for pattern, label in (
+        (r"\bapi\b", "API 관련 문제"),
+        (r"connectivity|connection", "접속·연결 문제"),
+        (r"authentication|sign.in|login", "로그인·인증 문제"),
+        (r"latency|slow|performance|degradation", "성능 저하"),
+        (r"\bemail\b|\bmail\b|outlook", "메일 관련 문제"),
+        (r"unavailable|inaccessible", "서비스 접근 불가"),
+        (r"\berrors?\b|\bfailures?\b", "오류 발생"),
+    ):
+        if re.search(pattern, titles):
+            types.append(label)
+    if types:
+        lines.append("이슈: " + " · ".join(types[:3]))
+    if service == "Microsoft 365":
+        body = clean_notice(ranked[0].get("body", ""))
+        names = []
+        for line in body.splitlines():
+            if line.startswith("- "):
+                name = line[2:].split(":", 1)[0].strip()
+                if name and len(name) <= 60:
+                    names.append(name)
+        if names:
+            names = list(dict.fromkeys(names))
+            lines.append("관련 서비스: " + " / ".join(names[:5]) + (" 외 " + str(len(names) - 5) + "개" if len(names) > 5 else ""))
+    components = [clean_notice(i.get("name", "")).removesuffix(" status") for i in ranked
+                  if str(i.get("id", "")).startswith("component:")]
+    if components:
+        lines.append("관련 구성요소: " + " / ".join(name[:35] for name in components[:3]) + (" 외 " + str(len(components) - 3) + "개" if len(components) > 3 else ""))
+    lines.append("활성 공지: " + str(len(items)) + "건 (장애·구성요소·점검 포함)")
+    return lines
+
+
+def service_update(service: str, items: list[dict], changes: list[str], *, correction: bool = False) -> str:
+    labels = {"NEW INCIDENT": "새 장애", "INCIDENT UPDATE": "장애 내용 변경",
+              "INCIDENT RECOVERED": "복구 확인", "RECOVERY UNCONFIRMED": "복구 미확인"}
+    if items:
+        labels["INCIDENT RECOVERED"] = "일부 항목 해제"
+    icon = min(issue_grade(i) for i in items)[1] if items else "🟢"
+    heading = "⚠️ 알림 정정" if correction else icon + " " + " · ".join(dict.fromkeys(labels.get(x, x) for x in changes))
+    lines = [heading + " · " + service]
+    if correction:
+        lines.append("이전 복구 알림은 공지 ID 변경을 복구로 잘못 판단한 결과입니다.")
+    lines.extend(service_brief(service, items))
+    stamp = datetime.now(timezone(timedelta(hours=9))).strftime("%m/%d %H:%M")
+    lines.append("확인: " + stamp + " (한국 시간)")
+    page = next((s["page"] for s in SOURCES if s["service"] == service), "")
+    if page:
+        lines.append("공식 확인: " + page)
     return "\n".join(lines)
+
+
+def alert(service: str, incident: dict, label: str) -> str:
+    return service_update(service, [] if label == "INCIDENT RECOVERED" else [incident], [label])
 
 
 def issue_grade(item: dict) -> tuple[int, str, str]:
@@ -299,12 +372,7 @@ def dashboard_text(state: dict) -> str:
     for _, source, items in sorted(services, key=lambda row: row[0]):
         _, icon, grade = issue_grade(items[0])
         lines.append(icon + " " + source["service"] + " · " + grade + " · " + str(len(items)) + "건")
-        for item in items[:2]:
-            _, item_icon, item_grade = issue_grade(item)
-            title = clean_notice(item.get("name", "")).replace("\n", " ").removesuffix(" status")
-            lines.append("  " + item_icon + " " + title[:65] + ("…" if len(title) > 65 else ""))
-        if len(items) > 2:
-            lines.append("  ＋ " + str(len(items) - 2) + "건 더 있음")
+        lines.extend("  " + line for line in service_brief(source["service"], items)[:2])
         lines.extend([source["page"], ""])
     if quiet:
         lines.extend(["⚪ 활성 공지 없음 · " + str(len(quiet)) + "개 서비스", " / ".join(quiet), ""])
@@ -347,6 +415,16 @@ def run() -> int:
         old_active = {k: v for k, v in old_active.items() if v.get("service") != "AWS"}
         for item in aws_latest(legacy_aws):
             old_active[f"AWS:{item['id']}"] = {"service": "AWS", "incident": item, "signature": fingerprint("AWS", item)}
+    ms_correction = False
+    migrated = {}
+    for key, old in old_active.items():
+        if old.get("service") == "Microsoft 365" and not old["incident"]["id"].startswith("m365:"):
+            item = microsoft_notice(old["incident"])
+            migrated["Microsoft 365:" + item["id"]] = {**old, "incident": item, "signature": fingerprint("Microsoft 365", item)}
+            ms_correction = ms_correction or not old["incident"]["id"].startswith("m365:")
+        else:
+            migrated[key] = old
+    old_active = migrated
     active_only = os.getenv("MONITOR_ACTIVE_ONLY", "") == "true"
     sources = SOURCES
     if active_only and not previous.get("collection_failure"):
@@ -358,30 +436,34 @@ def run() -> int:
     old_seen = set(previous.get("seen", []))
     current: dict[str, dict] = {}
     failures = []
-    transition_messages = []
+    transitions = {}
     for source in sources:
         service = source["service"]
         try:
             found = incidents(source)
             service_ids = set()
+            resolved_ids = {f"{service}:{i['id']}" for i in found if service == "Microsoft 365" and i.get("status") == "resolved"}
             for item in found:
                 incident_id = f"{service}:{item['id']}"
+                if incident_id in resolved_ids:
+                    continue
                 service_ids.add(incident_id)
                 sig = fingerprint(service, item)
                 current[incident_id] = {"signature": sig, "incident": item, "service": service}
                 old = old_active.get(incident_id)
-                if old is None:
-                    # A previously active incident missing from the last successful
-                    # snapshot is a reopening, even if its last signature was seen.
-                    if previous.get("initialized") and incident_id in old_active:
-                        transition_messages.append(alert(service, item, "INCIDENT REOPENED"))
-                    elif previous.get("initialized"):
-                        transition_messages.append(alert(service, item, "NEW INCIDENT"))
-                elif old.get("signature") != sig:
-                    transition_messages.append(alert(service, item, "INCIDENT UPDATE"))
+                if old is None and previous.get("initialized"):
+                    transitions.setdefault(service, []).append("NEW INCIDENT")
+                elif old is not None and old.get("signature") != sig:
+                    transitions.setdefault(service, []).append("INCIDENT UPDATE")
             for incident_id, old in old_active.items():
                 if old.get("service") == service and incident_id not in service_ids:
-                    transition_messages.append(alert(service, old.get("incident", {}), "INCIDENT RECOVERED"))
+                    if service == "Microsoft 365" and incident_id not in resolved_ids:
+                        item = {**old["incident"], "status": "recovery_unconfirmed"}
+                        current[incident_id] = {**old, "incident": item, "signature": fingerprint(service, item)}
+                        if old["incident"].get("status") != "recovery_unconfirmed":
+                            transitions.setdefault(service, []).append("RECOVERY UNCONFIRMED")
+                    else:
+                        transitions.setdefault(service, []).append("INCIDENT RECOVERED")
             print(f"OK {service}: {len(found)} active notices")
         except Exception as e:  # keep collecting other independent feeds
             failures.append(f"{service}: {type(e).__name__}: {e}")
@@ -393,7 +475,13 @@ def run() -> int:
         if old.get("service") in failed_services and incident_id not in current:
             current[incident_id] = old
 
-    notifications = list(transition_messages)
+    if ms_correction and any(v["service"] == "Microsoft 365" for v in current.values()):
+        transitions.setdefault("Microsoft 365", []).append("INCIDENT UPDATE")
+    notifications = [
+        service_update(service, [v["incident"] for v in current.values() if v["service"] == service],
+                       changes, correction=ms_correction and service == "Microsoft 365")
+        for service, changes in transitions.items()
+    ]
     if failures:
         # Fingerprint failures so the same outage is emitted once, and a changed
         # collection failure summary can be surfaced as an update.

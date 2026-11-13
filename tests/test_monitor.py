@@ -161,31 +161,28 @@ if __name__ == "__main__":
     unittest.main()
 
 class AlertFormattingTests(unittest.TestCase):
-    def test_html_removed_and_unknown_impact_omitted(self):
-        item = {"name": "API errors", "status": "investigating", "impact": "unknown",
-                "body": "<div>First &amp; second<br>Details<script>hidden</script></div>",
-                "updated_at": "2026-11-13T01:00:00Z", "url": "https://example.test"}
+    def test_notice_is_summarized_not_forwarded(self):
+        item = {"id": "x", "name": "Raw vendor headline", "status": "service_degradation",
+                "body": "<div>User impact: raw English prose</div><div>- Exchange Online: mail errors</div><div>- Microsoft Teams: calendar errors</div>"}
         message = monitor.alert("Microsoft 365", item, "INCIDENT UPDATE")
-        self.assertIn("장애 내용 변경", message)
-        self.assertIn("First & second\nDetails", message)
-        self.assertIn("11/13 10:00", message)
-        for unwanted in ("<div>", "hidden", "unknown", "investigating"):
+        self.assertIn("성능 저하 지속", message)
+        self.assertIn("Exchange Online / Microsoft Teams", message)
+        for unwanted in ("<div>", "raw English prose", "Raw vendor headline", "mail errors"):
             self.assertNotIn(unwanted, message)
 
     def test_recovery_does_not_repeat_old_status_or_body(self):
         message = monitor.alert("Cloudflare", {"name": "Prague status", "status": "under_maintenance",
-                                 "body": "Old warning", "url": "https://example.test"}, "INCIDENT RECOVERED")
+                                "body": "Old warning"}, "INCIDENT RECOVERED")
         self.assertIn("복구 확인", message)
-        self.assertIn("활성 목록에서 해제", message)
         self.assertNotIn("under_maintenance", message)
         self.assertNotIn("Old warning", message)
 
-    def test_long_notice_is_shortened_after_html_cleanup(self):
-        message = monitor.alert("X", {"name": "Long", "body": "<div>" + "word " * 400 + "</div>",
-                               "url": "https://example.test"}, "NEW INCIDENT")
-        self.assertLess(len(message), 650)
-        self.assertIn("…", message)
-        self.assertIn("https://example.test", message)
+    def test_long_notice_is_omitted(self):
+        message = monitor.alert("X", {"name": "Long", "body": "<div>" + "word " * 400 + "</div>"},
+                                "NEW INCIDENT")
+        self.assertLess(len(message), 400)
+        self.assertNotIn("word", message)
+
 
 class ActiveOnlyTests(unittest.TestCase):
     def test_only_active_services_are_polled_and_recovery_is_not_repeated(self):
@@ -271,8 +268,92 @@ class DashboardGradeTests(unittest.TestCase):
         }
         text = monitor.dashboard_text({"active": active, "checked_at": "2026-11-13T01:00:00+00:00"})
         self.assertLess(text.index("Cloudflare"), text.index("AWS"))
-        self.assertLess(text.index("Critical API"), text.index("Minor API"))
+        self.assertIn("Cloudflare · 심각", text)
+        self.assertNotIn("Minor API", text)
         self.assertIn("🔴 심각 1", text)
         self.assertIn("🟡 경미 1", text)
         self.assertIn("❔ 등급 미제공 1", text)
         self.assertIn("⚪ 활성 공지 없음 · 8개 서비스", text)
+
+class MicrosoftRecoveryTests(unittest.TestCase):
+    def test_old_resolved_update_cannot_hide_new_active_update(self):
+        old = {"id": "old", "name": "Microsoft Admin Center", "url": "https://status.cloud.microsoft/",
+               "status": "investigating", "source_status": "ServiceRestored", "updated_at": "2026-11-13T01:00:00+00:00"}
+        new = {**old, "id": "new", "source_status": "ServiceDegradation", "updated_at": "2026-11-13T02:00:00+00:00"}
+        for items in ([old, new], [new, old]):
+            self.assertEqual("service_degradation", monitor.microsoft_latest(items)[0]["status"])
+
+    source = {"service": "Microsoft 365", "kind": "rss", "url": "fixture", "page": "https://status.cloud.microsoft/m365"}
+
+    @staticmethod
+    def feed(guid, status="ServiceDegradation", body="Still affected"):
+        from xml.sax.saxutils import escape
+        return (f"<rss><channel><item><guid>{guid}</guid><title>Microsoft Admin Center</title>"
+                f"<link>https://status.cloud.microsoft/</link><status>{status}</status>"
+                f"<description>{escape(body)}</description></item></channel></rss>").encode()
+
+    def test_guid_rotation_is_not_new_incident_or_recovery(self):
+        with tempfile.TemporaryDirectory() as td:
+            state_path = Path(td) / "state.json"
+            messages = []
+            with patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "SOURCES", [self.source]), patch.object(monitor, "send", side_effect=messages.append):
+                with patch.object(monitor, "get", return_value=self.feed("old-guid")):
+                    self.assertEqual(0, monitor.run())
+                with patch.object(monitor, "get", return_value=self.feed("new-guid")):
+                    self.assertEqual(0, monitor.run())
+                self.assertEqual([], messages)
+                with patch.object(monitor, "get", return_value=self.feed("third-guid", body="Changed update")):
+                    self.assertEqual(0, monitor.run())
+                self.assertEqual(1, len(messages))
+                self.assertIn("장애 내용 변경", messages[0])
+                self.assertNotIn("복구 확인", messages[0])
+                self.assertEqual("service_degradation", next(iter(json.loads(state_path.read_text())["active"].values()))["incident"]["status"])
+
+    def test_missing_notice_stays_tracked_until_explicit_restoration(self):
+        with tempfile.TemporaryDirectory() as td:
+            state_path = Path(td) / "state.json"
+            messages = []
+            with patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "SOURCES", [self.source]), patch.object(monitor, "send", side_effect=messages.append):
+                def poll(raw):
+                    with patch.object(monitor, "get", return_value=raw):
+                        self.assertEqual(0, monitor.run())
+                poll(self.feed("one"))
+                poll(b"<rss><channel/></rss>")
+                self.assertIn("복구 미확인", messages[-1])
+                self.assertEqual(1, len(json.loads(state_path.read_text())["active"]))
+                count = len(messages)
+                poll(b"<rss><channel/></rss>")
+                self.assertEqual(count, len(messages))
+                poll(self.feed("new-guid", "ServiceRestored"))
+                self.assertIn("복구 확인", messages[-1])
+                self.assertEqual({}, json.loads(state_path.read_text())["active"])
+                poll(self.feed("new-guid", "ServiceRestored"))
+                self.assertEqual(count + 1, len(messages))
+
+    def test_legacy_ids_migrate_without_false_recovery(self):
+        with tempfile.TemporaryDirectory() as td:
+            state_path = Path(td) / "state.json"
+            item = monitor.rss_incidents(self.feed("old"))[0]
+            state_path.write_text(json.dumps({"initialized": True, "active": {
+                "Microsoft 365:old": {"service": "Microsoft 365", "incident": item,
+                                    "signature": monitor.fingerprint("Microsoft 365", item)}
+            }, "seen": []}))
+            messages = []
+            with patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "SOURCES", [self.source]), patch.object(monitor, "send", side_effect=messages.append), patch.object(monitor, "get", return_value=self.feed("new")):
+                self.assertEqual(0, monitor.run())
+                self.assertEqual(1, len(messages))
+                self.assertIn("알림 정정", messages[0])
+                self.assertNotIn("복구 확인", messages[0])
+                self.assertEqual(0, monitor.run())
+                self.assertEqual(1, len(messages))
+
+    def test_service_notifications_are_grouped(self):
+        with tempfile.TemporaryDirectory() as td:
+            state_path = Path(td) / "state.json"
+            state_path.write_text(json.dumps({"initialized": True, "active": {}, "seen": []}))
+            items = [{"id": str(i), "name": "Raw headline", "status": "investigating", "body": "raw vendor prose", "updated_at": ""} for i in range(5)]
+            with patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "SOURCES", [{**self.source, "service": "Fixture"}]), patch.object(monitor, "incidents", return_value=items), patch.object(monitor, "send") as send:
+                self.assertEqual(0, monitor.run())
+                send.assert_called_once()
+                self.assertIn("활성 공지: 5건", send.call_args.args[0])
+                self.assertNotIn("raw vendor prose", send.call_args.args[0])
