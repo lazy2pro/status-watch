@@ -157,6 +157,8 @@ def send(message: str) -> None:
             result = json.loads(response.read())
             if response.status != 200 or not result.get("ok"):
                 raise RuntimeError("Telegram sendMessage failed")
+    except urllib.error.HTTPError as exc:
+        raise RuntimeError(f"Telegram sendMessage failed (HTTP {exc.code})") from None
     except Exception:
         # Network exceptions can include the credential-bearing request URL.
         raise RuntimeError("Telegram sendMessage failed") from None
