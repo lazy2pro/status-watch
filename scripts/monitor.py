@@ -74,7 +74,7 @@ def aws_latest(items: list[dict]) -> list[dict]:
             # Do not silently merge an unfamiliar GUID format.
             key, stamp = item["id"], 0
         else:
-            topic = re.sub(r"^(?:Service is operating normally|Service impact|Informational message):\s*", "", item["name"], flags=re.I)
+            topic = re.sub(r"^(?:Service is operating normally|Service impact|Service disruption|Service degradation|Informational message):\s*", "", item["name"], flags=re.I)
             topic = re.sub(r"\[RESOLVED\]\s*", "", topic, flags=re.I).strip().casefold()
             key, stamp = f"aws:{match[1]}:{topic}", int(match[2])
         candidate = {**item, "id": key}

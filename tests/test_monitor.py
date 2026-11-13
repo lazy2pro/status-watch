@@ -21,7 +21,7 @@ class ParserTests(unittest.TestCase):
 
     def test_aws_latest_resolution_suppresses_older_updates_in_any_order(self):
         entries = [
-            ("ec2-us-east-1", 100, "Service impact: API errors", "old"),
+            ("ec2-us-east-1", 100, "Service disruption: API errors", "old"),
             ("ec2-us-east-1", 200, "Service is operating normally: [RESOLVED] API errors", "done"),
         ]
         source = next(s for s in monitor.SOURCES if s["service"] == "AWS")
@@ -32,7 +32,7 @@ class ParserTests(unittest.TestCase):
     def test_aws_updates_keep_stable_id_and_separate_regions_and_topics(self):
         source = next(s for s in monitor.SOURCES if s["service"] == "AWS")
         entries = [
-            ("ec2-us-east-1", 100, "Service impact: API errors", "old"),
+            ("ec2-us-east-1", 100, "Service degradation: API errors", "old"),
             ("ec2-us-east-1", 200, "Service impact: API errors", "new"),
             ("ec2-us-west-2", 300, "Service impact: API errors", "other region"),
             ("ec2-us-east-1", 300, "Service impact: Network errors", "other topic"),
