@@ -1,6 +1,12 @@
 name: Public service status watch
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/monitor.py'
+      - 'tests/test_monitor.py'
+      - '.github/workflows/status-watch.yml'
   schedule:
     # Offset from the top of the hour to reduce schedule congestion.
     - cron: '7,22,37,52 * * * *'
