@@ -42,7 +42,7 @@ jobs:
           fi
       - name: Poll public status sources and notify
         env:
-        MONITOR_ACTIVE_ONLY: ${{ github.event_name == 'schedule' && github.event.schedule == '2,12,17,27,32,42,47,57 * * * *' }}
+          MONITOR_ACTIVE_ONLY: ${{ github.event_name == 'schedule' && github.event.schedule == '2,12,17,27,32,42,47,57 * * * *' }}
         if: env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
         run: python scripts/monitor.py
       - name: Verify Telegram delivery
