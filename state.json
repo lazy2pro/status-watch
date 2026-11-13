@@ -1,6 +1,6 @@
 {
   "initialized": true,
-  "checked_at": "2026-11-13T03:13:02.306627+00:00",
+  "checked_at": "2026-11-13T03:25:09.549878+00:00",
   "active": {
     "Microsoft 365:m365:eacd93ef535d24a994019412": {
       "signature": "62da28d72c6fa915275ee93584ab3a14591c74727b4d259c86960b2f0556a73b",
@@ -15,7 +15,11 @@
         "source_status": "ServiceDegradation",
         "published_at": "Fri, 13 Nov 2026 03:07:45 Z"
       },
-      "service": "Microsoft 365"
+      "service": "Microsoft 365",
+      "korea_impact": {
+        "confirmed": true,
+        "basis": "공식 공지의 전 세계 영향 범위"
+      }
     },
     "AWS:aws:multipleservices-me-central-1:increased error rates": {
       "signature": "1dbc37a438ae0130a9d3e29d2452834ba48decf9de6372584bbc0e274256b0ec",
@@ -30,7 +34,11 @@
         "source_status": "",
         "published_at": "Tue, 15 Sep 2026 03:27:10 PDT"
       },
-      "service": "AWS"
+      "service": "AWS",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "해외 AWS 리전 공지"
+      }
     },
     "AWS:aws:multipleservices-me-south-1:increased error rates": {
       "signature": "18ee360ca192f03b9fb1b5aed6cfcf7f7ecaa218adf82758174ec2c4d73c9899",
@@ -45,7 +53,11 @@
         "source_status": "",
         "published_at": "Tue, 15 Sep 2026 03:22:28 PDT"
       },
-      "service": "AWS"
+      "service": "AWS",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "해외 AWS 리전 공지"
+      }
     },
     "AWS:aws:multipleservices-me-south-1:increased connectivity issues and api error rates": {
       "signature": "e6c75e5cd45d9bcf893564447ec275860acbfffa3987e1e273f3a2ffd911f78c",
@@ -60,7 +72,11 @@
         "source_status": "",
         "published_at": "Thu, 30 Apr 2026 00:07:11 PDT"
       },
-      "service": "AWS"
+      "service": "AWS",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "해외 AWS 리전 공지"
+      }
     },
     "Cloudflare:9zxr2bkqoct7": {
       "signature": "33370fc8476eff687c01eaf8c3eafadea4bf002ddf90a3ca1ebdfd7c92453107",
@@ -73,7 +89,11 @@
         "url": "https://www.cloudflarestatus.com/incidents/9zxr2bkqoct7",
         "body": "Durable Objects saw an increased error rate in North American colos due to a sudden increase in traffic. Impact has subsided. We are now monitoring."
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Cloudflare:0ocqieaifg7h": {
       "signature": "1c082cf343e40a192bc23f07877a85e6f549abada0b9851d43b0bd22267d7604",
@@ -86,7 +106,11 @@
         "url": "https://www.cloudflarestatus.com/incidents/0ocqieaifg7h",
         "body": "The issue has been identified and a fix is being implemented."
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Cloudflare:component:1km35smx8p41": {
       "signature": "178bd4f0f7f5c74836638a306edc0754316d27458570284cea6bc05439a22d7a",
@@ -99,7 +123,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": "Sites and services that Cloudflare customers use to interact with the Cloudflare Network and its provided services"
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Cloudflare:component:fs7l9rdk9kq5": {
       "signature": "f19d37632e483466902f5fad6e7e1ab4076abbfb703cd84d0583e40390d701b3",
@@ -112,7 +140,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:2htqrtyxmmtr": {
       "signature": "3977899588791b12f5e814bd122ffa31cc0daef0d4e2d1b3e623059a6013be0b",
@@ -125,7 +157,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:rfkpkllgfmrq": {
       "signature": "4129db723a0e0faa323d54be4cddc4cb97705a90ebf14e5ab8d13ad48488e150",
@@ -138,7 +174,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:p2w5bf74rw6p": {
       "signature": "6d894b02d84a3fe43089225f52f13a42dcc8625d083bf687ac1a870189c79b36",
@@ -151,7 +191,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:76swzd6htswh": {
       "signature": "9e6fb8956e9caa65c453d195888b10a7c3418a7f743dc22caeaecc7c4c64404c",
@@ -164,7 +208,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:hrvrnvqmb4px": {
       "signature": "8769b309772973900620709b3fb12c95578209cfdf5bdf2dffdae356adff16ba",
@@ -177,7 +225,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:d4nfj71p66fy": {
       "signature": "4c64bc1cd242462f9a2cbafd7f561d2e9939fe416953cd42b754b92562a84ad4",
@@ -190,7 +242,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:5wtvzd626rd8": {
       "signature": "dbb464d52dfdfa1f6d80f4c993187540e39b01b6ae94aa6667611ad50c394fcd",
@@ -203,7 +259,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:qvf223pw6cfx": {
       "signature": "afbd77ae8a8041307979ce34b625402bf58a7cdcadfcea8de041cbda0bda7210",
@@ -216,7 +276,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:6vll3w5p50f9": {
       "signature": "d7d2192cc7fa5bc3ee59fb873ab9f994584b2646cddc35b7cfb6a4606b2f299b",
@@ -229,7 +293,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:xpjxwz2x742k": {
       "signature": "f68d72300aac6528b56c4ac24560845450201e7aeb4e19843d1e5571e2ed2b75",
@@ -242,7 +310,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:5r6d2zthcqm4": {
       "signature": "466a3a941f1c83aaf1202cbb54c6a8001837b0fe658a2c4de56f7814cd92553a",
@@ -255,7 +327,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:0jnk3ys3msdv": {
       "signature": "1d5ef64dafd122bb63029e23ea16dad568a5d1e07cd1f4edf44ffdcf362c3772",
@@ -268,7 +344,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:1zdfwmzjqqtf": {
       "signature": "2f8a761169c43ec3368b564b60d44ccc40d18eaa6b0f15e2e43c3a2f6399e13b",
@@ -281,7 +361,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:fvqfrchfl8yc": {
       "signature": "ae9deeed0b28b769633b044b0c7f30c23ff244dacf3daf7b1df317fe473696d1",
@@ -294,7 +378,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:47440brmvtq2": {
       "signature": "800b31fd61a2831f35811bcebce1acdf1f63cd2fd8a055eb6b4b0ee35e1fe7aa",
@@ -307,7 +395,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:pxhwtstlbf2j": {
       "signature": "7b6f8c101209226a4f13a5f781dcca1f72366b0b80fe791f310cc346d3f49bb1",
@@ -320,7 +412,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:2661q193p08w": {
       "signature": "843f4e3e83d5622f8b83e2fd694ed12a970a79ed8f81e2ed4d12c155cdecd37c",
@@ -333,7 +429,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:7h95kvc52rn6": {
       "signature": "4c42765673083748bc54d0a1192e8dad83e5f005b5e178f141a2c960c050429e",
@@ -346,7 +446,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:rbnhbzgld936": {
       "signature": "e933bd371f3536eb0cf3af61ba6d58592004874943ab78b355a49685575a1261",
@@ -359,7 +463,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:rq86nd41r4t4": {
       "signature": "6136fe6aaeca5ac8dcdeda9ea70f87d01c633f218a7d615065bb2eae833edf13",
@@ -372,20 +480,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
-    },
-    "Cloudflare:component:w8pgyc1hh9hw": {
-      "signature": "84b2de91c15bba9fa8fa547c4638239055dfb5e69e1b55b5641d0af15fd5b04c",
-      "incident": {
-        "id": "component:w8pgyc1hh9hw",
-        "name": "Gothenburg, Sweden - (GOT) status",
-        "status": "partial_outage",
-        "impact": "partial_outage",
-        "updated_at": "2026-11-13T01:59:09.762Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": ""
-      },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:3mfmstzmyp8r": {
       "signature": "e2d74bebeb4b310545e9ff5c2454740d04671013f695b910113535d1ac8b6f74",
@@ -398,7 +497,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:4l01sk5cdn5c": {
       "signature": "c4ac4330ee2b2083f4805688875e7fc860a9cf9f3a7fabd81d83e7287a00d3da",
@@ -411,7 +514,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:zqxhg7y54vy8": {
       "signature": "4f47653e47cd22e8723ab90c9483b90aa310f1d782e860ee1a5fb5a21d89a2d4",
@@ -424,7 +531,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:mbmzgpc3s1xh": {
       "signature": "c89833b1d43fb21e197138ce225ecf8fd549ebd89d3c4e937f7f21e3f636127c",
@@ -437,7 +548,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:91blz4ztt7dm": {
       "signature": "20fb0e5cd41fdd03122283e795f0d74966da0cb4b5e34bff29ab1388ce95e635",
@@ -450,7 +565,28 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
+    },
+    "Cloudflare:component:41m926djhxpd": {
+      "signature": "1078e97dd485ebffd91f6e94f530cb7c004a288af9cd49f9467572a3ce50ec02",
+      "incident": {
+        "id": "component:41m926djhxpd",
+        "name": "Oran, Algeria - (ORN) status",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-13T03:21:00.868Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": ""
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:77867vxkttgw": {
       "signature": "50aaf706b04c26c454d13388d7aac7563cfa201581b089fc4a6071bd68bd6c59",
@@ -463,7 +599,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:czwk809chdjt": {
       "signature": "f86f2c785f36a3da51c58ede009e5299e046cd0b6ed44e40594565962ed83f8a",
@@ -476,7 +616,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:00gpj4s37mz4": {
       "signature": "800d9e78ed14ee4633696f5955216937586b644301de2969da866010a5032f2c",
@@ -489,7 +633,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:d9k4n6zjlqmt": {
       "signature": "d0bffeaa388a5001a3258401fcee8dc75b2a66d63d2730615ebb76adf489e694",
@@ -502,7 +650,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:m3639x4txd08": {
       "signature": "0bb655efd6db637aac8c148bf64eba090d4305e3e248038686fcc3504703b7df",
@@ -515,7 +667,28 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
+    "Cloudflare:component:qshn45g5q59m": {
+      "signature": "2ada575eec0ad768c53c22182ebe5d9fa330aa8e1400ee2e0c799dfcf2313981",
+      "incident": {
+        "id": "component:qshn45g5q59m",
+        "name": "Lisbon, Portugal - (LIS) status",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-13T03:25:01.207Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": ""
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:mdhxb295kjtr": {
       "signature": "435db7dc99eb6318e3bc5b151f79b6fc8062a4a1cc55d36517ceec2c748dda8a",
@@ -528,7 +701,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:68bsmrhm5xgq": {
       "signature": "3bee33e34728b264a355a5d0020fe8c44acfde2aabce14cd23639e6dcaa0f327",
@@ -541,7 +718,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:q6qm6fvkst4h": {
       "signature": "af7755775f56d6e69b942bd98291831458796a14774474b281a85a639e5fcd3e",
@@ -554,20 +735,28 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:f5st51ky316y": {
-      "signature": "c700bd0159e13e9ead7001d812f6f3d7d934e9f4924d98f28529174f9ce69c80",
+      "signature": "2128d0cb9ea701a6a8c9eddc93f85ea438b88be140698105485c9eb4f4a6e6d1",
       "incident": {
         "id": "component:f5st51ky316y",
         "name": "Tunis, Tunisia - (TUN) status",
-        "status": "partial_outage",
-        "impact": "partial_outage",
-        "updated_at": "2026-11-13T02:04:39.853Z",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-13T03:24:30.713Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:wf2gdmxg7cv3": {
       "signature": "83e0eb65d8f99be71bbfac3c596bc807e9a7ba60c017569f7b0b08cf9bf76038",
@@ -580,7 +769,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Cloudflare:component:bnjvsmmllkb9": {
       "signature": "ff1728ff5c48d97a2c1f20b49b5981dd4d9f5cf20785a69ae830df11759f4730",
@@ -593,7 +786,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:zq3rs0stgc8p": {
       "signature": "1241383282c553a0559bbf3b6093b50dff9d46871a86a037378e32b988b69821",
@@ -606,7 +803,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:pd8tz1050d4g": {
       "signature": "ae8fb75207312c26fe0f2950b2d91082b22165ed3f78bbea50cde33f19fd73dc",
@@ -619,7 +820,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:lqkq4v678h03": {
       "signature": "687292ea7f24894dc6c85fa18bd88bbc0534d9b422b09a5a05516059df81b94c",
@@ -632,7 +837,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:gfbkjpmmjmkj": {
       "signature": "c6070022a5633541286406ce13a821b41374fe7fa7fd9aad6120fb244337ef9b",
@@ -645,7 +854,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:qymxbydgwhcn": {
       "signature": "35072af7855a6440009f79800f87f7a6b693842acd30dd6b610b9b9360a070cd",
@@ -658,7 +871,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:yd8dc8tlrzxr": {
       "signature": "fe83d99c2d8b7cb72e759e54fafa1da771c42a85b3e54c251d51473c52d180fd",
@@ -671,7 +888,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:7rvrsd9g0f1v": {
       "signature": "249865bb4d1ae3853e63fbaa8a9634b17fe307bdeb1264118f3a0ada5adb0777",
@@ -684,7 +905,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:3mj4c8m14ncw": {
       "signature": "db6c951fc0249654994bbdbf8bc707fbacea0a8298b76beefd1cd547823180e3",
@@ -697,7 +922,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:nbxgf9nycs42": {
       "signature": "94684638afc13ae1e65b23040b5541fc40a77ff100521339a33204d0ab4dfda2",
@@ -710,7 +939,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:mslkxsqftrnn": {
       "signature": "20ab6a67fb14e37e52529788ba9bc597d12f6d90557941d1f052b0eab7e4bd90",
@@ -723,7 +956,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:hr78s04g1r5b": {
       "signature": "40890489e6ec90bcb79cb804f600d40ced4d4893f1cbad320edfd3ad5ba34ded",
@@ -736,7 +973,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:3hdcvfzv4qbc": {
       "signature": "3e4c42a140703418b57c65dada680751e0ee979ae84a76bff143e8d1635d79eb",
@@ -749,7 +990,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:9b9tyrd9x3xr": {
       "signature": "ceef6d22240c764a8bbbb436f3171b7e3eb122c68f9f85b12e544100289e1ddc",
@@ -762,7 +1007,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:ks6zgqry9c1p": {
       "signature": "021697ea2be2781caaceca3444d43949a932f71fae5e8b4253855c50ffafabe6",
@@ -775,20 +1024,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
-    },
-    "Cloudflare:component:cpp86z6nq4cx": {
-      "signature": "caa94dcf53a974a52573a1982b569ba3d17937019cbf1b38d000bb9a9505c47d",
-      "incident": {
-        "id": "component:cpp86z6nq4cx",
-        "name": "Constantine, Algeria - (CZL) status",
-        "status": "partial_outage",
-        "impact": "partial_outage",
-        "updated_at": "2026-11-13T01:44:30.818Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": ""
-      },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:f72vw9sb48bb": {
       "signature": "ba4b526b85598f3541307971a5d750aff063db8e92a787d790f791a447c70e39",
@@ -801,7 +1041,28 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
+    "Cloudflare:component:3s8mgt6mwbfg": {
+      "signature": "2c3cb8d38030ab05d08a9510c7ebb0be6aad1514c0515c2ea3957e70199de508",
+      "incident": {
+        "id": "component:3s8mgt6mwbfg",
+        "name": "Timbo, Brazil - (NVT) status",
+        "status": "partial_outage",
+        "impact": "partial_outage",
+        "updated_at": "2026-11-13T03:21:00.868Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": ""
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:ss09y7v3wzwd": {
       "signature": "ca5f36b4d78355e3bb51a014c2989ff6445cab38b2d58dbf1a62ba783cb4f27f",
@@ -814,7 +1075,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:msyl69slj4cy": {
       "signature": "d2f989c1d76a1070875738d3be64eb37c31ba70f5ff038b466d69080ee580254",
@@ -827,7 +1092,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:mgy83jclb7m0": {
       "signature": "6cc154b3b748995da8838e3edb513f175901c9819d318864fa3e4f50f2b52f36",
@@ -840,7 +1109,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:05rpd663qrcp": {
       "signature": "9aa2b63bb082e57afc18c281dc8ae2386afecbf3eaf54b68627f358628068a3f",
@@ -853,7 +1126,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:8xc65dbhbrd5": {
       "signature": "47299c82cda60ef01490a0fd80a147302848dc10fda4bff45a3ab1301d5a625d",
@@ -866,7 +1143,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:jhnf3tj7x7xh": {
       "signature": "12512ba250c88ad308c99f41621f2dfaa431539f8debcdff35917e45117ac17b",
@@ -879,7 +1160,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:m50pw1dxjp51": {
       "signature": "7fa560569ddad69b5f257d556a994ece1919c0b35f443fce26dc2ccc10cd58ef",
@@ -892,7 +1177,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:hl4j81pmzwby": {
       "signature": "9035c47b124bc4d7c480a01f23232a4509881b300be5af778241b8d38a601536",
@@ -905,7 +1194,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:57srcl8zcn7c": {
       "signature": "345f95b70e1cabc54ee2be22e109ea6b5a2660eba1eff8330cd179237a0014ce",
@@ -918,7 +1211,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": "Cloudflare Workers provides a serverless execution environment that allows you to create new applications or augment existing ones without configuring or maintaining infrastructure"
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Cloudflare:component:bty1yz6dhh0v": {
       "signature": "db3817543d7a792f54b6ae90601f8a7c645be127e34a63f1be132cb8b527db12",
@@ -931,7 +1228,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": "Durable Objects provide low-latency coordination and consistent permanent storage for the Workers platform."
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Cloudflare:component:3z7cmdfch5kb": {
       "signature": "272b73394df9d4dbfdbf8a6699a6b30dd91a5abed3b709d70c389a6f8dcd0aa0",
@@ -944,7 +1245,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": "Send and receive messages with guaranteed delivery and no charges for egress bandwidth."
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Cloudflare:component:nbvb8842jnn0": {
       "signature": "ffc6db3819bac23170f128123444e5b1ca7012865f036e937b62a9f90b9734fa",
@@ -957,7 +1262,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:ynf4hx3bjd3k": {
       "signature": "50539ef6e2eee8d47bce8744b324a8e9797e4f6364ce37def40a4f451b821bf2",
@@ -970,7 +1279,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:0p60jr5nb630": {
       "signature": "0b970bc07fcc7396bb83a7fcd6514796b9724af786ae28b83fd2e49920913d4f",
@@ -983,7 +1296,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:kzh9tkg9kcxd": {
       "signature": "eec9323bd77255f99c23e790294d662c128f6a749c1e509a163e785dc1761a80",
@@ -996,7 +1313,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:fhpm9s7sfg3m": {
       "signature": "6a619b2909d23a06ca45cee514b109da213d78c4fb0728cbfd435531e8cde3be",
@@ -1009,7 +1330,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:b4gyh6pxzb69": {
       "signature": "a2d91c3322f306222cc758928cd1838097c9d7a78bf1eb8229e8460b09ed0a1f",
@@ -1022,7 +1347,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:bjgm8mgjn0sm": {
       "signature": "bc20535cb74152fdec49db6a03dd6fd440f6e06395a68ad32f211b3ac91ec68a",
@@ -1035,7 +1364,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "Cloudflare:component:0bnls29mcbkc": {
       "signature": "ebd794bc6bb5e0a191eeb3ef94b64bd4c6e86ed213cc1881c64f426463a5b380",
@@ -1048,7 +1381,11 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": ""
       },
-      "service": "Cloudflare"
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
     },
     "OpenAI:01M78GAT3AK9P9W8Z230KHFVE8": {
       "signature": "169196c4bb09daa29271a90c6b2cacc49506a4c7722e490129e36c20abc6b180",
@@ -1061,7 +1398,11 @@
         "url": "https://status.openai.com/",
         "body": "We’re investigating an issue with Microsoft connectors where new connections may be broken and tools are not working as expected. We’ll share an update when we know more."
       },
-      "service": "OpenAI"
+      "service": "OpenAI",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Zoom:8n4n9nsqcl33": {
       "signature": "182cb42f479a9ddad67664b0929df1c557a7cb2de7b3a00ac57e65f661da125f",
@@ -1074,7 +1415,11 @@
         "url": "https://stspg.io/jth16cll1kcf",
         "body": "We continue to work with our underlying vendor affecting Microsoft Integrations.\n\nOur team is actively working on a resolution, and we will keep you informed with timely updates as progress is made. \n\nThank you for your patience."
       },
-      "service": "Zoom"
+      "service": "Zoom",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Zoom:component:h1rqwzs3zwm0": {
       "signature": "5fca3125f15d3e0642726c8cc47dd1f20e7e6da694d203d874551f3bf6968e8f",
@@ -1087,7 +1432,11 @@
         "url": "https://status.zoom.us/",
         "body": ""
       },
-      "service": "Zoom"
+      "service": "Zoom",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Zoom:component:6x4l2076whdn": {
       "signature": "f4a9aa9fda272c2eca52c59e3e83af56fe08cbc8b770b0772d4a276b3e620160",
@@ -1100,7 +1449,11 @@
         "url": "https://status.zoom.us/",
         "body": ""
       },
-      "service": "Zoom"
+      "service": "Zoom",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Zoom:component:08fp2rr1spx0": {
       "signature": "f7d6ce0ed7d41704461735d920011fad8f845d9ae1ead591bc24e21e5a1c545a",
@@ -1113,7 +1466,11 @@
         "url": "https://status.zoom.us/",
         "body": ""
       },
-      "service": "Zoom"
+      "service": "Zoom",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Zoom:component:thrn29k311lc": {
       "signature": "0a151d3633240c34451de5fdfba48f6f37399d57b92e684b3f52e081f030ebf8",
@@ -1126,7 +1483,11 @@
         "url": "https://status.zoom.us/",
         "body": ""
       },
-      "service": "Zoom"
+      "service": "Zoom",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Zoom:component:1ndlrnp6r9js": {
       "signature": "7b8607fff478c3a951980ce46529cf8271bfae33353006d56305cbde4a6c6bf0",
@@ -1139,7 +1500,11 @@
         "url": "https://status.zoom.us/",
         "body": ""
       },
-      "service": "Zoom"
+      "service": "Zoom",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     },
     "Zoom:component:qc3jmtft3wbx": {
       "signature": "5618aa8c4cb3c6b00975a76ca5b7c4af2fca91b7756ee67ea633d06883b6f5b6",
@@ -1152,102 +1517,108 @@
         "url": "https://status.zoom.us/",
         "body": ""
       },
-      "service": "Zoom"
+      "service": "Zoom",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
     }
   },
   "seen": [
-    "6cc154b3b748995da8838e3edb513f175901c9819d318864fa3e4f50f2b52f36",
-    "8769b309772973900620709b3fb12c95578209cfdf5bdf2dffdae356adff16ba",
-    "6d894b02d84a3fe43089225f52f13a42dcc8625d083bf687ac1a870189c79b36",
-    "afbd77ae8a8041307979ce34b625402bf58a7cdcadfcea8de041cbda0bda7210",
-    "800b31fd61a2831f35811bcebce1acdf1f63cd2fd8a055eb6b4b0ee35e1fe7aa",
-    "4f47653e47cd22e8723ab90c9483b90aa310f1d782e860ee1a5fb5a21d89a2d4",
-    "47299c82cda60ef01490a0fd80a147302848dc10fda4bff45a3ab1301d5a625d",
-    "9035c47b124bc4d7c480a01f23232a4509881b300be5af778241b8d38a601536",
-    "169196c4bb09daa29271a90c6b2cacc49506a4c7722e490129e36c20abc6b180",
-    "1dbc37a438ae0130a9d3e29d2452834ba48decf9de6372584bbc0e274256b0ec",
-    "af7755775f56d6e69b942bd98291831458796a14774474b281a85a639e5fcd3e",
-    "f68d72300aac6528b56c4ac24560845450201e7aeb4e19843d1e5571e2ed2b75",
-    "ae9deeed0b28b769633b044b0c7f30c23ff244dacf3daf7b1df317fe473696d1",
-    "9e6fb8956e9caa65c453d195888b10a7c3418a7f743dc22caeaecc7c4c64404c",
-    "ca5f36b4d78355e3bb51a014c2989ff6445cab38b2d58dbf1a62ba783cb4f27f",
-    "e933bd371f3536eb0cf3af61ba6d58592004874943ab78b355a49685575a1261",
-    "7fa560569ddad69b5f257d556a994ece1919c0b35f443fce26dc2ccc10cd58ef",
-    "35072af7855a6440009f79800f87f7a6b693842acd30dd6b610b9b9360a070cd",
-    "ff1728ff5c48d97a2c1f20b49b5981dd4d9f5cf20785a69ae830df11759f4730",
     "f4a9aa9fda272c2eca52c59e3e83af56fe08cbc8b770b0772d4a276b3e620160",
-    "f19d37632e483466902f5fad6e7e1ab4076abbfb703cd84d0583e40390d701b3",
-    "9aa2b63bb082e57afc18c281dc8ae2386afecbf3eaf54b68627f358628068a3f",
-    "eec9323bd77255f99c23e790294d662c128f6a749c1e509a163e785dc1761a80",
-    "dbb464d52dfdfa1f6d80f4c993187540e39b01b6ae94aa6667611ad50c394fcd",
-    "f86f2c785f36a3da51c58ede009e5299e046cd0b6ed44e40594565962ed83f8a",
-    "4c42765673083748bc54d0a1192e8dad83e5f005b5e178f141a2c960c050429e",
-    "249865bb4d1ae3853e63fbaa8a9634b17fe307bdeb1264118f3a0ada5adb0777",
-    "84b2de91c15bba9fa8fa547c4638239055dfb5e69e1b55b5641d0af15fd5b04c",
+    "fe83d99c2d8b7cb72e759e54fafa1da771c42a85b3e54c251d51473c52d180fd",
+    "5618aa8c4cb3c6b00975a76ca5b7c4af2fca91b7756ee67ea633d06883b6f5b6",
+    "18ee360ca192f03b9fb1b5aed6cfcf7f7ecaa218adf82758174ec2c4d73c9899",
+    "e6c75e5cd45d9bcf893564447ec275860acbfffa3987e1e273f3a2ffd911f78c",
     "c89833b1d43fb21e197138ce225ecf8fd549ebd89d3c4e937f7f21e3f636127c",
-    "435db7dc99eb6318e3bc5b151f79b6fc8062a4a1cc55d36517ceec2c748dda8a",
-    "50539ef6e2eee8d47bce8744b324a8e9797e4f6364ce37def40a4f451b821bf2",
-    "345f95b70e1cabc54ee2be22e109ea6b5a2660eba1eff8330cd179237a0014ce",
-    "e2d74bebeb4b310545e9ff5c2454740d04671013f695b910113535d1ac8b6f74",
-    "5fca3125f15d3e0642726c8cc47dd1f20e7e6da694d203d874551f3bf6968e8f",
-    "7b8607fff478c3a951980ce46529cf8271bfae33353006d56305cbde4a6c6bf0",
+    "47299c82cda60ef01490a0fd80a147302848dc10fda4bff45a3ab1301d5a625d",
+    "1dbc37a438ae0130a9d3e29d2452834ba48decf9de6372584bbc0e274256b0ec",
+    "466a3a941f1c83aaf1202cbb54c6a8001837b0fe658a2c4de56f7814cd92553a",
+    "4c42765673083748bc54d0a1192e8dad83e5f005b5e178f141a2c960c050429e",
+    "1d5ef64dafd122bb63029e23ea16dad568a5d1e07cd1f4edf44ffdcf362c3772",
+    "0b970bc07fcc7396bb83a7fcd6514796b9724af786ae28b83fd2e49920913d4f",
     "3e4c42a140703418b57c65dada680751e0ee979ae84a76bff143e8d1635d79eb",
     "6136fe6aaeca5ac8dcdeda9ea70f87d01c633f218a7d615065bb2eae833edf13",
-    "f7d6ce0ed7d41704461735d920011fad8f845d9ae1ead591bc24e21e5a1c545a",
-    "0b970bc07fcc7396bb83a7fcd6514796b9724af786ae28b83fd2e49920913d4f",
-    "e6c75e5cd45d9bcf893564447ec275860acbfffa3987e1e273f3a2ffd911f78c",
-    "1c082cf343e40a192bc23f07877a85e6f549abada0b9851d43b0bd22267d7604",
-    "83e0eb65d8f99be71bbfac3c596bc807e9a7ba60c017569f7b0b08cf9bf76038",
-    "466a3a941f1c83aaf1202cbb54c6a8001837b0fe658a2c4de56f7814cd92553a",
-    "1d5ef64dafd122bb63029e23ea16dad568a5d1e07cd1f4edf44ffdcf362c3772",
-    "db6c951fc0249654994bbdbf8bc707fbacea0a8298b76beefd1cd547823180e3",
-    "178bd4f0f7f5c74836638a306edc0754316d27458570284cea6bc05439a22d7a",
-    "7b6f8c101209226a4f13a5f781dcca1f72366b0b80fe791f310cc346d3f49bb1",
-    "843f4e3e83d5622f8b83e2fd694ed12a970a79ed8f81e2ed4d12c155cdecd37c",
-    "0a151d3633240c34451de5fdfba48f6f37399d57b92e684b3f52e081f030ebf8",
-    "20fb0e5cd41fdd03122283e795f0d74966da0cb4b5e34bff29ab1388ce95e635",
-    "ba4b526b85598f3541307971a5d750aff063db8e92a787d790f791a447c70e39",
-    "94684638afc13ae1e65b23040b5541fc40a77ff100521339a33204d0ab4dfda2",
-    "c4ac4330ee2b2083f4805688875e7fc860a9cf9f3a7fabd81d83e7287a00d3da",
-    "ebd794bc6bb5e0a191eeb3ef94b64bd4c6e86ed213cc1881c64f426463a5b380",
-    "3bee33e34728b264a355a5d0020fe8c44acfde2aabce14cd23639e6dcaa0f327",
-    "021697ea2be2781caaceca3444d43949a932f71fae5e8b4253855c50ffafabe6",
-    "a2d91c3322f306222cc758928cd1838097c9d7a78bf1eb8229e8460b09ed0a1f",
-    "0bb655efd6db637aac8c148bf64eba090d4305e3e248038686fcc3504703b7df",
-    "687292ea7f24894dc6c85fa18bd88bbc0534d9b422b09a5a05516059df81b94c",
-    "ffc6db3819bac23170f128123444e5b1ca7012865f036e937b62a9f90b9734fa",
-    "c6070022a5633541286406ce13a821b41374fe7fa7fd9aad6120fb244337ef9b",
-    "40890489e6ec90bcb79cb804f600d40ced4d4893f1cbad320edfd3ad5ba34ded",
-    "db3817543d7a792f54b6ae90601f8a7c645be127e34a63f1be132cb8b527db12",
-    "d2f989c1d76a1070875738d3be64eb37c31ba70f5ff038b466d69080ee580254",
-    "fe83d99c2d8b7cb72e759e54fafa1da771c42a85b3e54c251d51473c52d180fd",
-    "d0bffeaa388a5001a3258401fcee8dc75b2a66d63d2730615ebb76adf489e694",
-    "1241383282c553a0559bbf3b6093b50dff9d46871a86a037378e32b988b69821",
-    "20ab6a67fb14e37e52529788ba9bc597d12f6d90557941d1f052b0eab7e4bd90",
-    "bc20535cb74152fdec49db6a03dd6fd440f6e06395a68ad32f211b3ac91ec68a",
-    "18ee360ca192f03b9fb1b5aed6cfcf7f7ecaa218adf82758174ec2c4d73c9899",
-    "3977899588791b12f5e814bd122ffa31cc0daef0d4e2d1b3e623059a6013be0b",
-    "5618aa8c4cb3c6b00975a76ca5b7c4af2fca91b7756ee67ea633d06883b6f5b6",
-    "50aaf706b04c26c454d13388d7aac7563cfa201581b089fc4a6071bd68bd6c59",
-    "12512ba250c88ad308c99f41621f2dfaa431539f8debcdff35917e45117ac17b",
-    "c700bd0159e13e9ead7001d812f6f3d7d934e9f4924d98f28529174f9ce69c80",
-    "800d9e78ed14ee4633696f5955216937586b644301de2969da866010a5032f2c",
-    "ae8fb75207312c26fe0f2950b2d91082b22165ed3f78bbea50cde33f19fd73dc",
-    "2f8a761169c43ec3368b564b60d44ccc40d18eaa6b0f15e2e43c3a2f6399e13b",
-    "ceef6d22240c764a8bbbb436f3171b7e3eb122c68f9f85b12e544100289e1ddc",
-    "4129db723a0e0faa323d54be4cddc4cb97705a90ebf14e5ab8d13ad48488e150",
-    "d7d2192cc7fa5bc3ee59fb873ab9f994584b2646cddc35b7cfb6a4606b2f299b",
-    "4c64bc1cd242462f9a2cbafd7f561d2e9939fe416953cd42b754b92562a84ad4",
+    "f68d72300aac6528b56c4ac24560845450201e7aeb4e19843d1e5571e2ed2b75",
     "182cb42f479a9ddad67664b0929df1c557a7cb2de7b3a00ac57e65f661da125f",
-    "6a619b2909d23a06ca45cee514b109da213d78c4fb0728cbfd435531e8cde3be",
-    "caa94dcf53a974a52573a1982b569ba3d17937019cbf1b38d000bb9a9505c47d",
+    "dbb464d52dfdfa1f6d80f4c993187540e39b01b6ae94aa6667611ad50c394fcd",
+    "7b6f8c101209226a4f13a5f781dcca1f72366b0b80fe791f310cc346d3f49bb1",
+    "249865bb4d1ae3853e63fbaa8a9634b17fe307bdeb1264118f3a0ada5adb0777",
+    "1241383282c553a0559bbf3b6093b50dff9d46871a86a037378e32b988b69821",
+    "169196c4bb09daa29271a90c6b2cacc49506a4c7722e490129e36c20abc6b180",
+    "db3817543d7a792f54b6ae90601f8a7c645be127e34a63f1be132cb8b527db12",
+    "0bb655efd6db637aac8c148bf64eba090d4305e3e248038686fcc3504703b7df",
+    "d2f989c1d76a1070875738d3be64eb37c31ba70f5ff038b466d69080ee580254",
+    "f19d37632e483466902f5fad6e7e1ab4076abbfb703cd84d0583e40390d701b3",
+    "afbd77ae8a8041307979ce34b625402bf58a7cdcadfcea8de041cbda0bda7210",
+    "8769b309772973900620709b3fb12c95578209cfdf5bdf2dffdae356adff16ba",
+    "800d9e78ed14ee4633696f5955216937586b644301de2969da866010a5032f2c",
+    "c4ac4330ee2b2083f4805688875e7fc860a9cf9f3a7fabd81d83e7287a00d3da",
+    "12512ba250c88ad308c99f41621f2dfaa431539f8debcdff35917e45117ac17b",
+    "9e6fb8956e9caa65c453d195888b10a7c3418a7f743dc22caeaecc7c4c64404c",
     "33370fc8476eff687c01eaf8c3eafadea4bf002ddf90a3ca1ebdfd7c92453107",
+    "c6070022a5633541286406ce13a821b41374fe7fa7fd9aad6120fb244337ef9b",
+    "6a619b2909d23a06ca45cee514b109da213d78c4fb0728cbfd435531e8cde3be",
+    "ae9deeed0b28b769633b044b0c7f30c23ff244dacf3daf7b1df317fe473696d1",
+    "2f8a761169c43ec3368b564b60d44ccc40d18eaa6b0f15e2e43c3a2f6399e13b",
+    "bc20535cb74152fdec49db6a03dd6fd440f6e06395a68ad32f211b3ac91ec68a",
+    "94684638afc13ae1e65b23040b5541fc40a77ff100521339a33204d0ab4dfda2",
+    "6cc154b3b748995da8838e3edb513f175901c9819d318864fa3e4f50f2b52f36",
+    "3977899588791b12f5e814bd122ffa31cc0daef0d4e2d1b3e623059a6013be0b",
+    "178bd4f0f7f5c74836638a306edc0754316d27458570284cea6bc05439a22d7a",
+    "ba4b526b85598f3541307971a5d750aff063db8e92a787d790f791a447c70e39",
+    "9aa2b63bb082e57afc18c281dc8ae2386afecbf3eaf54b68627f358628068a3f",
+    "0a151d3633240c34451de5fdfba48f6f37399d57b92e684b3f52e081f030ebf8",
+    "f7d6ce0ed7d41704461735d920011fad8f845d9ae1ead591bc24e21e5a1c545a",
+    "35072af7855a6440009f79800f87f7a6b693842acd30dd6b610b9b9360a070cd",
+    "4c64bc1cd242462f9a2cbafd7f561d2e9939fe416953cd42b754b92562a84ad4",
+    "9035c47b124bc4d7c480a01f23232a4509881b300be5af778241b8d38a601536",
+    "e933bd371f3536eb0cf3af61ba6d58592004874943ab78b355a49685575a1261",
+    "3bee33e34728b264a355a5d0020fe8c44acfde2aabce14cd23639e6dcaa0f327",
+    "ca5f36b4d78355e3bb51a014c2989ff6445cab38b2d58dbf1a62ba783cb4f27f",
+    "a2d91c3322f306222cc758928cd1838097c9d7a78bf1eb8229e8460b09ed0a1f",
+    "4f47653e47cd22e8723ab90c9483b90aa310f1d782e860ee1a5fb5a21d89a2d4",
+    "20ab6a67fb14e37e52529788ba9bc597d12f6d90557941d1f052b0eab7e4bd90",
+    "6d894b02d84a3fe43089225f52f13a42dcc8625d083bf687ac1a870189c79b36",
+    "40890489e6ec90bcb79cb804f600d40ced4d4893f1cbad320edfd3ad5ba34ded",
+    "ebd794bc6bb5e0a191eeb3ef94b64bd4c6e86ed213cc1881c64f426463a5b380",
+    "687292ea7f24894dc6c85fa18bd88bbc0534d9b422b09a5a05516059df81b94c",
+    "50aaf706b04c26c454d13388d7aac7563cfa201581b089fc4a6071bd68bd6c59",
+    "4129db723a0e0faa323d54be4cddc4cb97705a90ebf14e5ab8d13ad48488e150",
+    "7fa560569ddad69b5f257d556a994ece1919c0b35f443fce26dc2ccc10cd58ef",
+    "7b8607fff478c3a951980ce46529cf8271bfae33353006d56305cbde4a6c6bf0",
+    "d7d2192cc7fa5bc3ee59fb873ab9f994584b2646cddc35b7cfb6a4606b2f299b",
+    "1c082cf343e40a192bc23f07877a85e6f549abada0b9851d43b0bd22267d7604",
+    "ae8fb75207312c26fe0f2950b2d91082b22165ed3f78bbea50cde33f19fd73dc",
     "272b73394df9d4dbfdbf8a6699a6b30dd91a5abed3b709d70c389a6f8dcd0aa0",
-    "62da28d72c6fa915275ee93584ab3a14591c74727b4d259c86960b2f0556a73b"
+    "f86f2c785f36a3da51c58ede009e5299e046cd0b6ed44e40594565962ed83f8a",
+    "20fb0e5cd41fdd03122283e795f0d74966da0cb4b5e34bff29ab1388ce95e635",
+    "50539ef6e2eee8d47bce8744b324a8e9797e4f6364ce37def40a4f451b821bf2",
+    "435db7dc99eb6318e3bc5b151f79b6fc8062a4a1cc55d36517ceec2c748dda8a",
+    "62da28d72c6fa915275ee93584ab3a14591c74727b4d259c86960b2f0556a73b",
+    "af7755775f56d6e69b942bd98291831458796a14774474b281a85a639e5fcd3e",
+    "ff1728ff5c48d97a2c1f20b49b5981dd4d9f5cf20785a69ae830df11759f4730",
+    "eec9323bd77255f99c23e790294d662c128f6a749c1e509a163e785dc1761a80",
+    "83e0eb65d8f99be71bbfac3c596bc807e9a7ba60c017569f7b0b08cf9bf76038",
+    "db6c951fc0249654994bbdbf8bc707fbacea0a8298b76beefd1cd547823180e3",
+    "345f95b70e1cabc54ee2be22e109ea6b5a2660eba1eff8330cd179237a0014ce",
+    "ffc6db3819bac23170f128123444e5b1ca7012865f036e937b62a9f90b9734fa",
+    "800b31fd61a2831f35811bcebce1acdf1f63cd2fd8a055eb6b4b0ee35e1fe7aa",
+    "d0bffeaa388a5001a3258401fcee8dc75b2a66d63d2730615ebb76adf489e694",
+    "5fca3125f15d3e0642726c8cc47dd1f20e7e6da694d203d874551f3bf6968e8f",
+    "ceef6d22240c764a8bbbb436f3171b7e3eb122c68f9f85b12e544100289e1ddc",
+    "e2d74bebeb4b310545e9ff5c2454740d04671013f695b910113535d1ac8b6f74",
+    "843f4e3e83d5622f8b83e2fd694ed12a970a79ed8f81e2ed4d12c155cdecd37c",
+    "021697ea2be2781caaceca3444d43949a932f71fae5e8b4253855c50ffafabe6",
+    "1078e97dd485ebffd91f6e94f530cb7c004a288af9cd49f9467572a3ce50ec02",
+    "2ada575eec0ad768c53c22182ebe5d9fa330aa8e1400ee2e0c799dfcf2313981",
+    "2128d0cb9ea701a6a8c9eddc93f85ea438b88be140698105485c9eb4f4a6e6d1",
+    "2c3cb8d38030ab05d08a9510c7ebb0be6aad1514c0515c2ea3957e70199de508"
   ],
   "collection_failure": null,
+  "korea_only": true,
   "dashboard": {
     "message_id": 25,
-    "signature": "5d24449037b4d73ba0783f973f523e411646a0130cd6382ffe96a47e177fee3a"
+    "signature": "aaaa622fef869affed4dfa649a088f47a44a43d500290d4eba7784872ad35ca1"
   }
 }
