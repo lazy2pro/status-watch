@@ -246,3 +246,33 @@ class TelegramDashboardTests(unittest.TestCase):
         self.assertLess(len(result.encode("utf-16-le")) // 2, 4096)
         self.assertNotIn("<div>", result)
         self.assertIn("10:00", result)
+
+class DashboardGradeTests(unittest.TestCase):
+    def test_explicit_grades_and_unknown(self):
+        cases = [
+            ({"impact": "critical", "status": "investigating"}, "심각"),
+            ({"status": "major_outage"}, "심각"),
+            ({"impact": "major", "status": "monitoring"}, "주요"),
+            ({"status": "partial_outage"}, "주요"),
+            ({"impact": "minor"}, "경미"),
+            ({"status": "degraded_performance"}, "경미"),
+            ({"status": "under_maintenance"}, "점검"),
+            ({"impact": "unknown", "status": "investigating"}, "등급 미제공"),
+        ]
+        for item, expected in cases:
+            with self.subTest(item=item):
+                self.assertEqual(expected, monitor.issue_grade(item)[2])
+
+    def test_services_and_items_sorted_by_highest_grade(self):
+        active = {
+            "aws": {"service": "AWS", "incident": {"id": "one", "name": "Unknown", "impact": "unknown"}},
+            "cf1": {"service": "Cloudflare", "incident": {"id": "component:one", "name": "Critical API", "status": "major_outage"}},
+            "cf2": {"service": "Cloudflare", "incident": {"id": "two", "name": "Minor API", "impact": "minor"}},
+        }
+        text = monitor.dashboard_text({"active": active, "checked_at": "2026-11-13T01:00:00+00:00"})
+        self.assertLess(text.index("Cloudflare"), text.index("AWS"))
+        self.assertLess(text.index("Critical API"), text.index("Minor API"))
+        self.assertIn("🔴 심각 1", text)
+        self.assertIn("🟡 경미 1", text)
+        self.assertIn("❔ 등급 미제공 1", text)
+        self.assertIn("⚪ 활성 공지 없음 · 8개 서비스", text)

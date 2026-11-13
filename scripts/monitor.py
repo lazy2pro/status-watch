@@ -258,29 +258,61 @@ def alert(service: str, incident: dict, label: str) -> str:
     return "\n".join(lines)
 
 
+def issue_grade(item: dict) -> tuple[int, str, str]:
+    """Visual priority from explicit vendor impact/status; unknown stays unknown."""
+    status = str(item.get("status", "")).lower()
+    impact = str(item.get("impact", "")).lower()
+    if status == "under_maintenance":
+        return (4, "🔵", "점검")
+    if impact == "critical" or status == "major_outage":
+        return (0, "🔴", "심각")
+    if impact == "major" or status == "partial_outage":
+        return (1, "🟠", "주요")
+    if impact == "minor" or status == "degraded_performance":
+        return (2, "🟡", "경미")
+    return (3, "❔", "등급 미제공")
+
+
 def dashboard_text(state: dict) -> str:
     current = list(state.get("active", {}).values())
     stamp = datetime.fromisoformat(state["checked_at"]).astimezone(timezone(timedelta(hours=9)))
-    lines = ["📊 서비스 상태판", "확인: " + stamp.strftime("%m/%d %H:%M") + " (한국 시간)",
-             "활성 공지 서비스 " + str(len({v["service"] for v in current})) + " / 10", ""]
+    lines = ["📊 서비스 이슈 상태판", stamp.strftime("%m/%d %H:%M") + " · 한국 시간",
+             "━━━━━━━━━━━━━━━━━━"]
+    grades = [(0, "🔴", "심각"), (1, "🟠", "주요"), (2, "🟡", "경미"),
+              (3, "❔", "등급 미제공"), (4, "🔵", "점검")]
+    counts = {priority: sum(issue_grade(v["incident"])[0] == priority for v in current)
+              for priority, _, _ in grades}
+    lines.append("🔴 심각 " + str(counts[0]) + "  ·  🟠 주요 " + str(counts[1]) + "  ·  🟡 경미 " + str(counts[2]))
+    lines.append("🔵 점검 " + str(counts[4]) + "  ·  ❔ 등급 미제공 " + str(counts[3]))
+    lines.append("")
     if state.get("collection_failure"):
-        lines.extend(["⚠️ 일부 수집 실패 · 이전 정보가 남아 있을 수 있습니다.", ""])
+        lines.extend(["⚠️ 일부 수집 실패 · 아래는 이전 상태를 포함할 수 있습니다.", ""])
+    services = []
+    quiet = []
     for source in SOURCES:
         items = [v["incident"] for v in current if v["service"] == source["service"]]
-        if not items:
-            lines.append("⚪ " + source["service"] + " · 활성 공지 없음")
-            continue
-        maintenance = all(i.get("status") == "under_maintenance" for i in items)
-        lines.append(("🛠 " if maintenance else "🟠 ") + source["service"] + " · " + str(len(items)) + "건")
-        ranked = sorted(items, key=lambda i: str(i.get("id", "")).startswith("component:"))
-        title = clean_notice(ranked[0].get("name", "")).replace("\n", " ").removesuffix(" status")
-        lines.append("  ↳ " + title[:100] + ("…" if len(title) > 100 else ""))
-        if len(items) > 1:
-            lines.append("  외 " + str(len(items) - 1) + "건 · 지역/구성요소/점검 포함")
-        lines.append(source["page"])
-    lines.extend(["", "전체 15분 · 활성 장애 서비스 약 5분 추적", "복구되면 추적 해제 · 변동 사항만 별도 알림",
-                  "공개 피드 기준이며, 공지 없음이 전체 정상 보장은 아닙니다.",
-                  "이 메시지를 채팅 상단에 고정해 두세요."])
+        if items:
+            ranked = sorted(items, key=lambda i: (issue_grade(i)[0], str(i.get("id", "")).startswith("component:")))
+            services.append((issue_grade(ranked[0])[0], source, ranked))
+        else:
+            quiet.append(source["service"])
+    for _, source, items in sorted(services, key=lambda row: row[0]):
+        _, icon, grade = issue_grade(items[0])
+        lines.append(icon + " " + source["service"] + " · " + grade + " · " + str(len(items)) + "건")
+        for item in items[:2]:
+            _, item_icon, item_grade = issue_grade(item)
+            title = clean_notice(item.get("name", "")).replace("\n", " ").removesuffix(" status")
+            lines.append("  " + item_icon + " " + title[:65] + ("…" if len(title) > 65 else ""))
+        if len(items) > 2:
+            lines.append("  ＋ " + str(len(items) - 2) + "건 더 있음")
+        lines.extend([source["page"], ""])
+    if quiet:
+        lines.extend(["⚪ 활성 공지 없음 · " + str(len(quiet)) + "개 서비스", " / ".join(quiet), ""])
+    lines.extend(["━━━━━━━━━━━━━━━━━━", "등급은 공식 영향도·상태 기준 · 미제공 값은 추정하지 않음",
+                  "건수에는 지역·구성요소·점검 공지가 포함됩니다.",
+                  "전체 15분 · 활성 장애 서비스 약 5분 추적",
+                  "복구 시 추적 해제 · 변화만 별도 알림",
+                  "공지 없음이 전체 정상 보장은 아닙니다."])
     return "\n".join(lines)
 
 
