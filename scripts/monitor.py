@@ -158,7 +158,26 @@ def send(message: str) -> None:
             if response.status != 200 or not result.get("ok"):
                 raise RuntimeError("Telegram sendMessage failed")
     except urllib.error.HTTPError as exc:
-        raise RuntimeError(f"Telegram sendMessage failed (HTTP {exc.code})") from None
+        # Never log the response body: classify only known, non-sensitive errors.
+        reason = "unclassified"
+        try:
+            description = str(json.loads(exc.read(4096)).get("description", "")).lower()
+            for phrase, label in (
+                ("chat not found", "chat_not_found"),
+                ("message is too long", "message_too_long"),
+                ("message text is empty", "empty_message"),
+                ("bot was blocked", "bot_blocked"),
+                ("user is deactivated", "user_deactivated"),
+                ("not enough rights", "insufficient_chat_permissions"),
+                ("chat_id is empty", "missing_chat_id"),
+                ("chat migrated", "chat_migrated"),
+            ):
+                if phrase in description:
+                    reason = label
+                    break
+        except Exception:
+            pass
+        raise RuntimeError(f"Telegram sendMessage failed (HTTP {exc.code}; {reason})") from None
     except Exception:
         # Network exceptions can include the credential-bearing request URL.
         raise RuntimeError("Telegram sendMessage failed") from None
