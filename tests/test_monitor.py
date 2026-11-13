@@ -268,12 +268,12 @@ class DashboardGradeTests(unittest.TestCase):
         }
         text = monitor.dashboard_text({"active": active, "checked_at": "2026-11-13T01:00:00+00:00"})
         self.assertLess(text.index("Cloudflare"), text.index("AWS"))
-        self.assertIn("Cloudflare · 심각", text)
+        self.assertIn("Cloudflare 🔴", text)
         self.assertNotIn("Minor API", text)
-        self.assertIn("🔴 심각 1", text)
-        self.assertIn("🟡 경미 1", text)
-        self.assertIn("❔ 등급 미제공 1", text)
-        self.assertIn("⚪ 활성 공지 없음 · 8개 서비스", text)
+        self.assertIn("Cloudflare 🔴", text)
+        self.assertNotIn("🟡 경미", text)
+        self.assertIn("AWS 🟡", text)
+        self.assertIn("Azure ⚪", text)
 
 class MicrosoftRecoveryTests(unittest.TestCase):
     def test_old_resolved_update_cannot_hide_new_active_update(self):
@@ -413,8 +413,8 @@ class KoreaImpactTests(unittest.TestCase):
         text = monitor.dashboard_text(state)
         self.assertIn("한국 영향 확인 상태판", text)
         self.assertNotIn("Prague", text)
-        self.assertIn("한국 영향 확인 공지 없음", text)
-        self.assertIn("🔴 심각 0", text)
+        self.assertIn("Zoom ⚪", text)
+        self.assertNotIn("🔴", text)
 
     def test_filter_removal_is_not_reported_as_recovery(self):
         source = {"service": "Cloudflare", "kind": "statuspage", "url": "fixture", "page": "https://www.cloudflarestatus.com"}
@@ -444,3 +444,23 @@ class KoreaImpactTests(unittest.TestCase):
                 send.reset_mock()
                 self.assertEqual(0, monitor.run())
                 send.assert_not_called()
+
+class DashboardLampLayoutTests(unittest.TestCase):
+    def test_one_lamp_per_service_and_no_legend_or_footer(self):
+        state = {"korea_only": True, "checked_at": "2026-11-13T01:00:00+00:00", "active": {
+            "ms": {"service": "Microsoft 365", "incident": {"id": "one", "name": "Admin Center",
+                   "status": "service_degradation", "body": "All users are affected."}}
+        }}
+        message = monitor.dashboard_text(state)
+        self.assertIn("Microsoft 365 🟡", message)
+        self.assertIn("성능 저하 지속", message)
+        for source in monitor.SOURCES:
+            rows = [line for line in message.splitlines() if line.startswith(source["service"] + " ")]
+            self.assertEqual(1, len(rows))
+        for unwanted in ("등급은", "심각 0", "경미 0", "전체 15분", "무영향 판정", "근거:", "건수에는"):
+            self.assertNotIn(unwanted, message)
+
+    def test_collection_failure_warning_remains_visible(self):
+        message = monitor.dashboard_text({"active": {}, "checked_at": "2026-11-13T01:00:00+00:00",
+                                         "collection_failure": "failed"})
+        self.assertIn("수집 실패", message)

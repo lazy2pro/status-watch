@@ -410,45 +410,28 @@ def dashboard_text(state: dict) -> str:
     current = visible_records(state)
     stamp = datetime.fromisoformat(state["checked_at"]).astimezone(timezone(timedelta(hours=9)))
     title = "🇰🇷 한국 영향 확인 상태판" if state.get("korea_only") else "📊 서비스 이슈 상태판"
-    lines = [title, stamp.strftime("%m/%d %H:%M") + " · 한국 시간",
-             "━━━━━━━━━━━━━━━━━━"]
-    grades = [(0, "🔴", "심각"), (1, "🟠", "주요"), (2, "🟡", "경미"),
-              (3, "❔", "등급 미제공"), (4, "🔵", "점검")]
-    counts = {priority: sum(issue_grade(v["incident"])[0] == priority for v in current)
-              for priority, _, _ in grades}
-    lines.append("🔴 심각 " + str(counts[0]) + "  ·  🟠 주요 " + str(counts[1]) + "  ·  🟡 경미 " + str(counts[2]))
-    lines.append("🔵 점검 " + str(counts[4]) + "  ·  ❔ 등급 미제공 " + str(counts[3]))
-    lines.append("")
+    lines = [title, stamp.strftime("%m/%d %H:%M") + " · 한국 시간", ""]
     if state.get("collection_failure"):
-        lines.extend(["⚠️ 일부 수집 실패 · 아래는 이전 상태를 포함할 수 있습니다.", ""])
+        lines.extend(["⚠️ 일부 피드 수집 실패 · 이전 정보가 포함될 수 있습니다.", ""])
     services = []
-    quiet = []
     for source in SOURCES:
         items = [v["incident"] for v in current if v["service"] == source["service"]]
-        if items:
-            ranked = sorted(items, key=lambda i: (issue_grade(i)[0], str(i.get("id", "")).startswith("component:")))
-            services.append((issue_grade(ranked[0])[0], source, ranked))
-        else:
-            quiet.append(source["service"])
+        ranked = sorted(items, key=lambda i: issue_grade(i)[0])
+        priority = issue_grade(ranked[0])[0] if ranked else 5
+        services.append((priority, source, ranked))
     for _, source, items in sorted(services, key=lambda row: row[0]):
-        _, icon, grade = issue_grade(items[0])
-        lines.append(icon + " " + source["service"] + " · " + grade + " · " + str(len(items)) + "건")
-        lines.extend("  " + line for line in service_brief(source["service"], items)[:2])
-        if state.get("korea_only"):
-            bases = list(dict.fromkeys(korea_impact(source["service"], item)["basis"] for item in items))
-            lines.append("  근거: " + " / ".join(bases[:2]))
+        if not items:
+            lines.append(source["service"] + " ⚪")
+            continue
+        _, icon, _ = issue_grade(items[0])
+        # Unknown impact is a caution light, without asserting a severity grade.
+        if icon == "❔":
+            icon = "🟡"
+        lines.append(source["service"] + " " + icon)
+        brief = service_brief(source["service"], items)
+        lines.extend("  " + line.removeprefix("상태: ") for line in brief[:2])
         lines.extend([source["page"], ""])
-    if quiet:
-        lines.extend([("⚪ 한국 영향 확인 공지 없음 · " if state.get("korea_only") else "⚪ 활성 공지 없음 · ") + str(len(quiet)) + "개 서비스", " / ".join(quiet), ""])
-    lines.extend(["━━━━━━━━━━━━━━━━━━", "등급은 공식 영향도·상태 기준 · 미제공 값은 추정하지 않음",
-                  "건수에는 지역·구성요소·점검 공지가 포함됩니다.",
-                  "전체 15분 · 활성 장애 서비스 약 5분 추적",
-                  "복구 시 추적 해제 · 변화만 별도 알림",
-                  "공지 없음이 전체 정상 보장은 아닙니다."])
-    if state.get("korea_only"):
-        lines.extend(["한국 지역 또는 전 세계 영향이 명시된 공지만 표시",
-                      "해외 한정·영향 미확인 공지는 제외 (한국 무영향 판정은 아님)"])
-    return "\n".join(lines)
+    return "\n".join(lines).rstrip()
 
 
 def update_dashboard(state: dict, previous: dict) -> dict:
