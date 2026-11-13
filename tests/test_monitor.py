@@ -452,7 +452,7 @@ class DashboardLampLayoutTests(unittest.TestCase):
                    "status": "service_degradation", "body": "All users are affected."}}
         }}
         message = monitor.dashboard_text(state)
-        self.assertIn("Microsoft 365 🟡", message)
+        self.assertIn("Microsoft 365 🟠", message)
         self.assertIn("성능 저하 지속", message)
         for source in monitor.SOURCES:
             rows = [line for line in message.splitlines() if line.startswith(source["service"] + " ")]
@@ -464,3 +464,34 @@ class DashboardLampLayoutTests(unittest.TestCase):
         message = monitor.dashboard_text({"active": {}, "checked_at": "2026-11-13T01:00:00+00:00",
                                          "collection_failure": "failed"})
         self.assertIn("수집 실패", message)
+
+class SeverityAssessmentTests(unittest.TestCase):
+    def test_prolonged_broad_core_failures_are_severe(self):
+        from datetime import datetime, timezone
+        item = {"status": "service_degradation", "impact": "unknown", "first_observed_at": "2026-11-13T00:00:00+00:00",
+                "body": "<div>- Exchange Online: Users are unable to access their mailbox.</div><div>- Microsoft Graph: API requests time out.</div><div>- Admin Center: Users cannot load pages.</div><div>- Microsoft To Do: errors</div><div>- Microsoft Planner: errors</div>"}
+        assessed = monitor.severity_assessment(item, datetime(2026, 11, 13, 3, tzinfo=timezone.utc))
+        self.assertEqual("심각", assessed["label"])
+        self.assertEqual("assessment", assessed["source"])
+        self.assertEqual("unknown", item["impact"])
+        self.assertIn("2시간", assessed["basis"])
+        early = monitor.severity_assessment(item, datetime(2026, 11, 13, 1, tzinfo=timezone.utc))
+        self.assertEqual("주요", early["label"])
+
+    def test_age_alone_does_not_make_a_minor_issue_severe(self):
+        from datetime import datetime, timezone
+        item = {"status": "investigating", "impact": "minor", "first_observed_at": "2026-11-12T00:00:00+00:00",
+                "body": "Some users may see a cosmetic issue."}
+        self.assertEqual("경미", monitor.severity_assessment(item, datetime(2026, 11, 13, tzinfo=timezone.utc))["label"])
+
+    def test_unaffected_core_features_do_not_escalate(self):
+        from datetime import datetime, timezone
+        body = "<div>- Exchange Online: Mailbox access is not impacted by these failures.</div><div>- Microsoft Graph: Core functionality is not affected by API failures.</div><div>- A: errors</div><div>- B: errors</div><div>- C: errors</div>"
+        item = {"status": "service_degradation", "impact": "unknown", "first_observed_at": "2026-11-12T00:00:00+00:00", "body": body}
+        self.assertEqual("주요", monitor.severity_assessment(item, datetime(2026, 11, 13, tzinfo=timezone.utc))["label"])
+
+    def test_monitoring_is_not_treated_as_unresolved_core_outage(self):
+        from datetime import datetime, timezone
+        item = {"status": "monitoring", "impact": "major", "first_observed_at": "2026-11-12T00:00:00+00:00",
+                "body": "All users were unable to access email."}
+        self.assertEqual("주요", monitor.severity_assessment(item, datetime(2026, 11, 13, tzinfo=timezone.utc))["label"])

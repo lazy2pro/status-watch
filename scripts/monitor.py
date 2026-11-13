@@ -182,7 +182,7 @@ def incidents(source: dict) -> list[dict]:
 
 
 def fingerprint(service: str, incident: dict) -> str:
-    stable = f"{service}|{incident['id']}|{incident['status']}|{incident['updated_at']}|{incident['body']}"
+    stable = f"{service}|{incident['id']}|{incident['status']}|{incident['updated_at']}|{incident['body']}|{issue_grade(incident)[0]}"
     return hashlib.sha256(stable.encode("utf-8")).hexdigest()
 
 
@@ -331,6 +331,9 @@ def service_brief(service: str, items: list[dict]) -> list[str]:
     ranked = sorted(items, key=lambda i: issue_grade(i)[0])
     states = list(dict.fromkeys(STATUS_LABELS.get(str(i.get("status", "")).lower(), "서비스 공지 확인 중") for i in ranked))
     lines = ["상태: " + " · ".join(states[:3])]
+    assessment = severity_assessment(ranked[0])
+    if assessment["source"] == "assessment":
+        lines.append("평가: " + assessment["basis"])
     types = []
     titles = " ".join(clean_notice(i.get("name", "")) for i in items).lower()
     for pattern, label in (
@@ -391,19 +394,56 @@ def alert(service: str, incident: dict, label: str) -> str:
     return service_update(service, [] if label == "INCIDENT RECOVERED" else [incident], [label])
 
 
-def issue_grade(item: dict) -> tuple[int, str, str]:
-    """Visual priority from explicit vendor impact/status; unknown stays unknown."""
+def severity_assessment(item: dict, now: datetime | None = None) -> dict:
     status = str(item.get("status", "")).lower()
     impact = str(item.get("impact", "")).lower()
+    def result(rank, icon, label, basis, source="vendor"):
+        return {"rank": rank, "icon": icon, "label": label, "basis": basis, "source": source}
     if status == "under_maintenance":
-        return (4, "🔵", "점검")
+        return result(4, "🔵", "점검", "공식 점검 상태")
     if impact == "critical" or status == "major_outage":
-        return (0, "🔴", "심각")
+        return result(0, "🔴", "심각", "공식 중대 영향·장애 상태")
     if impact == "major" or status == "partial_outage":
-        return (1, "🟠", "주요")
-    if impact == "minor" or status == "degraded_performance":
-        return (2, "🟡", "경미")
-    return (3, "❔", "등급 미제공")
+        base = result(1, "🟠", "주요", "공식 주요 영향·일부 장애")
+    elif impact == "minor" or status == "degraded_performance":
+        base = result(2, "🟡", "경미", "공식 경미 영향·성능 저하")
+    elif status in {"service_degradation", "service_interruption"}:
+        base = result(1, "🟠", "주요", "서비스 영향이 공식 확인됨", "assessment")
+    else:
+        base = result(3, "❔", "등급 미제공", "심각도 판단 근거 부족")
+    if status in {"resolved", "monitoring", "restoring", "recovery_unconfirmed"}:
+        return base
+    text_body = clean_notice(item.get("body", ""))
+    text_body = re.split(r"previous status:|이전 상태:", text_body, flags=re.I)[0]
+    lines = text_body.splitlines()
+    bullets = [line for line in lines if line.startswith("- ")]
+    core = r"exchange online|mailbox|email|authentication|sign.in|login|admin center|microsoft graph|defender|purview|database|storage"
+    blocked = r"unable|cannot|unavailable|inaccessible|fail(?:ure|ures|s)?|time.?out|time out|접속 불가|사용 불가|실패"
+    not_impacted = r"not impacted|not affected|unaffected|remain functional|working fine|no impact|영향 없음"
+    blocking_lines = [line for line in (bullets or [clean_notice(item.get("name", "")) + " " + text_body])
+                      if re.search(core, line, re.I) and re.search(blocked, line, re.I)
+                      and not re.search(not_impacted, line, re.I)]
+    hours = None
+    try:
+        first = datetime.fromisoformat(item.get("first_observed_at", "").replace("Z", "+00:00"))
+        if first.tzinfo is not None:
+            hours = max(0, ((now or datetime.now(timezone.utc)) - first).total_seconds() / 3600)
+    except (ValueError, TypeError):
+        pass
+    broad = len(bullets) >= 5
+    global_scope = bool(re.search(r"all users|all customers|worldwide|globally|전 세계|모든 사용자", text_body, re.I))
+    if hours is not None and hours >= 2 and ((broad and len(blocking_lines) >= 2) or (global_scope and blocking_lines)):
+        return result(0, "🔴", "심각", "핵심 기능 사용 불가·광범위 영향·2시간 이상 관측", "assessment")
+    if status == "service_interruption" and broad and len(blocking_lines) >= 2:
+        return result(0, "🔴", "심각", "다수 핵심 서비스 중단·광범위 영향", "assessment")
+    if blocking_lines and global_scope and base["rank"] > 1:
+        return result(1, "🟠", "주요", "핵심 기능 사용 불가·전 세계 영향", "assessment")
+    return base
+
+
+def issue_grade(item: dict) -> tuple[int, str, str]:
+    assessment = severity_assessment(item)
+    return assessment["rank"], assessment["icon"], assessment["label"]
 
 
 def dashboard_text(state: dict) -> str:
@@ -502,6 +542,14 @@ def run() -> int:
                 if incident_id in resolved_ids:
                     continue
                 service_ids.add(incident_id)
+                old = old_active.get(incident_id)
+                first = (old or {}).get("incident", {}).get("first_observed_at")
+                if not first:
+                    first = previous.get("checked_at") if old else datetime.now(timezone.utc).isoformat()
+                first_basis = (old or {}).get("incident", {}).get("first_observed_basis", "monitor observation")
+                item = {**item, "first_observed_at": first or datetime.now(timezone.utc).isoformat(),
+                        "first_observed_basis": first_basis}
+                item["severity_assessment"] = severity_assessment(item)
                 sig = fingerprint(service, item)
                 current[incident_id] = {"signature": sig, "incident": item, "service": service}
                 old = old_active.get(incident_id)
