@@ -2,6 +2,8 @@
 """Poll public service status feeds and send deduplicated Telegram alerts."""
 from __future__ import annotations
 
+from html import unescape
+from html.parser import HTMLParser
 import hashlib
 import json
 import os
@@ -10,7 +12,7 @@ import sys
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -184,9 +186,68 @@ def send(message: str) -> None:
     print("Telegram sendMessage accepted")
 
 
+class NoticeText(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.parts = []
+        self.hidden = 0
+
+    def handle_starttag(self, tag, attrs):
+        if tag in {"script", "style"}:
+            self.hidden += 1
+        if tag in {"br", "div", "p", "li"}:
+            self.parts.append("\n")
+
+    def handle_endtag(self, tag):
+        if tag in {"script", "style"}:
+            self.hidden = max(0, self.hidden - 1)
+        if tag in {"div", "p", "li"}:
+            self.parts.append("\n")
+
+    def handle_data(self, data):
+        if not self.hidden:
+            self.parts.append(data)
+
+
+def clean_notice(value: str) -> str:
+    parser = NoticeText()
+    parser.feed(unescape(str(value)))
+    lines = [" ".join(line.split()) for line in "".join(parser.parts).splitlines()]
+    return "\n".join(line for line in lines if line)
+
+
 def alert(service: str, incident: dict, label: str) -> str:
-    body = incident.get("body", "")[:900]
-    return f"{label}\n서비스: {service}\n장애: {incident.get('name','')}\n상태: {incident.get('status','')} / 영향: {incident.get('impact','')}\n업데이트: {incident.get('updated_at','미제공')}\n{body + chr(10) if body else ''}{incident.get('url','')}"
+    headings = {"NEW INCIDENT": "🔴 새 장애", "INCIDENT UPDATE": "🟠 장애 내용 변경",
+                "INCIDENT REOPENED": "🔴 장애 재발", "INCIDENT RECOVERED": "🟢 복구 확인"}
+    statuses = {"investigating": "조사 중", "identified": "원인 확인",
+                "monitoring": "복구 후 관찰 중", "resolved": "해결됨",
+                "degraded_performance": "성능 저하", "partial_outage": "일부 장애",
+                "major_outage": "중대 장애", "under_maintenance": "점검 중",
+                "service_information": "서비스 공지"}
+    recovered = label == "INCIDENT RECOVERED"
+    name = clean_notice(incident.get("name", "")).removesuffix(" status")
+    lines = [f"{headings.get(label, label)} · {service}", name]
+    if recovered:
+        lines.append("이전 장애·점검 항목이 공식 피드의 활성 목록에서 해제됐습니다.")
+    else:
+        status = incident.get("status", "")
+        lines.append("상태: " + statuses.get(status, status or "확인 중"))
+        body = clean_notice(incident.get("body", ""))
+        if body:
+            excerpt = body[:450]
+            if len(body) > 450:
+                excerpt = excerpt.rsplit(" ", 1)[0] + "…"
+            lines.extend(["", "공식 공지(원문)", excerpt])
+    stamp = incident.get("updated_at", "")
+    if stamp and not recovered:
+        try:
+            stamp = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+            if stamp.tzinfo is not None:
+                lines.append("공지 시각: " + stamp.astimezone(timezone(timedelta(hours=9))).strftime("%m/%d %H:%M") + " (한국 시간)")
+        except ValueError:
+            pass
+    lines.extend(["", "자세히: " + incident.get("url", "")])
+    return "\n".join(lines)
 
 
 def run() -> int:

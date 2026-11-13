@@ -44,7 +44,7 @@ jobs:
       - name: Verify Telegram delivery
         if: github.event_name == 'workflow_dispatch' && inputs.telegram_test && env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
         run: |
-          python -c "import sys; sys.path.insert(0, 'scripts'); import monitor; monitor.send('STATUS WATCH TEST: Telegram delivery verification (not a service incident).')"
+          python -c "import sys; sys.path.insert(0, 'scripts'); import monitor; monitor.send('🧪 전송 테스트 · Status Watch\n알림 연결이 정상입니다. 실제 장애 알림이 아닙니다.')"
       - name: Commit status state
         if: always()
         run: |

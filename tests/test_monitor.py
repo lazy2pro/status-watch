@@ -103,11 +103,11 @@ class StateTests(unittest.TestCase):
                 self.assertEqual({}, json.loads(state_path.read_text())["active"])
                 poll([("ec2-us-east-1", 300, "Service impact: API errors", "reopened")])
                 self.assertEqual(1, len(messages))
-                self.assertIn("NEW INCIDENT", messages[-1])
+                self.assertIn("새 장애", messages[-1])
                 poll([("ec2-us-east-1", 400, "Service impact: API errors", "changed")])
-                self.assertIn("INCIDENT UPDATE", messages[-1])
+                self.assertIn("장애 내용 변경", messages[-1])
                 poll([("ec2-us-east-1", 500, "[RESOLVED] API errors", "done")])
-                self.assertIn("INCIDENT RECOVERED", messages[-1])
+                self.assertIn("복구 확인", messages[-1])
                 poll([("ec2-us-east-1", 500, "[RESOLVED] API errors", "done")])
                 self.assertEqual(3, len(messages))
 
@@ -131,17 +131,17 @@ class StateTests(unittest.TestCase):
                 state["active"] = {}
                 state_path.write_text(json.dumps(state))
                 self.assertEqual(0, monitor.run())
-                self.assertIn("NEW INCIDENT", messages[-1])
+                self.assertIn("새 장애", messages[-1])
                 message_count = len(messages)
                 self.assertEqual(0, monitor.run())
                 self.assertEqual(message_count, len(messages))
                 updated = {**item, "status": "identified", "updated_at": "t2", "body": "identified"}
                 with patch.object(monitor, "get", return_value=json.dumps({"status": {"indicator": "minor"}, "incidents": [updated], "components": []}).encode()):
                     self.assertEqual(0, monitor.run())
-                self.assertIn("INCIDENT UPDATE", messages[-1])
+                self.assertIn("장애 내용 변경", messages[-1])
                 with patch.object(monitor, "get", return_value=json.dumps({"status": {"indicator": "none"}, "incidents": [], "components": []}).encode()):
                     self.assertEqual(0, monitor.run())
-                self.assertIn("INCIDENT RECOVERED", messages[-1])
+                self.assertIn("복구 확인", messages[-1])
 
     def test_collection_failure_does_not_create_recovery(self):
         with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as td:
@@ -159,3 +159,30 @@ class StateTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class AlertFormattingTests(unittest.TestCase):
+    def test_html_removed_and_unknown_impact_omitted(self):
+        item = {"name": "API errors", "status": "investigating", "impact": "unknown",
+                "body": "<div>First &amp; second<br>Details<script>hidden</script></div>",
+                "updated_at": "2026-11-13T01:00:00Z", "url": "https://example.test"}
+        message = monitor.alert("Microsoft 365", item, "INCIDENT UPDATE")
+        self.assertIn("장애 내용 변경", message)
+        self.assertIn("First & second\nDetails", message)
+        self.assertIn("11/13 10:00", message)
+        for unwanted in ("<div>", "hidden", "unknown", "investigating"):
+            self.assertNotIn(unwanted, message)
+
+    def test_recovery_does_not_repeat_old_status_or_body(self):
+        message = monitor.alert("Cloudflare", {"name": "Prague status", "status": "under_maintenance",
+                                 "body": "Old warning", "url": "https://example.test"}, "INCIDENT RECOVERED")
+        self.assertIn("복구 확인", message)
+        self.assertIn("활성 목록에서 해제", message)
+        self.assertNotIn("under_maintenance", message)
+        self.assertNotIn("Old warning", message)
+
+    def test_long_notice_is_shortened_after_html_cleanup(self):
+        message = monitor.alert("X", {"name": "Long", "body": "<div>" + "word " * 400 + "</div>",
+                               "url": "https://example.test"}, "NEW INCIDENT")
+        self.assertLess(len(message), 650)
+        self.assertIn("…", message)
+        self.assertIn("https://example.test", message)
