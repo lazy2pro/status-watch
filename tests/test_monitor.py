@@ -213,3 +213,36 @@ class ActiveOnlyTests(unittest.TestCase):
             with patch.dict(os.environ, {"MONITOR_ACTIVE_ONLY": "true"}), patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "incidents", return_value=[]) as poll, patch.object(monitor, "send"):
                 self.assertEqual(0, monitor.run())
                 self.assertEqual(10, poll.call_count)
+
+class TelegramDashboardTests(unittest.TestCase):
+    def test_dashboard_creates_once_then_edits_same_message(self):
+        state = {"checked_at": "2026-11-13T01:00:00+00:00", "active": {}, "collection_failure": None}
+        with patch.object(monitor, "send", return_value=123) as send:
+            dashboard = monitor.update_dashboard(state, {})
+            send.assert_called_once()
+            self.assertTrue(send.call_args.kwargs["silent"])
+            self.assertIsNone(send.call_args.kwargs["message_id"])
+            send.reset_mock()
+            self.assertEqual(dashboard, monitor.update_dashboard(state, {"dashboard": dashboard}))
+            send.assert_not_called()
+            changed = {**state, "checked_at": "2026-11-13T01:05:00+00:00"}
+            monitor.update_dashboard(changed, {"dashboard": dashboard})
+            self.assertEqual(123, send.call_args.kwargs["message_id"])
+
+    def test_deleted_dashboard_is_recreated_silently(self):
+        state = {"checked_at": "2026-11-13T01:00:00+00:00", "active": {}}
+        with patch.object(monitor, "send", side_effect=[RuntimeError("dashboard_message_missing"), 456]) as send:
+            result = monitor.update_dashboard(state, {"dashboard": {"message_id": 123}})
+            self.assertEqual(456, result["message_id"])
+            self.assertTrue(send.call_args.kwargs["silent"])
+
+    def test_dashboard_is_bounded_plain_text(self):
+        active = {}
+        for source in monitor.SOURCES:
+            for i in range(100):
+                active[source["service"] + str(i)] = {"service": source["service"],
+                    "incident": {"id": str(i), "name": "<div>" + "Long name " * 30 + "</div>"}}
+        result = monitor.dashboard_text({"active": active, "checked_at": "2026-11-13T01:00:00+00:00"})
+        self.assertLess(len(result.encode("utf-16-le")) // 2, 4096)
+        self.assertNotIn("<div>", result)
+        self.assertIn("10:00", result)

@@ -149,11 +149,17 @@ def fingerprint(service: str, incident: dict) -> str:
     return hashlib.sha256(stable.encode("utf-8")).hexdigest()
 
 
-def send(message: str) -> None:
+def send(message: str, *, message_id: int | None = None, silent: bool = False) -> int:
     if not BOT_TOKEN or not CHAT_ID:
         raise RuntimeError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are required")
-    payload = json.dumps({"chat_id": CHAT_ID, "text": message, "disable_web_page_preview": True}).encode()
-    req = urllib.request.Request(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage", data=payload, headers={"Content-Type": "application/json", "User-Agent": USER_AGENT})
+    data = {"chat_id": CHAT_ID, "text": message, "disable_web_page_preview": True}
+    method = "editMessageText" if message_id is not None else "sendMessage"
+    if message_id is not None:
+        data["message_id"] = message_id
+    elif silent:
+        data["disable_notification"] = True
+    payload = json.dumps(data).encode()
+    req = urllib.request.Request(f"https://api.telegram.org/bot{BOT_TOKEN}/{method}", data=payload, headers={"Content-Type": "application/json", "User-Agent": USER_AGENT})
     try:
         with urllib.request.urlopen(req, timeout=20) as response:
             result = json.loads(response.read())
@@ -173,6 +179,7 @@ def send(message: str) -> None:
                 ("not enough rights", "insufficient_chat_permissions"),
                 ("chat_id is empty", "missing_chat_id"),
                 ("chat migrated", "chat_migrated"),
+                ("message to edit not found", "dashboard_message_missing"),
             ):
                 if phrase in description:
                     reason = label
@@ -183,7 +190,8 @@ def send(message: str) -> None:
     except Exception:
         # Network exceptions can include the credential-bearing request URL.
         raise RuntimeError("Telegram sendMessage failed") from None
-    print("Telegram sendMessage accepted")
+    print(f"Telegram {method} accepted")
+    return int(result["result"]["message_id"])
 
 
 class NoticeText(HTMLParser):
@@ -248,6 +256,49 @@ def alert(service: str, incident: dict, label: str) -> str:
             pass
     lines.extend(["", "자세히: " + incident.get("url", "")])
     return "\n".join(lines)
+
+
+def dashboard_text(state: dict) -> str:
+    current = list(state.get("active", {}).values())
+    stamp = datetime.fromisoformat(state["checked_at"]).astimezone(timezone(timedelta(hours=9)))
+    lines = ["📊 서비스 상태판", "확인: " + stamp.strftime("%m/%d %H:%M") + " (한국 시간)",
+             "활성 공지 서비스 " + str(len({v["service"] for v in current})) + " / 10", ""]
+    if state.get("collection_failure"):
+        lines.extend(["⚠️ 일부 수집 실패 · 이전 정보가 남아 있을 수 있습니다.", ""])
+    for source in SOURCES:
+        items = [v["incident"] for v in current if v["service"] == source["service"]]
+        if not items:
+            lines.append("⚪ " + source["service"] + " · 활성 공지 없음")
+            continue
+        maintenance = all(i.get("status") == "under_maintenance" for i in items)
+        lines.append(("🛠 " if maintenance else "🟠 ") + source["service"] + " · " + str(len(items)) + "건")
+        ranked = sorted(items, key=lambda i: str(i.get("id", "")).startswith("component:"))
+        title = clean_notice(ranked[0].get("name", "")).replace("\n", " ").removesuffix(" status")
+        lines.append("  ↳ " + title[:100] + ("…" if len(title) > 100 else ""))
+        if len(items) > 1:
+            lines.append("  외 " + str(len(items) - 1) + "건 · 지역/구성요소/점검 포함")
+        lines.append(source["page"])
+    lines.extend(["", "전체 15분 · 활성 장애 서비스 약 5분 추적", "복구되면 추적 해제 · 변동 사항만 별도 알림",
+                  "공개 피드 기준이며, 공지 없음이 전체 정상 보장은 아닙니다.",
+                  "이 메시지를 채팅 상단에 고정해 두세요."])
+    return "\n".join(lines)
+
+
+def update_dashboard(state: dict, previous: dict) -> dict:
+    message = dashboard_text(state)
+    sig = hashlib.sha256(message.encode()).hexdigest()
+    old = previous.get("dashboard") or {}
+    if old.get("signature") == sig and old.get("message_id"):
+        return old
+    message_id = old.get("message_id")
+    try:
+        new_id = send(message, message_id=message_id, silent=True)
+    except RuntimeError as exc:
+        if message_id and "dashboard_message_missing" in str(exc):
+            new_id = send(message, silent=True)
+        else:
+            raise
+    return {"message_id": new_id, "signature": sig}
 
 
 def run() -> int:
@@ -341,6 +392,14 @@ def run() -> int:
     active_signatures = {v["signature"] for v in current.values()}
     seen = list(dict.fromkeys(x for x in seen if x in active_signatures or x == collection_failure))[-500:]
     new_state = {"initialized": True, "checked_at": datetime.now(timezone.utc).isoformat(), "active": current, "seen": seen, "collection_failure": collection_failure}
+    if previous.get("dashboard"):
+        new_state["dashboard"] = previous["dashboard"]
+    if os.getenv("TELEGRAM_DASHBOARD", "") == "true":
+        try:
+            new_state["dashboard"] = update_dashboard(new_state, previous)
+        except Exception as exc:
+            print(f"Telegram dashboard failed: {exc}", file=sys.stderr)
+            return 3
     tmp = STATE_PATH.with_suffix(".tmp")
     tmp.write_text(json.dumps(new_state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     tmp.replace(STATE_PATH)
