@@ -28,8 +28,8 @@ def newer_pending_run(runs, current_id):
 
 
 def continue_watch():
-    started = float(os.environ["POLL_CYCLE_START"])
-    deadline = started + 300
+    # Next wall-clock five-minute boundary, regardless of previous runner delay.
+    deadline = (int(time.time()) // 300 + 1) * 300
     print("Next check target: " + time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime(deadline)), flush=True)
     while time.time() < deadline:
         time.sleep(min(30, max(0, deadline - time.time())))

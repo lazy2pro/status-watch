@@ -451,8 +451,8 @@ def full_check_due(state: dict, now: datetime) -> bool:
         last = datetime.fromisoformat(str(state.get("full_checked_at", "")).replace("Z", "+00:00"))
         if last.tzinfo is None:
             return True
-        # Cycle starts are five minutes apart; tolerate small setup-time drift.
-        return (now - last).total_seconds() >= 14 * 60
+        # Fixed quarter-hour windows: 00, 15, 30 and 45 minutes.
+        return int(now.timestamp()) // 900 != int(last.timestamp()) // 900
     except (ValueError, TypeError):
         return True
 
@@ -471,7 +471,7 @@ def dashboard_text(state: dict) -> str:
     current = visible_records(state)
     stamp = datetime.fromisoformat(state["checked_at"]).astimezone(timezone(timedelta(hours=9)))
     title = "🇰🇷 한국 영향 확인 상태판" if state.get("korea_only") else "📊 서비스 이슈 상태판"
-    lines = [title, "정보 갱신: " + display_time(state["checked_at"], full=True) + " (한국 시간)", ""]
+    lines = [title, ""]
     if state.get("collection_failure"):
         lines.extend(["⚠️ 일부 피드 수집 실패 · 이전 정보가 포함될 수 있습니다.", ""])
     services = []
@@ -481,22 +481,18 @@ def dashboard_text(state: dict) -> str:
         priority = issue_grade(ranked[0])[0] if ranked else 5
         services.append((priority, source, ranked))
     for _, source, items in sorted(services, key=lambda row: row[0]):
-        checked = display_time(state.get("source_checks", {}).get(source["service"]))
         if not items:
-            lines.append(source["service"] + " 🟢 · 확인 " + checked)
+            lines.append(source["service"] + " 🟢")
             continue
         _, icon, _ = issue_grade(items[0])
         # Unknown impact is a caution light, without asserting a severity grade.
         if icon == "❔":
             icon = "🟡"
         lines.append(source["service"] + " " + icon)
-        lines.append("  마지막 확인: " + checked + " (한국 시간)")
-        published = [str(i.get("updated_at", "")) for i in items if i.get("updated_at")]
-        if published:
-            lines.append("  공식 공지: " + display_time(max(published)) + " (한국 시간)")
         brief = service_brief(source["service"], items)
         lines.extend("  " + line.removeprefix("상태: ") for line in brief[:2])
         lines.extend([source["page"], ""])
+    lines.extend(["", "최근 확인: " + display_time(state["checked_at"], full=True) + " (한국 시간)"])
     return "\n".join(lines).rstrip()
 
 

@@ -512,9 +512,10 @@ class PollTimingTests(unittest.TestCase):
                      "id": "one", "name": "Admin Center", "status": "service_degradation",
                      "body": "", "updated_at": "2026-11-13T04:10:00+00:00"}}}}
         message = monitor.dashboard_text(state)
-        self.assertIn("정보 갱신: 2026-11-13 13:25", message)
-        self.assertIn("마지막 확인: 11/13 13:24", message)
-        self.assertIn("공식 공지: 11/13 13:10", message)
+        self.assertTrue(message.endswith("최근 확인: 2026-11-13 13:25 (한국 시간)"))
+        self.assertEqual(1, message.count("최근 확인:"))
+        self.assertNotIn("마지막 확인:", message)
+        self.assertNotIn("공식 공지:", message)
 
     def test_due_automatic_cycle_checks_all_sources(self):
         with tempfile.TemporaryDirectory() as td:
@@ -538,7 +539,19 @@ class WatchContinuationTests(unittest.TestCase):
     def test_dispatch_uses_auto_cycle_without_exposing_credentials(self):
         import continue_watch
         env = {"POLL_CYCLE_START": "0", "WATCH_TOKEN": "fixture-only", "GITHUB_REPOSITORY": "fixture/repo", "GITHUB_RUN_ID": "10"}
-        with patch.dict(os.environ, env), patch.object(continue_watch.time, "time", return_value=301), patch.object(continue_watch, "request", side_effect=[{"workflow_runs": []}, {}]) as request:
+        with patch.dict(os.environ, env), patch.object(continue_watch.time, "time", side_effect=[299, 301]), patch.object(continue_watch, "request", side_effect=[{"workflow_runs": []}, {}]) as request:
             self.assertEqual(0, continue_watch.continue_watch())
             args = request.call_args.args
             self.assertEqual({"ref": "main", "inputs": {"auto_cycle": "true"}}, args[2])
+
+class FixedClockSlotTests(unittest.TestCase):
+    def test_full_checks_follow_quarter_hours_not_elapsed_duration(self):
+        from datetime import datetime, timezone
+        state = {"full_checked_at": "2026-11-13T05:14:00+00:00"}
+        self.assertTrue(monitor.full_check_due(state, datetime(2026, 11, 13, 5, 15, 8, tzinfo=timezone.utc)))
+        state["full_checked_at"] = "2026-11-13T05:15:08+00:00"
+        self.assertFalse(monitor.full_check_due(state, datetime(2026, 11, 13, 5, 20, 8, tzinfo=timezone.utc)))
+        self.assertFalse(monitor.full_check_due(state, datetime(2026, 11, 13, 5, 25, 8, tzinfo=timezone.utc)))
+        self.assertTrue(monitor.full_check_due(state, datetime(2026, 11, 13, 5, 30, 8, tzinfo=timezone.utc)))
+        state["full_checked_at"] = "2026-11-13T05:45:08+00:00"
+        self.assertTrue(monitor.full_check_due(state, datetime(2026, 11, 13, 6, 0, 8, tzinfo=timezone.utc)))

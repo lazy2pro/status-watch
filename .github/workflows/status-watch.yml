@@ -9,10 +9,10 @@ on:
       - 'scripts/continue_watch.py'
       - '.github/workflows/status-watch.yml'
   schedule:
-    # Offset from the top of the hour to reduce schedule congestion.
-    - cron: '7,22,37,52 * * * *'
+    # Wall-clock backup; follow-up dispatches keep the monitoring cycle alive.
+    - cron: '0,15,30,45 * * * *'
     # Between full checks, poll only services with active incidents.
-    - cron: '2,12,17,27,32,42,47,57 * * * *'
+    - cron: '5,10,20,25,35,40,50,55 * * * *'
   workflow_dispatch:
     inputs:
       auto_cycle:
@@ -35,7 +35,7 @@ concurrency:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 7
+    timeout-minutes: 12
     env:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -47,8 +47,6 @@ jobs:
       - uses: actions/setup-python@v7.1.0
         with:
           python-version: '3.12'
-      - name: Record monitoring cycle start
-        run: echo "POLL_CYCLE_START=$(date +%s)" >> "$GITHUB_ENV"
       - name: Run regression tests
         id: tests
         run: python -m unittest discover -s tests -v
