@@ -11,6 +11,42 @@ import monitor
 
 
 class ParserTests(unittest.TestCase):
+    @staticmethod
+    def aws_feed(entries):
+        from xml.sax.saxutils import escape
+        return ("<rss><channel>" + "".join(
+            f"<item><guid>https://status.aws.amazon.com/#{region}_{stamp}</guid>"
+            f"<title>{escape(title)}</title><description>{body}</description></item>"
+            for region, stamp, title, body in entries) + "</channel></rss>").encode()
+
+    def test_aws_latest_resolution_suppresses_older_updates_in_any_order(self):
+        entries = [
+            ("ec2-us-east-1", 100, "Service impact: API errors", "old"),
+            ("ec2-us-east-1", 200, "Service is operating normally: [RESOLVED] API errors", "done"),
+        ]
+        source = next(s for s in monitor.SOURCES if s["service"] == "AWS")
+        for ordered in (entries, entries[::-1]):
+            with self.subTest(ordered=ordered), patch.object(monitor, "get", return_value=self.aws_feed(ordered)):
+                self.assertEqual([], monitor.incidents(source))
+
+    def test_aws_updates_keep_stable_id_and_separate_regions_and_topics(self):
+        source = next(s for s in monitor.SOURCES if s["service"] == "AWS")
+        entries = [
+            ("ec2-us-east-1", 100, "Service impact: API errors", "old"),
+            ("ec2-us-east-1", 200, "Service impact: API errors", "new"),
+            ("ec2-us-west-2", 300, "Service impact: API errors", "other region"),
+            ("ec2-us-east-1", 300, "Service impact: Network errors", "other topic"),
+        ]
+        with patch.object(monitor, "get", return_value=self.aws_feed(entries)):
+            result = monitor.incidents(source)
+        self.assertEqual(3, len(result))
+        self.assertEqual("new", result[0]["body"])
+        self.assertEqual(monitor.aws_latest([{"id": "https://status.aws.amazon.com/#ec2-us-east-1_100", "name": "Service impact: API errors"}])[0]["id"], result[0]["id"])
+        # A later active update must not be suppressed by an older resolution.
+        entries.append(("ec2-us-east-1", 50, "[RESOLVED] API errors", "past"))
+        with patch.object(monitor, "get", return_value=self.aws_feed(entries)):
+            self.assertEqual(3, len(monitor.incidents(source)))
+
     def test_statuspage_incident_and_component(self):
         source = {"service": "GitHub", "kind": "statuspage", "url": "unused", "page": "https://example.test"}
         payload = {"status": {"indicator": "minor", "description": "Partial"}, "incidents": [{"id": "abc", "name": "API errors", "status": "investigating", "impact": "minor", "incident_updates": [{"body": "Checking", "updated_at": "2026-01-01T00:00:00Z"}]}], "components": [{"id": "api", "name": "API", "status": "operational"}, {"id": "web", "name": "Web", "status": "degraded_performance"}]}
@@ -45,6 +81,36 @@ class ParserTests(unittest.TestCase):
 
 
 class StateTests(unittest.TestCase):
+    def test_aws_legacy_cleanup_update_recovery_and_dedupe(self):
+        source = next(s for s in monitor.SOURCES if s["service"] == "AWS")
+        entries = [
+            ("ec2-us-east-1", 100, "Service impact: API errors", "old"),
+            ("ec2-us-east-1", 200, "Service is operating normally: [RESOLVED] API errors", "done"),
+        ]
+        with tempfile.TemporaryDirectory() as td:
+            state_path = Path(td) / "state.json"
+            legacy = monitor.rss_incidents(ParserTests.aws_feed(entries))
+            state_path.write_text(json.dumps({"initialized": True, "active": {
+                "AWS:" + i["id"]: {"service": "AWS", "incident": i, "signature": monitor.fingerprint("AWS", i)}
+                for i in legacy}, "seen": []}))
+            messages = []
+            with patch.object(monitor, "SOURCES", [source]), patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "send", side_effect=messages.append):
+                def poll(rows):
+                    with patch.object(monitor, "get", return_value=ParserTests.aws_feed(rows)):
+                        self.assertEqual(0, monitor.run())
+                poll(entries)
+                self.assertEqual([], messages)
+                self.assertEqual({}, json.loads(state_path.read_text())["active"])
+                poll([("ec2-us-east-1", 300, "Service impact: API errors", "reopened")])
+                self.assertEqual(1, len(messages))
+                self.assertIn("NEW INCIDENT", messages[-1])
+                poll([("ec2-us-east-1", 400, "Service impact: API errors", "changed")])
+                self.assertIn("INCIDENT UPDATE", messages[-1])
+                poll([("ec2-us-east-1", 500, "[RESOLVED] API errors", "done")])
+                self.assertIn("INCIDENT RECOVERED", messages[-1])
+                poll([("ec2-us-east-1", 500, "[RESOLVED] API errors", "done")])
+                self.assertEqual(3, len(messages))
+
     def test_fingerprint_changes_on_update(self):
         a = {"id": "1", "status": "investigating", "updated_at": "t1", "body": "a"}
         b = {**a, "status": "identified", "updated_at": "t2"}
@@ -93,4 +159,3 @@ class StateTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

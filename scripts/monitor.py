@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -64,11 +65,33 @@ def rss_incidents(raw: bytes) -> list[dict]:
     return results
 
 
+def aws_latest(items: list[dict]) -> list[dict]:
+    """AWS GUIDs identify updates, not events; keep the latest per region/topic."""
+    latest = {}
+    for item in items:
+        match = re.fullmatch(r"https?://status\.aws\.amazon\.com/#(.+)_(\d+)", item["id"])
+        if not match:
+            # Do not silently merge an unfamiliar GUID format.
+            key, stamp = item["id"], 0
+        else:
+            topic = re.sub(r"^(?:Service is operating normally|Service impact|Informational message):\s*", "", item["name"], flags=re.I)
+            topic = re.sub(r"\[RESOLVED\]\s*", "", topic, flags=re.I).strip().casefold()
+            key, stamp = f"aws:{match[1]}:{topic}", int(match[2])
+        candidate = {**item, "id": key}
+        resolved = "[resolved]" in item["name"].casefold() or item["name"].casefold().startswith("service is operating normally:")
+        # On equal timestamps, an explicit resolution wins regardless of order.
+        rank = (stamp, resolved)
+        if key not in latest or rank > latest[key][0]:
+            latest[key] = (rank, candidate)
+    return [item for (_, resolved), item in latest.values() if not resolved]
+
+
 def incidents(source: dict) -> list[dict]:
     raw = get(source["url"])
     kind = source["kind"]
     if kind == "rss":
-        return rss_incidents(raw)
+        found = rss_incidents(raw)
+        return aws_latest(found) if source["service"] == "AWS" else found
     data = json.loads(raw)
     if kind == "json_array":
         if not isinstance(data, list):
@@ -129,10 +152,15 @@ def send(message: str) -> None:
         raise RuntimeError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are required")
     payload = json.dumps({"chat_id": CHAT_ID, "text": message, "disable_web_page_preview": True}).encode()
     req = urllib.request.Request(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage", data=payload, headers={"Content-Type": "application/json", "User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=20) as response:
-        result = json.loads(response.read())
-        if response.status != 200 or not result.get("ok"):
-            raise RuntimeError("Telegram sendMessage failed")
+    try:
+        with urllib.request.urlopen(req, timeout=20) as response:
+            result = json.loads(response.read())
+            if response.status != 200 or not result.get("ok"):
+                raise RuntimeError("Telegram sendMessage failed")
+    except Exception:
+        # Network exceptions can include the credential-bearing request URL.
+        raise RuntimeError("Telegram sendMessage failed") from None
+    print("Telegram sendMessage accepted")
 
 
 def alert(service: str, incident: dict, label: str) -> str:
@@ -147,6 +175,13 @@ def run() -> int:
         print(f"state load failed: {e}", file=sys.stderr)
         return 2
     old_active = previous.get("active", {})
+    # Migrate legacy AWS update IDs without emitting one false recovery per update.
+    legacy_aws = [v["incident"] for v in old_active.values()
+                  if v.get("service") == "AWS" and not v["incident"]["id"].startswith("aws:")]
+    if legacy_aws:
+        old_active = {k: v for k, v in old_active.items() if v.get("service") != "AWS"}
+        for item in aws_latest(legacy_aws):
+            old_active[f"AWS:{item['id']}"] = {"service": "AWS", "incident": item, "signature": fingerprint("AWS", item)}
     old_seen = set(previous.get("seen", []))
     current: dict[str, dict] = {}
     failures = []
@@ -227,4 +262,3 @@ def run() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(run())
-
