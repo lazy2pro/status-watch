@@ -1,115 +1,24 @@
 {
   "initialized": true,
-  "checked_at": "2026-11-13T00:57:06.252189+00:00",
+  "checked_at": "2026-11-13T01:29:21.887114+00:00",
   "active": {
-    "Microsoft 365:032f0eba-d384-4ed2-93b1-b7eb42f24e61": {
-      "signature": "026d9e61d671db562dde6c6043d5f5480fd0e0cd68eb6b171b4efd0f73a46f8d",
+    "Microsoft 365:bd653f2b-b6d9-40b3-bffa-a60ed361adbe": {
+      "signature": "51b487f5c3c248877c9dea69e53181c129b47a355ec718be877a137b5b8eab81",
       "incident": {
-        "id": "032f0eba-d384-4ed2-93b1-b7eb42f24e61",
+        "id": "bd653f2b-b6d9-40b3-bffa-a60ed361adbe",
         "name": "Microsoft Admin Center",
         "status": "investigating",
         "impact": "unknown",
         "updated_at": "",
         "url": "https://status.cloud.microsoft/",
-        "body": "<div>User impact: Users may be unable to connect to multiple Microsoft 365 services. <div><br></div><div>More info: Potentially impacted services include:</div><div>- Exchange Online</div><div>- Microsoft Teams</div><div>- SharePoint Online</div><div>- Microsoft Copilot 365</div><div>- Microsoft Defender XDR</div><div>- Microsoft Planner</div><div>- Microsoft To Do</div><div>- Microsoft Intune</div><div>- Microsoft Defender for Office 365</div><div>- Microsoft Purview: Multiple Purview services including Authorization, Auto Labelling, Data Loss Prevention (DLP), Communication Compliance, and Data Classification are impacted.</div><div>- Power BI: All users may intermittently be unable to export reports with MIP sensitivity labels to PDF in Power BI.</div><div>- Microsoft 365 Apps Admin Center: Multiple services including Cloud Update, Cloud Policy, and Inventory.</div><div>- Universal Print: Users may encounter errors submitting print jobs or using admin features.</div><div>- Windows 365: Customers who have configured their tenant and Cloud PCs to use Microsoft Purview Customer Key for Windows 365 Cloud PCs may have users who are unable to connect to their Cloud PCs.</div><div><br></div><div>Current status: While the servers we've returned to service initially remain healthy, we've observed that they can become unresponsive again once they begin receiving traffic. We're analyzing diagnostic data from these servers with our networking and platform experts to determine what's triggering this behavior.</div><div>&nbsp;</div><div>Building on the protective traffic management measures we've implemented, we're also temporarily limiting which types of traffic can reach the affected infrastructure in specific locations. This will help us determine whether a particular type of request is contributing to the impact and allow us to restore service incrementally. Additionally, we're rebuilding a subset of affected servers using a previous software configuration to validate whether this prevents them from becoming unresponsive, and we'll expand this approach to additional servers if we observe positive results.<br></div><div><br></div><div>Previous status: We've begun returning a portion of the affected servers to service, and they're remaining stable so far. We’ve also shifted traffic and connections to alternative pathways wherever possible and have observed limited recovery in some regions.</div><div><div>&nbsp;</div>We've streamlined our recovery process to expedite returning the remaining affected servers to service. To further support recovery, we're implementing protective traffic management measures in a specific location to reduce load on the affected infrastructure, and we'll expand these measures to additional locations if we observe positive results. As capacity is restored, users may experience a gradual recovery as their clients reconnect to the service.<br></div><div><br></div><div>Scope of impact: This issue may affect users attempting to access the affected Microsoft 365 services.</div><div><br></div>Next update by: Friday, November 13, 2026, at 1:30 AM UTC<br></div>"
+        "body": "<span>User impact: Users may be unable to connect to multiple Microsoft 365 services.</span><div><br></div><div>More info: Features of the Microsoft 365 services below that interact with Exchange Online and email services are impacted. Elements of those services that do not depend on interaction with Exchange Online remain functional.</div><div>&nbsp;</div><div>- Exchange Online: Users may be unable to access their mailbox using Outlook on the web, Outlook desktop (MAPI), Exchange ActiveSync (EAS), or REST-based connections, and email delivery may be delayed.</div><div>- Microsoft 365 admin center: Admins may be unable to load some admin center pages.</div><div>- Microsoft 365 apps: Users may be unable to view their recently used files.</div><div>-Microsoft 365 Apps Admin Center: Multiple services including Cloud Update, Cloud Policy, and Inventory are affected.</div><div>- Microsoft 365 Education: Features including Assignments, Reading Progress, and Speaker Progress may be impacted.</div><div>- Microsoft Copilot 365: Users may be unable to load Copilot Chat or receive responses in the web and desktop apps, and Copilot experiences may be unable to access work data such as email, calendar, and files.</div><div>- Microsoft Defender for Office 365: Safe Links may be unable to verify URLs, which may impact users clicking links in Outlook and Teams.</div><div>- Microsoft Defender XDR: Users may be unable to load Microsoft Defender portal pages or solution tabs.</div><div>- Microsoft Fabric: Users may encounter failures when exporting reports with sensitivity labels to PDF or PowerPoint, or when updating artifacts with sensitivity labels.</div><div>- Microsoft Graph: API requests that access Exchange Online data, such as mail, calendar, and contacts, may time out.</div><div>- Microsoft Intune</div><div>- Microsoft Planner: Users are experiencing Plan and Task operation reliability issues.</div><div>- Microsoft Purview: Multiple Purview services including Authorization, auto-labeling, Data Loss Prevention (DLP), Communication Compliance, and Data Classification are impacted, and users may be unable to load Microsoft Purview portal pages.</div><div>- Microsoft Teams: Scenarios that depend on Exchange Online, including calendar, meeting scheduling, and creating chats for organizations using Information Barriers, may fail. Core messaging and online meetings remain largely functional.</div><div>- Microsoft To Do: The app may not load, and users may see operation failures.</div><div>- Power BI: All users may intermittently be unable to export reports with MIP sensitivity labels to PDF in Power BI.</div><div>- SharePoint Online: Features that depend on Exchange Online may be impacted. Accessing files stored directly in SharePoint Online remains functional.</div><div>- Universal Print: Users may encounter errors submitting print jobs or using admin features.</div><div>- Windows 365: Customers who have configured their tenant and Cloud PCs to use Microsoft Purview Customer Key for Windows 365 Cloud PCs may have users who are unable to connect to their Cloud PCs.</div><div><br></div><div><span data-teams=\"true\">Current status<strong>:</strong> Our investigation has found that a process on the affected servers responsible for establishing secure connections becomes overwhelmed, causing the servers to stop processing requests. We're preparing a configuration change to address this behavior that can be applied across all affected servers, and we're validating it on a subset of servers before applying it more broadly alongside restarts of the affected infrastructure. In parallel, we've begun reverting a recent network configuration change that correlates with the start of impact and are monitoring to determine whether this contributes to recovery.&nbsp;The temporary traffic limitations we previously described are now in effect in specific locations. We're monitoring the affected servers in those locations to confirm whether they remain stable while handling a narrower set of connections, after which we'll gradually reintroduce additional traffic.</span><br></div><div><br></div><div>Previous status: We've reviewed known impact scenarios and have revised the list of impact services and features, which can be viewed in the \"more info\" section of this communication.&nbsp;<span>We're continuing our work to isolate the issue affecting server availability, as well as other workstreams.</span></div><div><br></div><div>Scope of impact: This issue may affect users attempting to access the affected Microsoft 365 services.</div><div><br></div><div><span>Next update by: Friday, November 13, 2026, at 2:00 AM UTC</span><br></div>"
       },
       "service": "Microsoft 365"
     },
-    "AWS:https://status.aws.amazon.com/#ec2-ap-northeast-1_1794431489": {
-      "signature": "1be1f56a8b5ccbe8c16f44d59e9f762375ae37ae7bfaed574d7db233a26a0d75",
+    "AWS:aws:multipleservices-me-central-1:increased error rates": {
+      "signature": "1dbc37a438ae0130a9d3e29d2452834ba48decf9de6372584bbc0e274256b0ec",
       "incident": {
-        "id": "https://status.aws.amazon.com/#ec2-ap-northeast-1_1794431489",
-        "name": "Service is operating normally: [RESOLVED] Elevated API issues and Launch Failures",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "日本時間 2026 年 11 月 11 日 午後 11 時 46 分から 2026 年 11 月 12 日 午前 5 時 31 分にかけて、AP-NORTHEAST-1 リージョンの主に単一のアベイラビリティーゾーン (apne1-az1) において、断続的な API エラー率の上昇、および新規起動された EC2 インスタンスにおける接続の問題が発生しておりました。エンジニアが自動的に対応に加わり、直ちに調査を開始いたしました。最初の影響期間は、日本時間 2026 年 11 月 11 日 午後 11 時 46 分から 2026 年 11 月 12 日 午前 2 時 46 分であり、主に API エラーおよび EC2 インスタンスの起動失敗として現れておりました。Auto Scaling、ECS、RDS など、ワークフローを EC2 API に依存している他の AWS サービスも、この問題の影響を受けておりました。既存の EC2 インスタンスには影響はございませんでした。この最初の影響期間中、お客様には API のスロットリングまたは 5XX レスポンスが発生していた可能性がございます。また、一部の EC2 RunInstances API の呼び出しは成功したものの、インスタンスが正常に起動せず、TERMINATED 状態に移行した場合がございました。EC2 および EBS のヘルスデータが欠損または遅延し、その結果 CloudWatch アラームが INSUFFICIENT_DATA 状態に移行しておりました。影響を受けたサービスにおいて失敗した API リクエストやワークフローにつきましては、再試行いただくことを推奨いたします。 日本時間 午前 2 時 46 分に API エラーを緩和いたしましたが、この時点ではすべての問題は緩和されておりませんでした。EC2 API の回復を監視する中で、新規起動された EC2 インスタンス、およびネットワーク設定が変更された既存のインスタンスの両方で、接続の問題が発生していることを確認いたしました。これらの接続の問題は、EC2 インスタンスのネットワークの変更を伝播する内部サブシステムにおける遅延によるものであり、根本原因に関連するものでございました。日本時間 午前 5 時 31 分までに、問題を完全に解決いたしました。この間、接続の問題の軽減と根本原因の完全な把握の両面から、複数の対策を並行して実施しておりました。ECS、EKS、ELB、NAT Gateway など、EC2 インスタンスを起動する、または EC2 インスタンスのネットワーク設定を変更する他の AWS サービスも、この問題の影響を受けておりました。 影響を受けたサービスの一覧は以下のとおりです。問題は解決され、すべてのサービスは正常に稼働しております。| Between 6:46 AM PST and 12:31 PM PST, we experienced periods of API error rates, as well as connectivity issues for newly launched EC2 instances, primarily affecting a single Availability Zone (apne1-az1) in the AP-NORTHEAST-1 Region. Engineers were automatically engaged and immediately began investigating. The first impact window was between 6:46 AM PST and 9:46 AM PST, and primarily manifested as API errors and failed EC2 instance launches. Other AWS Services that rely on the EC2 APIs for their workflows, such as Autoscaling, ECS, and RDS, were also affected by this issue. Existing EC2 instances were not affected. During this first impact period, customers may have experienced API throttling or 5XX Responses. Additionally, some EC2 RunInstance API calls may have succeeded, but instances did not successfully launch, instead transitioning to a TERMINATED state. EC2 and EBS health data was missing or delayed, which resulted in CloudWatch alarms transitioning to an INSUFFICENT_DATA state. We recommend customers retry failed API requests or workflows that failed for any of the affected services. At 9:46 AM, we mitigated the API errors, but had not yet mitigated all issues. While monitoring recovery of the EC2 APIs, we observed that both newly launched EC2 instances and existing instances where the network configuration was modified were experiencing connectivity issues. These connectivity issues were the result of delays in an internal subsytem responsible for propagating EC2 instance networking changes, and related to the underlying root cause. By 12:31 PM PST, we had fully resolved the issue. During this time, we were working on multiple parallel paths to both mitigate the connectivity issues and fully understand the root cause. Other AWS Services that launch EC2 instances or modify EC2 instance networking configuration, such as ECS, EKS, ELB, and NAT Gateway, were also affected by this issue. A list of impacted services is available below. The issue has been resolved and all services are operating normally."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#ec2-ap-northeast-1_1794426872": {
-      "signature": "69f0a601b441c714e95b7ad7ca7cb92b3acd8b6bf2c12fb6b627c1e5fd1542ab",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#ec2-ap-northeast-1_1794426872",
-        "name": "Service impact: Elevated API issues and Launch Failures",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "引き続き完全な復旧に向けて取り組んでおります。お客様は、他の 2 つの正常なアベイラビリティーゾーン (apne1-az2、apne1-az3) で新しいインスタンスを起動することができます。また、影響を受けているアベイラビリティーゾーンにおける既存のインスタンスへの接続に影響を与えるような変更は行わないことをお客様におすすめいたします。これには、ネットワークインターフェイスやゲートウェイのアタッチおよびデタッチ、VPC ピアリングの変更などのアクションが含まれます。単一のアベイラビリティーゾーン (apne1-az1) において、新規作成または変更されたインスタンスへの断続的な接続の問題の解決に引き続き取り組んでおります。この問題は、新しいインスタンスの起動、新しいクラスターの作成、Auto Scaling グループ、ゲートウェイ、および VPC ゲートウェイエンドポイントなどのアクションに影響を与えております。既存のリソースへの接続およびインスタンス間の通信には影響はございません。次回の更新は、日本時間午前 6 時までに、もしくは新たな情報が入り次第、お知らせいたします。| We continue to work towards full recovery. Customers can launch new instances in the other two healthy Availability Zones (apne1-az2, apne1-az3). We also recommend that customers do not make changes that would impact connectivity to existing instances in the affected Availability Zone. This includes actions such as attaching and detaching network interfaces or gateways as well as VPC Peerings changes. We are continuing to work on resolving the intermittent connectivity issues to newly created or modified instances in a single Availability Zone (apne1-az1). This affects actions such as new instance launches, new cluster creation, autoscaling groups, gateways, and vpc gateway endpoints. Connectivity to existing resources and Instance to Instance communication are not impacted. We will provide you with another update by 1:00 PM PST or sooner as new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#ec2-ap-northeast-1_1794423289": {
-      "signature": "72c520a2ac9af0c63160f580c6d1d30421a276a66ea57c9e3ab9b56087ec17d9",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#ec2-ap-northeast-1_1794423289",
-        "name": "Service impact: Elevated API issues and Launch Failures",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "現在引き続き完全な復旧に向けて取り組んでおります。単一のアベイラビリティーゾーン (apne1-az1) において、新規作成または変更されたインスタンスへの接続の問題が発生していることを確認しております。この問題は、新しいインスタンスの起動、新しいクラスターの作成、Auto Scaling グループ、ゲートウェイ、および VPC ゲートウェイエンドポイントなどのアクションに影響を与えております。既存のリソースへの接続およびインスタンス間の通信には影響はございません。この新しい問題の根本原因は特定済みであり、現在問題の軽減に取り組んでおります。次回の更新は、日本時間午前 5 時までに、もしくは新たな情報が入り次第、お知らせいたします。| We continue to work towards full recovery. We are observing some connectivity issues to newly created or modified instances in a single Availability Zone (apne1-az1). This affects actions such as new instance launches, new cluster creation, autoscaling groups, gateways, and vpc gateway endpoints. Connectivity to existing resources and Instance to Instance communication are not impacted. We have identified the root cause of this new issue and are working to mitigate the issue. We will provide you with another update by 12:00 PM PST or sooner as new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#ec2-ap-northeast-1_1794419962": {
-      "signature": "2154243cf81f124c02a679945e8398f507cf878e93065b8eead97ff6d75b4169",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#ec2-ap-northeast-1_1794419962",
-        "name": "Service impact: Elevated API issues and Launch Failures",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "AP-NORTHEAST-1 リージョンにおいて、引き続き広範囲で回復の兆候が見られております。現在も緩和策の実施を継続しており、次回の進捗の更新は日本時間午前 3 時 45 分までに、もしくは新たな情報が入り次第、お知らせいたします。| We continue to see broad signs of recovery in the AP-NORTHEAST-1 Region. Our mitigation efforts are still underway, and we will provide you with another update on our progress by 10:45 AM PST or sooner as new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#ec2-ap-northeast-1_1794418681": {
-      "signature": "52153f042bb0bd8a6503a752f8816370bfe91af6b5b3f1662d742d572e3c3c81",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#ec2-ap-northeast-1_1794418681",
-        "name": "Service impact: Elevated API issues and Launch Failures",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "AP-NORTHEAST-1 リージョンにおける API エラー率の上昇および起動失敗について、回復の兆候が見られております。EC2 および EBS の CloudWatch ヘルスデータは、現在正常に報告されております。引き続き復旧作業の進捗を監視し、次回の更新は日本時間午前 3 時までに、もしくは新たな情報が入り次第、お知らせいたします。 | We are seeing early signs of recovery for the elevated API error rates and launch failures in the AP-NORTHEAST-1 Region. EC2 and EBS CloudWatch health data is now reporting correctly. We will continue to monitor the progress of our recovery efforts and will provide you with another update by 10:00 AM PST or sooner as new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#ec2-ap-northeast-1_1794415243": {
-      "signature": "deef177c738f2db9c3a8c81fbcc94ba23b60d0f8c6951c28c8e7dfdfcc0165ae",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#ec2-ap-northeast-1_1794415243",
-        "name": "Service impact: Elevated API issues and Launch Failures",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "現在 AP-NORTHEAST-1 リージョンにおいて、API エラー率の上昇および起動失敗が発生しております。起動失敗は引き続き単一のアベイラビリティーゾーン (apne1-az1) に集中しているように見受けられますが、他のアベイラビリティーゾーンにおいても少数の起動失敗が発生しております。 影響を受けているアベイラビリティーゾーンでは、EC2 および EBS リソースの CloudWatch アラームが Insufficient Data 状態に移行しており、Insufficient Data でアラートを発生するよう設定されているアラームは、アラーム状態に移行する可能性があります。影響を受けているアベイラビリティーゾーンにおける DescribeInstanceStatus API は、Insufficient Data を返しております。稼働中のインスタンスに影響はございませんが、インスタンスの正常性は、お客様ご自身のヘルステレメトリーに基づいてご判断くださいますようお願いいたします。 さらに、ECS および Fargate のタスク起動失敗、ELB のプロビジョニング遅延、NAT Gateway の作成および関連付け解除のワークフローの失敗など、他サービスにも影響が発生しております。 根本原因は特定済みであり、現在問題の軽減に取り組んでおります。次回の更新は、日本時間午前 2 時 45 分までに、もしくは新たな情報が入り次第、お知らせいたします。 | We are experiencing elevated API error rates and launch failures in the AP-NORTHEAST-1 Region. While launch failures still appear to be concentrated in a single Availability Zone (apne1-az1), we are now seeing low levels of launch failures in other availability zones as well. Cloudwatch alarms for EC2 and EBS resources in the affected Availability Zone are transitioning into Insufficient Data state and alarms configured to alert off of Insufficient Data may transition to Alert state. The DescribeInstanceStatus API in the affected Availability Zone is returning Insufficient Data. Running instances are not affected, and you should rely on your own health telemetry to determine the health of your instance. In addition, we are seeing impact to other services such as ECS and Fargate Task Launch failures, ELB provisioning delays and Nat Gateway failures for Create and Disassociate workflows. We have identified the root cause and are working to mitigate the issue. We will provide you with another update by 9:45 AM PST or sooner as new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#ec2-ap-northeast-1_1794411633": {
-      "signature": "e256e06b297fe78a24b5c0826ba50af96db9e81fd026f065c94993e7e14cfa57",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#ec2-ap-northeast-1_1794411633",
-        "name": "Service impact: Elevated API issues and Launch Failures",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "AP-NORTHEAST-1 リージョンにおいて、API エラー率の上昇および起動失敗が発生しております。起動失敗は、単一のアベイラビリティーゾーン (apne1-az1) に集中して発生していると見受けられます。現在、根本原因の特定および問題の軽減に取り組んでいます。 | We are experiencing elevated API error rates and launch failures in the AP-NORTHEAST-1 Region. Launch failures appear to be concentrated in a single Availability Zone (apne1-az1). We are working to identify the root cause and mitigate the issue."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1789468030": {
-      "signature": "3b13d02cc6213b43544fa05f38081fcd21e1b1988c99fd48410533202b8e8ef9",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1789468030",
+        "id": "aws:multipleservices-me-central-1:increased error rates",
         "name": "Service disruption: Increased Error Rates",
         "status": "investigating",
         "impact": "unknown",
@@ -119,10 +28,10 @@
       },
       "service": "AWS"
     },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1789467748": {
-      "signature": "50a41bf591f28b390e9385e44d753a41d97d4ecdb30fb079ae15b7c4c431a0ca",
+    "AWS:aws:multipleservices-me-south-1:increased error rates": {
+      "signature": "18ee360ca192f03b9fb1b5aed6cfcf7f7ecaa218adf82758174ec2c4d73c9899",
       "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1789467748",
+        "id": "aws:multipleservices-me-south-1:increased error rates",
         "name": "Service disruption: Increased Error Rates",
         "status": "investigating",
         "impact": "unknown",
@@ -132,471 +41,16 @@
       },
       "service": "AWS"
     },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1777533954": {
-      "signature": "38e9c10c841d23749009a11e79d78c0ce4ed14d6141c1a752812fab6320ef739",
+    "AWS:aws:multipleservices-me-south-1:increased connectivity issues and api error rates": {
+      "signature": "e6c75e5cd45d9bcf893564447ec275860acbfffa3987e1e273f3a2ffd911f78c",
       "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1777533954",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are providing an update on the ongoing service disruption. The Middle East (UAE) Region (ME-CENTRAL-1) has suffered damage as a result of the conflict in the Middle East and is currently unable to reliably support customer applications. While some workloads continue to function normally, we strongly recommend customers migrate all accessible resources to other Regions and restore inaccessible resources from remote backups as soon as possible. Relevant billing operations are currently suspended while we restore normal operations in this AWS Region. This process is expected to take several months."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1777532831": {
-      "signature": "5b5cfd54a151f0cfefd788276843f006f2e7de1c586d33210590437b50fe8402",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1777532831",
+        "id": "aws:multipleservices-me-south-1:increased connectivity issues and api error rates",
         "name": "Service disruption: Increased Connectivity Issues and API Error Rates",
         "status": "investigating",
         "impact": "unknown",
         "updated_at": "",
         "url": "https://status.aws.amazon.com/",
         "body": "We are providing an update on the ongoing service disruption. The Middle East (Bahrain) Region (ME-SOUTH-1) has suffered damage due to the conflict in the Middle East and is currently unavailable. Customers should recover their resources in other Regions from remote backups. Relevant billing operations are currently suspended while we restore normal operations in this AWS Region. This process is expected to take several months."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772556000": {
-      "signature": "7d2ae5a79462f696564e28379f42b431407d81bc87caa4e31da24039c04a88f5",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772556000",
-        "name": "Service impact: Increased Connectivity Issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are providing an update on the ongoing service disruptions affecting the AWS Middle East (Bahrain) Region (ME-SOUTH-1). We continue to make progress on recovery efforts across multiple workstreams. With the immediate phase of this event now better understood, we are moving to a more targeted communication model. Going forward, updates will be delivered directly to affected customers through the AWS Personal Health Dashboard. Customers who require assistance with this event are encouraged to contact AWS Support through the AWS Management Console or the AWS Support Center. We continue to strongly recommend that customers with workloads running in the Middle East take action now to migrate those workloads to alternate AWS Regions. Customers should enact their disaster recovery plans, recover from remote backups stored in other Regions, and update their applications to direct traffic away from the affected Regions. For customers requiring guidance on alternate regions, we recommend considering AWS Regions in the United States, Europe, or Asia Pacific, as appropriate for your latency and data residency requirements."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772554485": {
-      "signature": "fe0f6d59aaa8656efb5c316db0d443b010cd3e4856ea7dde2fc032ec1067f23a",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772554485",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are providing an update on the ongoing service disruptions affecting the AWS Middle East (UAE) Region (ME-CENTRAL-1). We continue to make progress on recovery efforts across multiple workstreams. For Amazon S3, we are seeing continued improvement in PUT and LIST availability. Newly written objects are now able to be successfully retrieved, and we continue to work on reducing GET error rates for objects written prior to the event. Full recovery of GET operations for pre-existing data remains dependent on restoring the affected infrastructure. For Amazon DynamoDB, error rates remain elevated and our teams continue to focus on recovery; we expect to see improvement over the coming hours. As these foundational services recover, dependent services — including AWS Lambda, Amazon Kinesis, Amazon CloudWatch, and Amazon RDS — will follow. Amazon EC2 instance launches remain throttled in the ME-CENTRAL-1 Region and will be relaxed as foundational service recovery and capacity allow. The AWS Management Console is operational, though customers may continue to experience errors on certain pages as underlying services work through their recovery. With the immediate phase of this event now better understood, we are moving to a more targeted communication model. Going forward, updates will be delivered directly to affected customers through the AWS Personal Health Dashboard. Customers who require assistance with this event are encouraged to contact AWS Support through the AWS Management Console or the AWS Support Center. We continue to strongly recommend that customers with workloads running in the Middle East take action now to migrate those workloads to alternate AWS Regions. Customers should enact their disaster recovery plans, recover from remote backups stored in other Regions, and update their applications to direct traffic away from the affected Regions. For customers requiring guidance on alternate regions, we recommend considering AWS Regions in the United States, Europe, or Asia Pacific, as appropriate for your latency and data residency requirements."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772546577": {
-      "signature": "a4c8d80b7f3190f201462edb6fb3a6be18748138b9f9e806601f14a73b0a29ec",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772546577",
-        "name": "Service impact: Increased Connectivity Issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "Recovery efforts in the affected Availability Zone (mes1-az2) in the ME-SOUTH-1 Region are ongoing, with the situation remaining consistent with our last update. We have no change to expected timelines for fully restoring power and connectivity. While progress is being made, significant work remains before full restoration is complete. We continue to recommend customers launch replacement resources in one of the unaffected Availability Zones or an alternate AWS Region. Given the extended nature of this event, we continue to encourage customers to replicate Amazon S3 data and other critical workloads from ME-SOUTH-1 to another AWS Region using the guidance shared previously. We will provide our next update by 12:00 PM PST on March 3, or sooner if conditions change."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772542694": {
-      "signature": "06b0f0d7d9f64c3444095695fe34052deb4c67e85257cc1fbe51dfc1d0162c75",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772542694",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are providing an update on the ongoing service disruptions affecting the AWS Middle East (UAE) Region (ME-CENTRAL-1). The overall state of the region remains largely unchanged, though our teams continue to make progress on recovery efforts across multiple workstreams. For Amazon S3, we are seeing continued improvement in PUT and LIST availability. Newly written objects are now able to be successfully retrieved, and we continue to work on reducing GET error rates for objects written prior to the event. Full recovery of GET operations for pre-existing data remains dependent on restoring the affected infrastructure. For Amazon DynamoDB, error rates remain elevated and our teams continue to focus on recovery; we expect to see improvement over the coming hours. As these foundational services recover, dependent services — including AWS Lambda, Amazon Kinesis, Amazon CloudWatch, and Amazon RDS will follow. Amazon EC2 instance launches remain throttled in the ME-CENTRAL-1 Region and will be relaxed as foundational service recovery and capacity allow. The AWS Management Console is operational, though customers may continue to experience errors on certain pages as underlying services work through their recovery. We recommend that customers continue to retry requests where possible. We strongly recommend that customers with workloads running in the Middle East take action now to migrate those workloads to alternate AWS Regions. Customers should enact their disaster recovery plans, recover from remote backups stored in other Regions, and update their applications to direct traffic away from the affected Regions. For customers requiring guidance on alternate regions, we recommend considering AWS Regions in the United States, Europe, or Asia Pacific, as appropriate for your latency and data residency requirements. We will provide another update by March 3 at 10:00 AM PST, or sooner if new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772536238": {
-      "signature": "ddcff2b4bf35304f53ef650ada2fbe2acb5fc6af99b97f0189743116ba5fb039",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772536238",
-        "name": "Service impact: Increased Connectivity Issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work toward restoring power in the affected Availability Zone (mes1-az2) in the ME-SOUTH-1 Region. The overall state of the region remains largely unchanged from our previous update. At this time, we have no updated guidance on expected timelines for fully restoring power and connectivity. We are taking all necessary steps to support the recovery process. While progress is being made, significant work remains before full restoration is complete. Given the ongoing uncertainty, we encourage customers to replicate their Amazon S3 data and other critical data from the ME-SOUTH-1 Region to another AWS Region, using the guidance provided in our previous update. We will continue to provide updates as recovery progresses and as the situation evolves. Our next update will be provided by 6:00 AM PST on March 3, or sooner if new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772528640": {
-      "signature": "8439d3d6e7122aac20ff1e0b3e25e00dd5ebed121a16eeaa4037262ac2a26c96",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772528640",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are providing an update on the ongoing service disruptions affecting the AWS Middle East (UAE) Region (ME-CENTRAL-1). The overall state of the region remains largely unchanged from our previous update. We continue to work closely with local authorities and are prioritizing the safety of our personnel throughout our recovery efforts. Teams continue to assess the damage to the affected facilities and are working to restore infrastructure impacted by the event. With respect to Amazon S3, we are seeing improvement in PUT and LIST availability. We continue to work on improving GET error rates, but full recovery will be dependent on restoring the affected infrastructure, which our teams continue to work toward. For Amazon DynamoDB, error rates remain elevated and our teams continue to focus on recovery efforts. We have not yet seen meaningful improvement in DynamoDB availability, but expect conditions to improve over the coming hours as recovery work progresses. Amazon EC2 instance launches remain throttled in the ME-CENTRAL-1 Region. We will begin relaxing these throttles as soon as we have fully recovered our foundational services and have sufficient capacity to support new launches safely. The AWS Management Console is now operational, though customers may continue to experience errors on certain pages and operations as the underlying services work through their recovery. We recommend customers continue to retry requests where possible. AWS Lambda, Amazon Kinesis, Amazon CloudWatch, Amazon RDS, and a number of other AWS services that were impacted by this event remain degraded. The availability of these services is dependent on the recovery of our foundational services — primarily Amazon S3 and Amazon DynamoDB — and we expect to see improvement across these services as that recovery progresses. Finally, even as we work to restore these facilities, the ongoing conflict in the region means that the broader operating environment in the Middle East remains unpredictable. We strongly recommend that customers with workloads running in the Middle East take action now to migrate those workloads to alternate AWS Regions. Customers should enact their disaster recovery plans, recover from remote backups stored in other regions, and update their applications to direct traffic away from the affected regions. For customers requiring guidance on alternate regions, we recommend considering AWS Regions in the United States, Europe, or Asia Pacific, as appropriate for your latency and data residency requirements. We will continue to provide updates as recovery progresses and as the situation evolves. Our next update will be provided by 5:00 AM PST on March 3, or sooner if new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772519220": {
-      "signature": "09131f840a0c19a47dba50d21d3613ede88125ab644c25d89eda06b4160b7c9f",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772519220",
-        "name": "Service impact: Increased Connectivity Issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work towards restoring power in the affected Availability Zone (mes1-az2) in the ME-SOUTH-1 Region. We have no updated guidance on expected recovery times, and still expect this to take at least a day to fully restore power and connectivity. AWS infrastructure is designed to be highly resilient, but given the uncertainty of the current situation, we encourage our customers to replicate Amazon S3 and critical data from the ME-SOUTH-1 Region to another AWS Region. For customers requiring guidance on alternate regions, we recommend considering AWS Regions in the United States, Europe, or Asia Pacific, as appropriate for your latency and data residency requirements. We will provide another update by March 3 at 3:00 AM PST, or sooner if new information becomes available. For more information on Cross-Region Replication, refer [1]. For more information on S3 Batch Replication, see [2]. For a simple script to quickly set up and start S3 Replication, see [3]. If you have questions or concerns, please contact AWS Support [4]. [1] <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html\">https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html</a> [2] <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html\">https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html</a> [3] <a href=\"https://github.com/awslabs/aws-support-tools/blob/master/S3/Setup_Replication/setup_replication.py\">https://github.com/awslabs/aws-support-tools/blob/master/S3/Setup_Replication/setup_replication.py</a> [4] <a href=\"https://aws.amazon.com/support\">https://aws.amazon.com/support</a>"
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772514818": {
-      "signature": "bc456abc0022e485d6f9de035bb188949cc689293f0446648781b5be1c7b5cf3",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772514818",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work towards recovery of the two impaired Availability Zones (mec1-az2 and mec1-az3) in the ME-CENTRAL-1 Region with a focus on restoring functionality to foundational services. Since our last update we have made incremental progress in recovering the DynamoDB control plane which will not be visible to external customers but are required for the restoration of service. Similarly we have made progress with the S3 control plane. The recovery of these foundational services, when complete, will enable a broad range of dependent AWS services to recover. We still estimate that the recovery time is at least a day before we are able to fully restore power and connectivity. We will provide you with another update by March 3 2:00 AM PST, or sooner if new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772497351": {
-      "signature": "ead7d31ba375b21e1c2d0756077fcdec53fd24f53f521caf0043c902ae4455cb",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772497351",
-        "name": "Service impact: Increased Connectivity Issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are providing an update on the ongoing service disruptions affecting the AWS Middle East (UAE) Region (ME-CENTRAL-1) and the AWS Middle East (Bahrain) Region (ME-SOUTH-1). Due to the ongoing conflict in the Middle East, both affected regions have experienced physical impacts to infrastructure as a result of drone strikes. In the UAE, two of our facilities were directly struck, while in Bahrain, a drone strike in close proximity to one of our facilities caused physical impacts to our infrastructure. These strikes have caused structural damage, disrupted power delivery to our infrastructure, and in some cases required fire suppression activities that resulted in additional water damage. We are working closely with local authorities and prioritizing the safety of our personnel throughout our recovery efforts. In the ME-CENTRAL-1 (UAE) Region, two of our three Availability Zones (mec1-az2 and mec1-az3) remain significantly impaired. The third Availability Zone (mec1-az1) continues to operate normally, though some services have experienced indirect impact due to dependencies on the affected zones. In the ME-SOUTH-1 (Bahrain) Region, one facility has been impacted. Across both regions, customers are experiencing elevated error rates and degraded availability for services including Amazon EC2, Amazon S3, Amazon DynamoDB, AWS Lambda, Amazon Kinesis, Amazon CloudWatch, Amazon RDS, and the AWS Management Console and CLI. We are working to restore full service availability as quickly as possible, though we expect recovery to be prolonged given the nature of the physical damage involved. In parallel with efforts to restore the physical infrastructure at the affected sites, we are pursuing multiple software-based recovery paths that do not depend on the underlying facilities being fully brought back online. For Amazon S3 and Amazon DynamoDB, we are actively working to restore data access and service availability through software mitigations, including deploying updates to enable S3 to operate within the current infrastructure constraints and remediating impaired DynamoDB tables to restore read and write availability for dependent services. Our focus on restoring these foundational services is deliberate, as recovery of Amazon S3 and Amazon DynamoDB will in turn enable a broad range of dependent AWS services to recover. For other affected service APIs, we are deploying targeted software updates to reduce error rates and restore functionality where possible, independent of the physical recovery timeline. We are also working to restore access to the AWS Management Console and CLI through network-level changes that route traffic away from the affected infrastructure. While these software-based mitigations can address many of the service-level impacts, some recovery actions are constrained by the physical state of the affected facilities — meaning that full restoration of certain services will require the underlying infrastructure to be repaired and brought back online. Across all services, our teams are working in parallel on both the physical restoration of the affected facilities and these software-based mitigations, with the goal of restoring as much customer access as possible as quickly as possible, even ahead of full infrastructure recovery. In addition, we are prioritizing the restoration of services and tools that enable customers to back up and migrate their data and applications out of the affected regions. Finally, even as we work to restore these facilities, the ongoing conflict in the region means that the broader operating environment in the Middle East remains unpredictable. We recommend that customers with workloads running in the Middle East consider taking action now to backup data and potentially migrate your workloads to alternate AWS Regions. We recommend customers exercise their disaster recovery plans, recover from remote backups stored in other regions, and update their applications to direct traffic away from the affected regions. For customers requiring guidance on alternate regions, we recommend considering AWS Regions in the United States, Europe, or Asia Pacific, as appropriate for your latency and data residency requirements. We will continue to provide updates as recovery progresses and as the situation evolves. Our next update will be provided by 9:00 PM PST on March 2, 2026, or sooner if new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772497188": {
-      "signature": "6dfb57ebe50a193e94057d61d9a28daaf9d90e06f871685adb08129b3b6f057b",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772497188",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are providing an update on the ongoing service disruptions affecting the AWS Middle East (UAE) Region (ME-CENTRAL-1) and the AWS Middle East (Bahrain) Region (ME-SOUTH-1). Due to the ongoing conflict in the Middle East, both affected regions have experienced physical impacts to infrastructure as a result of drone strikes. In the UAE, two of our facilities were directly struck, while in Bahrain, a drone strike in close proximity to one of our facilities caused physical impacts to our infrastructure. These strikes have caused structural damage, disrupted power delivery to our infrastructure, and in some cases required fire suppression activities that resulted in additional water damage. We are working closely with local authorities and prioritizing the safety of our personnel throughout our recovery efforts. In the ME-CENTRAL-1 (UAE) Region, two of our three Availability Zones (mec1-az2 and mec1-az3) remain significantly impaired. The third Availability Zone (mec1-az1) continues to operate normally, though some services have experienced indirect impact due to dependencies on the affected zones. In the ME-SOUTH-1 (Bahrain) Region, one facility has been impacted. Across both regions, customers are experiencing elevated error rates and degraded availability for services including Amazon EC2, Amazon S3, Amazon DynamoDB, AWS Lambda, Amazon Kinesis, Amazon CloudWatch, Amazon RDS, and the AWS Management Console and CLI. We are working to restore full service availability as quickly as possible, though we expect recovery to be prolonged given the nature of the physical damage involved. In parallel with efforts to restore the physical infrastructure at the affected sites, we are pursuing multiple software-based recovery paths that do not depend on the underlying facilities being fully brought back online. For Amazon S3 and Amazon DynamoDB, we are actively working to restore data access and service availability through software mitigations, including deploying updates to enable S3 to operate within the current infrastructure constraints and remediating impaired DynamoDB tables to restore read and write availability for dependent services. Our focus on restoring these foundational services is deliberate, as recovery of Amazon S3 and Amazon DynamoDB will in turn enable a broad range of dependent AWS services to recover. For other affected service APIs, we are deploying targeted software updates to reduce error rates and restore functionality where possible, independent of the physical recovery timeline. We are also working to restore access to the AWS Management Console and CLI through network-level changes that route traffic away from the affected infrastructure. While these software-based mitigations can address many of the service-level impacts, some recovery actions are constrained by the physical state of the affected facilities — meaning that full restoration of certain services will require the underlying infrastructure to be repaired and brought back online. Across all services, our teams are working in parallel on both the physical restoration of the affected facilities and these software-based mitigations, with the goal of restoring as much customer access as possible as quickly as possible, even ahead of full infrastructure recovery. In addition, we are prioritizing the restoration of services and tools that enable customers to back up and migrate their data and applications out of the affected regions. Finally, even as we work to restore these facilities, the ongoing conflict in the region means that the broader operating environment in the Middle East remains unpredictable. We recommend that customers with workloads running in the Middle East consider taking action now to backup data and potentially migrate your workloads to alternate AWS Regions. We recommend customers exercise their disaster recovery plans, recover from remote backups stored in other regions, and update their applications to direct traffic away from the affected regions. For customers requiring guidance on alternate regions, we recommend considering AWS Regions in the United States, Europe, or Asia Pacific, as appropriate for your latency and data residency requirements. We will continue to provide updates as recovery progresses and as the situation evolves. Our next update will be provided by 9:00 PM PST on March 2, 2026, or sooner if new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772490547": {
-      "signature": "1862f1d473a0e0f881b05ea2faddfe88f3a4574cb9a867c0e6d697a17ee3f402",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772490547",
-        "name": "Service impact: Increased Connectivity Issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work towards restoring power in the affected Availability Zone (mes1-az2) in the ME-SOUTH-1 Region. We have no updated guidance on expected recovery times, and still expect this to take at least a day to fully restore power and connectivity. We continue to advise customers to launch replacement resources in one of the unaffected Availability Zones or an alternate AWS Region. At this time we recommend that customers that are capable of backing up data outside of the region consider doing so. You can view the current status of affected AWS services below. We will provide you with another update by 7:00 PM PST, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772487370": {
-      "signature": "8f684d3db029cfa77f4c504a5f1a38b9622c0219c8ad0deb408baa2ec364304f",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772487370",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work towards recovery of the two impaired Availability Zones (mec1-az2 and mec1-az3) in the ME-CENTRAL-1 Region. We have partially restored access to the AWS Management Console, however, some pages will continue to load unsuccessfully until we have recovered core services and power. In parallel to the power and recovery efforts, we are working to restore access to tools and utilities to allow customers to backup and migrate their data. We have no updated guidance on expected recovery times, and still expect this to take at least a day to fully restore power and connectivity. We continue advising customers enact their disaster recovery plans and recover from remote backups into alternate AWS Regions. We will provide you with another update by 6:00 PM PST, or sooner if new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772477520": {
-      "signature": "1f562cba55644dd2b48469061374dcc0e640e1b61ce93376669b2df4f12f3185",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772477520",
-        "name": "Service impact: Increased Connectivity Issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work towards restoring power in the affected Availability Zone (mes1-az2) in the ME-SOUTH-1 Region. We currently expect our recovery efforts to take at least a day. Our current guidance regarding immediate recovery remains unchanged from our previous update. Customers are able to disassociate Elastic IP addresses from resources in the affected Availability Zone and associate those with resources in the unaffected Availability Zones. This can be done by specifying --allow-reassociation when attempting to associate the Elastic IP to the new resource. We will provide you with further updates by 2:00 PM PST or sooner if new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772474389": {
-      "signature": "5bd6c4c815c25165d6a1f2fcb9532971801dff7d785961d4eeab9189f559525c",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772474389",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work towards recovery of the two impaired Availability Zones (mec1-az2 and mec1-az3) in the ME-CENTRAL-1 Region. The impact is causing elevated errors rates for both the Management Console and CLI. Our current expectation is that recovery will take at least a day to complete. We continue to recommend customers enact their disaster recovery plans and recover from remote backups into alternate AWS Regions. We will continue to provide periodic updates on recovery efforts. Our next update will be by 2:00 PM PST or sooner if new information becomes available."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772461399": {
-      "signature": "1a710eb39b2055b44e68dadec6570908159136241c8564958f140c046e512b25",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772461399",
-        "name": "Service impact: Increased Connectivity Issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work toward restoring power in the impacted Availability Zone (mes1-az2) in the ME-SOUTH-1 Region. Meanwhile, EC2 instance and networking APIs have been restored for the other Availability Zones. Additionally, we have made improvements to the availability of RDS multi-AZ databases while operating with the impaired Availability Zone. These improvements will help customers create database exports to preserve data, and we recommend customers with databases in the affected Availability Zone consider creating exports as a precautionary measure. EC2 Instances, EBS Volumes, and other resources impacted in the affected Availability Zone will require a longer recovery timeline, as power has not yet been restored. We are expecting recovery to take at least a day, as it requires repair of facilities, cooling and power systems, coordination with local authorities, and careful assessment to ensure the safety of our operators. If immediate recovery is required, we recommend customers restore from EBS Snapshots and/or launch replacement resources in one of the unaffected Availability Zones or an alternate AWS Region. We will provide an update by 11:00 AM PST on March 2, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772461323": {
-      "signature": "362473f2cda0e84662991f06130932369618456b8246c74019aaae59e402fdfd",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772461323",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work towards recovery of the two impaired Availability Zones (mec1-az2 and mec1-az3) in the ME-CENTRAL-1 Region. We are expecting recovery to take at least a day, as it requires repair of facilities, cooling and power systems, coordination with local authorities, and careful assessment to ensure the safety of our operators. EC2, Amazon DynamoDB and other AWS Services continue to experience significant error rates and elevated latencies. We recommend customers enact their disaster recovery plans and recover from remote backups into alternate AWS Regions, ideally in Europe. Further, we strongly advise customers to update their applications to ingest S3 data to an alternate AWS Region. We will provide an update by 11:00 AM PST on March 2, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772448800": {
-      "signature": "856532c7ad5922c599b7b650c7395050efa0c3e8ba8f9defe72cc85426906e1d",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772448800",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We wanted to provide more information on Amazon S3 given that there are two impaired Availability Zones (mec1-az2 and mec1-az3) in the ME-CENTRAL-1 Region. Amazon S3 is a regional service and designed to withstand the total loss of a single Availability Zone while maintaining S3's durability and availability. When the mec1-az2 AZ was powered off at approximately 4:00 AM PST on Sunday, March 1, S3 continued to operate normally. As the second AZ became impaired, S3 error rates increased. With two Availability Zones significantly impacted, customers are seeing high failure rates for data ingest and egress. We strongly advise customers to update their applications to ingest S3 data to an alternate AWS Region. As soon as practically possible, we will begin the restoration of our two Availability Zones which will include a careful assessment of data health and any repair of storage if necessary. In addition, we can confirm that the AWS Management Console and command line interface (CLI) are disrupted by the failure of two Availability Zones. We continue to work towards recovery across all services, and we will provide an update by 6:00 AM PST on March 2, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772448060": {
-      "signature": "24bdf6ef7351899370d8640b420be53bee8c891c3580c6cd56fe8563b27a5829",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772448060",
-        "name": "Service impact: Increased Connectivity Issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work toward restoring power in the affected Availability Zone (mes1-az2) in the ME-SOUTH-1 Region. At this time, some AWS services have shifted traffic away from the affected Availability Zone and are seeing recovery for their affected operations and workflows. EC2 Instances, EBS Volumes, and other resources impacted in the affected Availability Zone will require a longer recovery timeline. Power has not yet been restored to the affected Availability Zone. If immediate recovery is required, we recommend customers restore from EBS Snapshots and/or launch replacement resources in one of the unaffected Availability Zones or an alternate Region. In parallel, we are actively working on reducing the error rates and latencies that some customers are experiencing with EC2 APIs. For now, we recommend continuing to retry any failed API requests. We will provide an update by 6:00 AM PST on March 2, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772442207": {
-      "signature": "e4383fc7bbc21a970531291bed5b806a9948e57df5f40e43469c6f9aa84012df",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772442207",
-        "name": "Service impact: Increased Connectivity Issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work on a localized power issue affecting a single Availability Zone (mes1-az2) in the ME-SOUTH-1 Region. In the impacted Availability Zone, EC2 Instances, DB Instances, EBS Volumes, and other AWS Services are also experiencing elevated error rates and latencies for some workflows. As part of our recovery effort, we have shifted traffic away from the impacted Availability Zone for most services. We recommend customers utilize one of the other Availability Zones in the ME-SOUTH-1 Region, as existing instances in other AZs remain unaffected by this issue. We are actively working to restore power and connectivity, at which time we will begin recovering affected resources. Currently, we expect recovery to take many hours. We will provide an update by 2:30 AM PST, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772441520": {
-      "signature": "14e796911f506ae4cfbdedfde47df3a273254ff4cdef47ac6fcbb68659e638dc",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772441520",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work on a localized power issue affecting multiple Availability Zones in the ME-CENTRAL-1 Region (mec1-az2 and mec1-az3). Customers are experiencing increased EC2 API errors and instance launch failures across the region, and it is not currently possible to launch new instances; existing instances in mec1-az1 should not be affected. Amazon DynamoDB and Amazon S3 are also experiencing significant error rates and elevated latencies. We are actively working to restore power and connectivity, after which we will begin recovery of affected resources; full recovery is still expected to be many hours away. We recommend that affected customers failover, and backup any critical data, to another AWS Region. We will provide an update by 2:00 AM PST, or sooner if the situation changes."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772435343": {
-      "signature": "fc6d53c43eea46b480a04f918e2070707684177f8097e52c07ee765a046e2220",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772435343",
-        "name": "Service impact: Increased connectivity issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are investigating connectivity and power issues affecting APIs and instances in a single Availability Zone (mes1-az2) in the ME-SOUTH-1 Region due to a localized power issue. Existing instances in this zone will also be affected. Other AWS Services may also be experiencing increased errors and latencies for their workflows, and we are working to route requests away from this affected Availability Zone. We recommend customers make use of other Availability Zones at this time. During this time, we are also experiencing delays in propagating DNS changes for Route53 to pops (Points of Presence) in ME-SOUTH-1. Targeting new launches using RunInstances in the remaining AZs should succeed. Existing instances in the other AZs are not affected."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772433960": {
-      "signature": "e23f4ece8fc08147077c92eb2a51393604654c6df1e014249d9d0e0f5e2521a9",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772433960",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We can confirm that a localized power issue has affected another Availability Zone in the ME-CENTRAL-1 Region (mec1-az3). Customers are also experiencing increased EC2 APIs and instance launch errors for the remaining zone (mec1-az1). At this point it is not possible to launch new instances in the region, although existing instances should not be affected in mec1-az1. Other AWS Services, such as DynamoDB and S3 are also experiencing significant error rates and latencies. We are actively working to restore power and connectivity, at which time we will begin to work to recover affected resources. As of this time, we expect recovery is multiple hours away. For customers that can, we recommend failing away to another AWS Region at this time. We will provide an update by 12:00 AM PST, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772431169": {
-      "signature": "97a30a37d8101217516afd22ffa58619955ec543c4ec5417776cbbdac26fd56d",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772431169",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are investigating additional connectivity issues and error rates in the ME-CENTRAL-1 Region."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-south-1_1772430987": {
-      "signature": "302ae162b8fc4adff92d4d9714749e8a3f119630dba60a77d8eef7ef3fd723fd",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-south-1_1772430987",
-        "name": "Service impact: Increased connectivity issues and API Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are investigating increased API error rates in a single Availability Zone (mes1-az2) in the ME-SOUTH-1 Region."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772416907": {
-      "signature": "c0fe12626b28bc028da3c4f043cdb2a584fb1d02afe7d34b4595904694d396f7",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772416907",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We confirm the recovery of the AssociateAddress API requests. We have also applied a change that enables customers to disassociate Elastic IP addresses from resources that are impacted by the underlying power issue. With these mitigations, customers can now successfully create and associate new network addresses in the unaffected AZs as well as re-associate Elastic IPs from resources in the affected zone to resources in the unaffected zones. We still do not have an ETA for power restoration at this time. For customers that can, we recommend using alternate Availability Zones or other AWS Regions where applicable. We will provide another update by 10:00 PM, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772411201": {
-      "signature": "a6a8a80cddf7435d9552cd1783602dab5885fae53af3bd753fe46c8546019fe8",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772411201",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are seeing significant signs of recovery for AssociateAddress requests, and continue to work toward fully mitigating this issue. This combined with the earlier recovery of the AllocateAddress API means customers can now successfully create and associate new network addresses in the unaffected AZs. Other AWS Services are also now observing sustained improvement as a result of the EC2 Networking APIs recovery. We are now focusing on implementing a change that will allow customers to Disassociate Elastic IP addresses from resources that are impacted by the underlying power issue. We expect this specific mitigation to take another hour to complete. We do not have an ETA for power restoration at this time. For customers that can, we recommend using alternate Availability Zones or other AWS Regions where applicable. We will provide another update by 6:30 PM, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772404099": {
-      "signature": "5918efec2edf561c7435181658c53e8fc74080d2dd4b9eedbc77ab7cbe6d79ea",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772404099",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are seeing positive signs of recovery for many of the EC2 APIs, such as Describes and AllocateAddress. We recognize that customers are still experiencing errors when attempting to call the AssociateAddress API, and are unable to disassociate addresses from resources that are affected by the underlying power issue. We continue to work on multiple parallel paths to mitigate both of these issues. We recommend continuing to retry requests wherever possible. We expect our current mitigation efforts for these specific issues to complete within the the two to three hours. As we progress with these mitigation efforts, customers will observe higher success rates for these operations. Additionally, we are investigating ways to speed up these specific mitigation efforts, but are ensuring we do so safely. As of this time, power restoration is still several hours away. We will provide another update by 5:30 PM PST, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772396043": {
-      "signature": "a5074fea98808fa629660ba7b8dde2f30e7744d2a2261dab25ec833f87157298",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772396043",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are aware that some customers are experiencing errors when calling EC2 APIs, specifically networking related APIs (AllocateAddress, AssociateAddress, DescribeRouteTable, DescribeNetworkInterfaces). We are actively working on multiple paths to mitigate these issues. For customers experiencing throttling errors on the AllocateAddress APIs, we recommend retrying any failed API requests. We are deploying a configuration change to mitigate the AssociateAddress API errors and expect recovery in the next few hours. DescribeRouteTable and DescribeNetworkInterfaces API calls without specifying zone, Interface or Instance IDs are expected to fail until we restore the impacted zone. We recommend customers to pass these IDs explicitly in these API requests. For customers that can, we recommend considering using alternate AWS Regions. We will provide another update by 3:30 PM PST, or sooner if we have more to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772386871": {
-      "signature": "da58b7267e9542cb4051fd8e44b962d4570fd1789cdf4c5c5fa4dd5e49a124fc",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772386871",
-        "name": "Service disruption: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We want to provide some additional information on the power issue in a single Availability Zone in the ME-CENTRAL-1 Region. At around 4:30 AM PST, one of our Availability Zones (mec1-az2) was impacted by objects that struck the data center, creating sparks and fire. The fire department shut off power to the facility and generators as they worked to put out the fire. We are still awaiting permission to turn the power back on, and once we have, we will ensure we restore power and connectivity safely. It will take several hours to restore connectivity to the impacted AZ. The other AZs in the region are functioning normally. Customers who were running their applications redundantly across the AZs are not impacted by this event. EC2 Instance launches will continue to be impaired in the impacted AZ. We recommend that customers continue to retry any failed API requests. If immediate recovery of an affected resource (EC2 Instance, EBS Volume, RDS DB Instance, etc.) is required, we recommend restoring from your most recent backup, by launching replacement resources in one of the unaffected zones, or an alternate AWS Region. We will provide an update by 12:30 PM PST, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772384340": {
-      "signature": "171db328176d2c4e2423fa8df58035764c1e9189ce8de9150f4ddb3ce6f6e219",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772384340",
-        "name": "Service degradation: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We continue to work toward restoring power in the affected Availability Zone in the ME-CENTRAL-1 Region (mec1-az2). In parallel, we are actively working on improving error rates and latencies that some customers are observing for EC2 Networking and EC2 Describe APIs. Due to increased demand in the unaffected Availability Zones, customers may experience longer than usual provisioning times or may need to retry requests for certain instance types, or pick an alternative instance type. We will provide an update by 10:30 AM PST, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772377753": {
-      "signature": "d5a0374788529d90fcff349ac1b7a4745b2906af812bc40fab826775f38ebad1",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772377753",
-        "name": "Service degradation: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We wanted to provide some additional information on the isolated power issue. At this time, most AWS Services have weighted away from the affected Availability Zone (mec1-az2) and are seeing recovery for their affected operations and workflows. For EC2 Instances, EBS Volumes, and other resources that are impacted in the affected Zone, we will have a longer tail of recovery. At this time, power has not yet been restored to the affected AZ. For now, we recommend continuing to retry any failed API requests. If immediate recovery is required, we recommend customers restore from EBS Snapshots and/or replace affected resources by launching replacement resources in one of the unaffected zones, or an alternate region. As of this time, recovery is still several hours away. We will provide an update by 8:30 AM PST, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772374140": {
-      "signature": "350630608de5e582b4c3a2474a3ad375ea27396599d32b70d5e1c5c3a24cd952",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772374140",
-        "name": "Service impact: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We can confirm that a localized power issue has affected a single Availability Zone in the ME-CENTRAL-1 Region (mec1-az2). EC2 Instances, DB Instances, EBS Volumes, and others resources are currently unavailable and will experience connectivity issues at this time. Other AWS Services are also experiencing error rates and latencies for some workflows. We have weighed away traffic for most services at this time. We recommend customers utilize one of the other Availability Zones in the ME-CENTRAL-1 Region at this time, as existing instances in other AZ's remain unaffected by this issue. We are actively working to restore power and connectivity, at which time we will begin to work to recover affected resources. As of this time, we expect recovery is multiple hours away. We will provide an update by 7:15 AM PST, or sooner if we have additional information to share."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772371152": {
-      "signature": "851a93cd905a39a0adac6f4a59986e75b09a559f7b9582c8b8406b6cc7e2f23a",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772371152",
-        "name": "Service impact: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are investigating connectivity and power issues affecting APIs and instances in a single Availability Zone (mec1-az2) in the ME-CENTRAL-1 Region due to a localized power issue. Existing instances in this zone will also be affected. Other AWS Services may also be experiencing increased errors and latencies for their workflows, and we are working to route requests away from this affected Availability Zone. We recommend customers make use of other Availability Zones at this time. Targeting new launches using RunInstances in the remaining AZs should succeed. Existing instances in the other AZs are not affected."
-      },
-      "service": "AWS"
-    },
-    "AWS:https://status.aws.amazon.com/#multipleservices-me-central-1_1772369485": {
-      "signature": "a04dff6e7871d36dee4ecc5df5fea81ac6358fbdd3a51e381126ee3dcc1bea9a",
-      "incident": {
-        "id": "https://status.aws.amazon.com/#multipleservices-me-central-1_1772369485",
-        "name": "Service impact: Increased Error Rates",
-        "status": "investigating",
-        "impact": "unknown",
-        "updated_at": "",
-        "url": "https://status.aws.amazon.com/",
-        "body": "We are investigating issues with AWS services in the ME-CENTRAL-1 Region."
       },
       "service": "AWS"
     },
@@ -1276,19 +730,6 @@
       },
       "service": "Cloudflare"
     },
-    "Cloudflare:component:b03djnkqfg8f": {
-      "signature": "5733d85c6974cbdf69bb557043c345a4790ac0b8baa76e6464666212218c41ad",
-      "incident": {
-        "id": "component:b03djnkqfg8f",
-        "name": "Prague, Czechia - (PRG) status",
-        "status": "under_maintenance",
-        "impact": "under_maintenance",
-        "updated_at": "2026-11-12T22:26:39.538Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": ""
-      },
-      "service": "Cloudflare"
-    },
     "Cloudflare:component:mslkxsqftrnn": {
       "signature": "20ab6a67fb14e37e52529788ba9bc597d12f6d90557941d1f052b0eab7e4bd90",
       "incident": {
@@ -1746,140 +1187,97 @@
     }
   },
   "seen": [
-    "026d9e61d671db562dde6c6043d5f5480fd0e0cd68eb6b171b4efd0f73a46f8d",
-    "1be1f56a8b5ccbe8c16f44d59e9f762375ae37ae7bfaed574d7db233a26a0d75",
-    "69f0a601b441c714e95b7ad7ca7cb92b3acd8b6bf2c12fb6b627c1e5fd1542ab",
-    "72c520a2ac9af0c63160f580c6d1d30421a276a66ea57c9e3ab9b56087ec17d9",
-    "2154243cf81f124c02a679945e8398f507cf878e93065b8eead97ff6d75b4169",
-    "52153f042bb0bd8a6503a752f8816370bfe91af6b5b3f1662d742d572e3c3c81",
-    "deef177c738f2db9c3a8c81fbcc94ba23b60d0f8c6951c28c8e7dfdfcc0165ae",
-    "e256e06b297fe78a24b5c0826ba50af96db9e81fd026f065c94993e7e14cfa57",
-    "3b13d02cc6213b43544fa05f38081fcd21e1b1988c99fd48410533202b8e8ef9",
-    "50a41bf591f28b390e9385e44d753a41d97d4ecdb30fb079ae15b7c4c431a0ca",
-    "38e9c10c841d23749009a11e79d78c0ce4ed14d6141c1a752812fab6320ef739",
-    "5b5cfd54a151f0cfefd788276843f006f2e7de1c586d33210590437b50fe8402",
-    "7d2ae5a79462f696564e28379f42b431407d81bc87caa4e31da24039c04a88f5",
-    "fe0f6d59aaa8656efb5c316db0d443b010cd3e4856ea7dde2fc032ec1067f23a",
-    "a4c8d80b7f3190f201462edb6fb3a6be18748138b9f9e806601f14a73b0a29ec",
-    "06b0f0d7d9f64c3444095695fe34052deb4c67e85257cc1fbe51dfc1d0162c75",
-    "ddcff2b4bf35304f53ef650ada2fbe2acb5fc6af99b97f0189743116ba5fb039",
-    "8439d3d6e7122aac20ff1e0b3e25e00dd5ebed121a16eeaa4037262ac2a26c96",
-    "09131f840a0c19a47dba50d21d3613ede88125ab644c25d89eda06b4160b7c9f",
-    "bc456abc0022e485d6f9de035bb188949cc689293f0446648781b5be1c7b5cf3",
-    "ead7d31ba375b21e1c2d0756077fcdec53fd24f53f521caf0043c902ae4455cb",
-    "6dfb57ebe50a193e94057d61d9a28daaf9d90e06f871685adb08129b3b6f057b",
-    "1862f1d473a0e0f881b05ea2faddfe88f3a4574cb9a867c0e6d697a17ee3f402",
-    "8f684d3db029cfa77f4c504a5f1a38b9622c0219c8ad0deb408baa2ec364304f",
-    "1f562cba55644dd2b48469061374dcc0e640e1b61ce93376669b2df4f12f3185",
-    "5bd6c4c815c25165d6a1f2fcb9532971801dff7d785961d4eeab9189f559525c",
-    "1a710eb39b2055b44e68dadec6570908159136241c8564958f140c046e512b25",
-    "362473f2cda0e84662991f06130932369618456b8246c74019aaae59e402fdfd",
-    "856532c7ad5922c599b7b650c7395050efa0c3e8ba8f9defe72cc85426906e1d",
-    "24bdf6ef7351899370d8640b420be53bee8c891c3580c6cd56fe8563b27a5829",
-    "e4383fc7bbc21a970531291bed5b806a9948e57df5f40e43469c6f9aa84012df",
-    "14e796911f506ae4cfbdedfde47df3a273254ff4cdef47ac6fcbb68659e638dc",
-    "fc6d53c43eea46b480a04f918e2070707684177f8097e52c07ee765a046e2220",
-    "e23f4ece8fc08147077c92eb2a51393604654c6df1e014249d9d0e0f5e2521a9",
-    "97a30a37d8101217516afd22ffa58619955ec543c4ec5417776cbbdac26fd56d",
-    "302ae162b8fc4adff92d4d9714749e8a3f119630dba60a77d8eef7ef3fd723fd",
-    "c0fe12626b28bc028da3c4f043cdb2a584fb1d02afe7d34b4595904694d396f7",
-    "a6a8a80cddf7435d9552cd1783602dab5885fae53af3bd753fe46c8546019fe8",
-    "5918efec2edf561c7435181658c53e8fc74080d2dd4b9eedbc77ab7cbe6d79ea",
-    "a5074fea98808fa629660ba7b8dde2f30e7744d2a2261dab25ec833f87157298",
-    "da58b7267e9542cb4051fd8e44b962d4570fd1789cdf4c5c5fa4dd5e49a124fc",
-    "171db328176d2c4e2423fa8df58035764c1e9189ce8de9150f4ddb3ce6f6e219",
-    "d5a0374788529d90fcff349ac1b7a4745b2906af812bc40fab826775f38ebad1",
-    "350630608de5e582b4c3a2474a3ad375ea27396599d32b70d5e1c5c3a24cd952",
-    "851a93cd905a39a0adac6f4a59986e75b09a559f7b9582c8b8406b6cc7e2f23a",
-    "a04dff6e7871d36dee4ecc5df5fea81ac6358fbdd3a51e381126ee3dcc1bea9a",
-    "33370fc8476eff687c01eaf8c3eafadea4bf002ddf90a3ca1ebdfd7c92453107",
-    "8195a89cd500b8d7ec6f8770ee0e8a97ab3473077d36a43d1934993938a8cdc4",
-    "1c082cf343e40a192bc23f07877a85e6f549abada0b9851d43b0bd22267d7604",
-    "e150044f18b23f6bf29bdb4688ba423677019f273ed142ddea6bd784a5c7c9f0",
-    "2158cfeaccf7954a2d1acf71de1c44a4d0077365ba1dac6836e1f487249695ca",
-    "f19d37632e483466902f5fad6e7e1ab4076abbfb703cd84d0583e40390d701b3",
-    "3977899588791b12f5e814bd122ffa31cc0daef0d4e2d1b3e623059a6013be0b",
-    "4129db723a0e0faa323d54be4cddc4cb97705a90ebf14e5ab8d13ad48488e150",
-    "6d894b02d84a3fe43089225f52f13a42dcc8625d083bf687ac1a870189c79b36",
-    "9e6fb8956e9caa65c453d195888b10a7c3418a7f743dc22caeaecc7c4c64404c",
-    "8769b309772973900620709b3fb12c95578209cfdf5bdf2dffdae356adff16ba",
-    "4c64bc1cd242462f9a2cbafd7f561d2e9939fe416953cd42b754b92562a84ad4",
-    "dbb464d52dfdfa1f6d80f4c993187540e39b01b6ae94aa6667611ad50c394fcd",
-    "d7d2192cc7fa5bc3ee59fb873ab9f994584b2646cddc35b7cfb6a4606b2f299b",
-    "466a3a941f1c83aaf1202cbb54c6a8001837b0fe658a2c4de56f7814cd92553a",
-    "564adf0e7dbfe0ed19720f2dea71f2c2e4b87c3122c98612a2df47a94a5df05c",
-    "622f17c731ae5fd6412ddc5359fd77a73be62197ca2913076c9aa53e0354bbbd",
-    "2f8a761169c43ec3368b564b60d44ccc40d18eaa6b0f15e2e43c3a2f6399e13b",
-    "ae9deeed0b28b769633b044b0c7f30c23ff244dacf3daf7b1df317fe473696d1",
-    "097466f4000fe92fee009058c70573d00b768c0b4e49a82d3f5db60775019a52",
-    "800b31fd61a2831f35811bcebce1acdf1f63cd2fd8a055eb6b4b0ee35e1fe7aa",
-    "7b6f8c101209226a4f13a5f781dcca1f72366b0b80fe791f310cc346d3f49bb1",
-    "4c42765673083748bc54d0a1192e8dad83e5f005b5e178f141a2c960c050429e",
-    "19bce70e073e12ed122c9de16ee736c0b701b9896d1bda1aef4ea11120d062e3",
-    "e933bd371f3536eb0cf3af61ba6d58592004874943ab78b355a49685575a1261",
-    "e2d74bebeb4b310545e9ff5c2454740d04671013f695b910113535d1ac8b6f74",
-    "c4ac4330ee2b2083f4805688875e7fc860a9cf9f3a7fabd81d83e7287a00d3da",
-    "ad06ef299dc3bc3efe749dbd1c63fcf3fad3fed09f91d066dd7b968674d6a417",
-    "4f47653e47cd22e8723ab90c9483b90aa310f1d782e860ee1a5fb5a21d89a2d4",
-    "26117a343fee39a906d39fe8410440da2a3ff8298fc23e905e1018c7a3436e4d",
-    "c89833b1d43fb21e197138ce225ecf8fd549ebd89d3c4e937f7f21e3f636127c",
-    "20fb0e5cd41fdd03122283e795f0d74966da0cb4b5e34bff29ab1388ce95e635",
-    "50aaf706b04c26c454d13388d7aac7563cfa201581b089fc4a6071bd68bd6c59",
-    "f86f2c785f36a3da51c58ede009e5299e046cd0b6ed44e40594565962ed83f8a",
-    "800d9e78ed14ee4633696f5955216937586b644301de2969da866010a5032f2c",
-    "d0bffeaa388a5001a3258401fcee8dc75b2a66d63d2730615ebb76adf489e694",
-    "f9ce88e459048e963aff90d8f57d06aebfc7ca7af4816bb37f651a9c2d24c4b7",
-    "435db7dc99eb6318e3bc5b151f79b6fc8062a4a1cc55d36517ceec2c748dda8a",
-    "3bee33e34728b264a355a5d0020fe8c44acfde2aabce14cd23639e6dcaa0f327",
-    "af7755775f56d6e69b942bd98291831458796a14774474b281a85a639e5fcd3e",
-    "99f7862fc4dce81269bf14ea16e1ed3474b98ad9a7c7983946253f1776ca8fb5",
-    "83e0eb65d8f99be71bbfac3c596bc807e9a7ba60c017569f7b0b08cf9bf76038",
-    "ff1728ff5c48d97a2c1f20b49b5981dd4d9f5cf20785a69ae830df11759f4730",
-    "1241383282c553a0559bbf3b6093b50dff9d46871a86a037378e32b988b69821",
-    "ae8fb75207312c26fe0f2950b2d91082b22165ed3f78bbea50cde33f19fd73dc",
-    "687292ea7f24894dc6c85fa18bd88bbc0534d9b422b09a5a05516059df81b94c",
-    "c6070022a5633541286406ce13a821b41374fe7fa7fd9aad6120fb244337ef9b",
-    "35072af7855a6440009f79800f87f7a6b693842acd30dd6b610b9b9360a070cd",
-    "fe83d99c2d8b7cb72e759e54fafa1da771c42a85b3e54c251d51473c52d180fd",
-    "249865bb4d1ae3853e63fbaa8a9634b17fe307bdeb1264118f3a0ada5adb0777",
-    "db6c951fc0249654994bbdbf8bc707fbacea0a8298b76beefd1cd547823180e3",
-    "94684638afc13ae1e65b23040b5541fc40a77ff100521339a33204d0ab4dfda2",
-    "5733d85c6974cbdf69bb557043c345a4790ac0b8baa76e6464666212218c41ad",
-    "20ab6a67fb14e37e52529788ba9bc597d12f6d90557941d1f052b0eab7e4bd90",
-    "40890489e6ec90bcb79cb804f600d40ced4d4893f1cbad320edfd3ad5ba34ded",
-    "36b2919b5c63a4e2a00c32b2f0c7bb91091cf6a00f1d2db3ca1b2b66e512b34d",
-    "3e4c42a140703418b57c65dada680751e0ee979ae84a76bff143e8d1635d79eb",
-    "ceef6d22240c764a8bbbb436f3171b7e3eb122c68f9f85b12e544100289e1ddc",
-    "021697ea2be2781caaceca3444d43949a932f71fae5e8b4253855c50ffafabe6",
-    "ba4b526b85598f3541307971a5d750aff063db8e92a787d790f791a447c70e39",
-    "ca5f36b4d78355e3bb51a014c2989ff6445cab38b2d58dbf1a62ba783cb4f27f",
-    "d2f989c1d76a1070875738d3be64eb37c31ba70f5ff038b466d69080ee580254",
-    "6cc154b3b748995da8838e3edb513f175901c9819d318864fa3e4f50f2b52f36",
-    "9aa2b63bb082e57afc18c281dc8ae2386afecbf3eaf54b68627f358628068a3f",
-    "47299c82cda60ef01490a0fd80a147302848dc10fda4bff45a3ab1301d5a625d",
-    "12512ba250c88ad308c99f41621f2dfaa431539f8debcdff35917e45117ac17b",
-    "7fa560569ddad69b5f257d556a994ece1919c0b35f443fce26dc2ccc10cd58ef",
-    "9035c47b124bc4d7c480a01f23232a4509881b300be5af778241b8d38a601536",
-    "e10831fe997f3885095293be7b116bc06fc425a1e0706445af5a689a522f1d47",
-    "345f95b70e1cabc54ee2be22e109ea6b5a2660eba1eff8330cd179237a0014ce",
-    "db3817543d7a792f54b6ae90601f8a7c645be127e34a63f1be132cb8b527db12",
-    "272b73394df9d4dbfdbf8a6699a6b30dd91a5abed3b709d70c389a6f8dcd0aa0",
-    "ffc6db3819bac23170f128123444e5b1ca7012865f036e937b62a9f90b9734fa",
-    "50539ef6e2eee8d47bce8744b324a8e9797e4f6364ce37def40a4f451b821bf2",
     "0b970bc07fcc7396bb83a7fcd6514796b9724af786ae28b83fd2e49920913d4f",
-    "eec9323bd77255f99c23e790294d662c128f6a749c1e509a163e785dc1761a80",
-    "6a619b2909d23a06ca45cee514b109da213d78c4fb0728cbfd435531e8cde3be",
-    "a2d91c3322f306222cc758928cd1838097c9d7a78bf1eb8229e8460b09ed0a1f",
-    "bc20535cb74152fdec49db6a03dd6fd440f6e06395a68ad32f211b3ac91ec68a",
-    "ebd794bc6bb5e0a191eeb3ef94b64bd4c6e86ed213cc1881c64f426463a5b380",
-    "169196c4bb09daa29271a90c6b2cacc49506a4c7722e490129e36c20abc6b180",
+    "1241383282c553a0559bbf3b6093b50dff9d46871a86a037378e32b988b69821",
+    "d0bffeaa388a5001a3258401fcee8dc75b2a66d63d2730615ebb76adf489e694",
+    "4c42765673083748bc54d0a1192e8dad83e5f005b5e178f141a2c960c050429e",
+    "7b6f8c101209226a4f13a5f781dcca1f72366b0b80fe791f310cc346d3f49bb1",
+    "6d894b02d84a3fe43089225f52f13a42dcc8625d083bf687ac1a870189c79b36",
+    "ae8fb75207312c26fe0f2950b2d91082b22165ed3f78bbea50cde33f19fd73dc",
+    "47299c82cda60ef01490a0fd80a147302848dc10fda4bff45a3ab1301d5a625d",
+    "097466f4000fe92fee009058c70573d00b768c0b4e49a82d3f5db60775019a52",
+    "c4ac4330ee2b2083f4805688875e7fc860a9cf9f3a7fabd81d83e7287a00d3da",
     "182cb42f479a9ddad67664b0929df1c557a7cb2de7b3a00ac57e65f661da125f",
-    "5fca3125f15d3e0642726c8cc47dd1f20e7e6da694d203d874551f3bf6968e8f",
-    "f4a9aa9fda272c2eca52c59e3e83af56fe08cbc8b770b0772d4a276b3e620160",
-    "f7d6ce0ed7d41704461735d920011fad8f845d9ae1ead591bc24e21e5a1c545a",
-    "0a151d3633240c34451de5fdfba48f6f37399d57b92e684b3f52e081f030ebf8",
+    "26117a343fee39a906d39fe8410440da2a3ff8298fc23e905e1018c7a3436e4d",
+    "db6c951fc0249654994bbdbf8bc707fbacea0a8298b76beefd1cd547823180e3",
+    "50aaf706b04c26c454d13388d7aac7563cfa201581b089fc4a6071bd68bd6c59",
+    "ad06ef299dc3bc3efe749dbd1c63fcf3fad3fed09f91d066dd7b968674d6a417",
+    "564adf0e7dbfe0ed19720f2dea71f2c2e4b87c3122c98612a2df47a94a5df05c",
+    "8195a89cd500b8d7ec6f8770ee0e8a97ab3473077d36a43d1934993938a8cdc4",
+    "ae9deeed0b28b769633b044b0c7f30c23ff244dacf3daf7b1df317fe473696d1",
+    "12512ba250c88ad308c99f41621f2dfaa431539f8debcdff35917e45117ac17b",
+    "9e6fb8956e9caa65c453d195888b10a7c3418a7f743dc22caeaecc7c4c64404c",
+    "36b2919b5c63a4e2a00c32b2f0c7bb91091cf6a00f1d2db3ca1b2b66e512b34d",
+    "4129db723a0e0faa323d54be4cddc4cb97705a90ebf14e5ab8d13ad48488e150",
+    "800d9e78ed14ee4633696f5955216937586b644301de2969da866010a5032f2c",
+    "f19d37632e483466902f5fad6e7e1ab4076abbfb703cd84d0583e40390d701b3",
+    "ba4b526b85598f3541307971a5d750aff063db8e92a787d790f791a447c70e39",
     "7b8607fff478c3a951980ce46529cf8271bfae33353006d56305cbde4a6c6bf0",
-    "5618aa8c4cb3c6b00975a76ca5b7c4af2fca91b7756ee67ea633d06883b6f5b6"
+    "466a3a941f1c83aaf1202cbb54c6a8001837b0fe658a2c4de56f7814cd92553a",
+    "e2d74bebeb4b310545e9ff5c2454740d04671013f695b910113535d1ac8b6f74",
+    "e10831fe997f3885095293be7b116bc06fc425a1e0706445af5a689a522f1d47",
+    "7fa560569ddad69b5f257d556a994ece1919c0b35f443fce26dc2ccc10cd58ef",
+    "20ab6a67fb14e37e52529788ba9bc597d12f6d90557941d1f052b0eab7e4bd90",
+    "af7755775f56d6e69b942bd98291831458796a14774474b281a85a639e5fcd3e",
+    "800b31fd61a2831f35811bcebce1acdf1f63cd2fd8a055eb6b4b0ee35e1fe7aa",
+    "40890489e6ec90bcb79cb804f600d40ced4d4893f1cbad320edfd3ad5ba34ded",
+    "e150044f18b23f6bf29bdb4688ba423677019f273ed142ddea6bd784a5c7c9f0",
+    "622f17c731ae5fd6412ddc5359fd77a73be62197ca2913076c9aa53e0354bbbd",
+    "5fca3125f15d3e0642726c8cc47dd1f20e7e6da694d203d874551f3bf6968e8f",
+    "35072af7855a6440009f79800f87f7a6b693842acd30dd6b610b9b9360a070cd",
+    "db3817543d7a792f54b6ae90601f8a7c645be127e34a63f1be132cb8b527db12",
+    "19bce70e073e12ed122c9de16ee736c0b701b9896d1bda1aef4ea11120d062e3",
+    "272b73394df9d4dbfdbf8a6699a6b30dd91a5abed3b709d70c389a6f8dcd0aa0",
+    "fe83d99c2d8b7cb72e759e54fafa1da771c42a85b3e54c251d51473c52d180fd",
+    "ca5f36b4d78355e3bb51a014c2989ff6445cab38b2d58dbf1a62ba783cb4f27f",
+    "249865bb4d1ae3853e63fbaa8a9634b17fe307bdeb1264118f3a0ada5adb0777",
+    "dbb464d52dfdfa1f6d80f4c993187540e39b01b6ae94aa6667611ad50c394fcd",
+    "20fb0e5cd41fdd03122283e795f0d74966da0cb4b5e34bff29ab1388ce95e635",
+    "2158cfeaccf7954a2d1acf71de1c44a4d0077365ba1dac6836e1f487249695ca",
+    "ebd794bc6bb5e0a191eeb3ef94b64bd4c6e86ed213cc1881c64f426463a5b380",
+    "99f7862fc4dce81269bf14ea16e1ed3474b98ad9a7c7983946253f1776ca8fb5",
+    "f86f2c785f36a3da51c58ede009e5299e046cd0b6ed44e40594565962ed83f8a",
+    "f4a9aa9fda272c2eca52c59e3e83af56fe08cbc8b770b0772d4a276b3e620160",
+    "ceef6d22240c764a8bbbb436f3171b7e3eb122c68f9f85b12e544100289e1ddc",
+    "4c64bc1cd242462f9a2cbafd7f561d2e9939fe416953cd42b754b92562a84ad4",
+    "ffc6db3819bac23170f128123444e5b1ca7012865f036e937b62a9f90b9734fa",
+    "6a619b2909d23a06ca45cee514b109da213d78c4fb0728cbfd435531e8cde3be",
+    "c89833b1d43fb21e197138ce225ecf8fd549ebd89d3c4e937f7f21e3f636127c",
+    "eec9323bd77255f99c23e790294d662c128f6a749c1e509a163e785dc1761a80",
+    "94684638afc13ae1e65b23040b5541fc40a77ff100521339a33204d0ab4dfda2",
+    "0a151d3633240c34451de5fdfba48f6f37399d57b92e684b3f52e081f030ebf8",
+    "3977899588791b12f5e814bd122ffa31cc0daef0d4e2d1b3e623059a6013be0b",
+    "021697ea2be2781caaceca3444d43949a932f71fae5e8b4253855c50ffafabe6",
+    "4f47653e47cd22e8723ab90c9483b90aa310f1d782e860ee1a5fb5a21d89a2d4",
+    "3e4c42a140703418b57c65dada680751e0ee979ae84a76bff143e8d1635d79eb",
+    "bc20535cb74152fdec49db6a03dd6fd440f6e06395a68ad32f211b3ac91ec68a",
+    "f9ce88e459048e963aff90d8f57d06aebfc7ca7af4816bb37f651a9c2d24c4b7",
+    "6cc154b3b748995da8838e3edb513f175901c9819d318864fa3e4f50f2b52f36",
+    "9035c47b124bc4d7c480a01f23232a4509881b300be5af778241b8d38a601536",
+    "169196c4bb09daa29271a90c6b2cacc49506a4c7722e490129e36c20abc6b180",
+    "2f8a761169c43ec3368b564b60d44ccc40d18eaa6b0f15e2e43c3a2f6399e13b",
+    "e933bd371f3536eb0cf3af61ba6d58592004874943ab78b355a49685575a1261",
+    "9aa2b63bb082e57afc18c281dc8ae2386afecbf3eaf54b68627f358628068a3f",
+    "a2d91c3322f306222cc758928cd1838097c9d7a78bf1eb8229e8460b09ed0a1f",
+    "d7d2192cc7fa5bc3ee59fb873ab9f994584b2646cddc35b7cfb6a4606b2f299b",
+    "345f95b70e1cabc54ee2be22e109ea6b5a2660eba1eff8330cd179237a0014ce",
+    "ff1728ff5c48d97a2c1f20b49b5981dd4d9f5cf20785a69ae830df11759f4730",
+    "f7d6ce0ed7d41704461735d920011fad8f845d9ae1ead591bc24e21e5a1c545a",
+    "50539ef6e2eee8d47bce8744b324a8e9797e4f6364ce37def40a4f451b821bf2",
+    "435db7dc99eb6318e3bc5b151f79b6fc8062a4a1cc55d36517ceec2c748dda8a",
+    "83e0eb65d8f99be71bbfac3c596bc807e9a7ba60c017569f7b0b08cf9bf76038",
+    "33370fc8476eff687c01eaf8c3eafadea4bf002ddf90a3ca1ebdfd7c92453107",
+    "c6070022a5633541286406ce13a821b41374fe7fa7fd9aad6120fb244337ef9b",
+    "687292ea7f24894dc6c85fa18bd88bbc0534d9b422b09a5a05516059df81b94c",
+    "5618aa8c4cb3c6b00975a76ca5b7c4af2fca91b7756ee67ea633d06883b6f5b6",
+    "8769b309772973900620709b3fb12c95578209cfdf5bdf2dffdae356adff16ba",
+    "d2f989c1d76a1070875738d3be64eb37c31ba70f5ff038b466d69080ee580254",
+    "3bee33e34728b264a355a5d0020fe8c44acfde2aabce14cd23639e6dcaa0f327",
+    "1c082cf343e40a192bc23f07877a85e6f549abada0b9851d43b0bd22267d7604",
+    "51b487f5c3c248877c9dea69e53181c129b47a355ec718be877a137b5b8eab81",
+    "1dbc37a438ae0130a9d3e29d2452834ba48decf9de6372584bbc0e274256b0ec",
+    "18ee360ca192f03b9fb1b5aed6cfcf7f7ecaa218adf82758174ec2c4d73c9899",
+    "e6c75e5cd45d9bcf893564447ec275860acbfffa3987e1e273f3a2ffd911f78c"
   ],
   "collection_failure": null
 }
