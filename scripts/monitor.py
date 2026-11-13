@@ -139,6 +139,7 @@ def incidents(source: dict) -> list[dict]:
             if state in {"available", "resolved", "closed", "completed", "false_positive"} or item.get("end"):
                 continue
             out.append({"id": str(item.get("id") or item.get("number") or item.get("uri") or json.dumps(item, sort_keys=True)), "name": str(item.get("summary") or item.get("title") or item.get("service_name") or "Service incident"), "status": state or "investigating", "impact": str(item.get("severity") or item.get("impact") or "unknown"), "updated_at": str(item.get("modified") or item.get("updated") or item.get("created") or ""), "url": str(item.get("uri") or source["page"]), "body": str(item.get("external_desc") or item.get("description") or "")})
+            out[-1]["scope_regions"] = item.get("affected_locations") or item.get("impacted_locations") or []
         return out
     if kind == "google_workspace":
         if not isinstance(data, list):
@@ -154,6 +155,7 @@ def incidents(source: dict) -> list[dict]:
             if state == "available":
                 continue
             out.append({"id": str(item.get("id") or item.get("number")), "name": str(item.get("service_name") or "Google Workspace incident"), "status": state, "impact": str(item.get("severity") or item.get("status_impact") or "unknown"), "updated_at": str(latest.get("modified") or item.get("modified") or ""), "url": "https://www.google.com/appsstatus/dashboard/" + str(item.get("uri") or ""), "body": str(latest.get("text") or item.get("external_desc") or "")})
+            out[-1]["scope_regions"] = item.get("affected_locations") or item.get("impacted_locations") or []
         return out
     if kind == "slack":
         active = data.get("active_incidents", [])
@@ -268,6 +270,61 @@ STATUS_LABELS = {"investigating": "조사 중", "identified": "원인 확인 · 
                  "service_information": "서비스 공지", "resolved": "공식 복구 확인"}
 
 
+def korea_impact(service: str, item: dict) -> dict:
+    """Conservative evidence filter, not a claim that excluded notices are harmless."""
+    title = clean_notice(item.get("name", ""))
+    body = clean_notice(item.get("body", ""))
+    korean = r"(?:south korea|republic of korea|korea central|korea south|대한민국|한국|서울|부산|\bseoul\b|\bbusan\b|\bicn\b|ap-northeast-2|asia-northeast3|koreacentral|koreasouth)"
+    negative = r"(?:\bnot affected\b|\bnot impacted\b|\bnot affecting\b|\bdoes not affect\b|\bnot (?:experience|experiencing|see|seeing)\b|\bunrelated\b|\bnot all\b|\bno longer\b|\bunaffected\b|\bno impact\b|\bno issues\b|\bexcluding\b|\bexcept\b|영향[^.。]*없|영향 없음|무관|제외)"
+    def confirmed(basis):
+        return {"confirmed": True, "basis": basis}
+    def excluded(basis):
+        return {"confirmed": False, "basis": basis}
+    # Provider region identifiers are stronger than narrative mentions/workarounds.
+    if service == "AWS":
+        regions = re.findall(r"\b[a-z]{2}-(?:gov-)?[a-z]+-\d\b", str(item.get("id", "")))
+        if regions:
+            return confirmed("AWS 서울 리전 공지") if "ap-northeast-2" in regions else excluded("해외 AWS 리전 공지")
+    structured = json.dumps(item.get("scope_regions") or [], ensure_ascii=False).lower()
+    if structured != "[]":
+        if re.search(korean, structured, re.I):
+            return confirmed("공식 영향 지역에 한국 포함")
+        if re.search(r"\bglobal\b|\bworldwide\b|all regions", structured):
+            return confirmed("공식 영향 지역이 전 세계로 명시")
+        if not re.search(r"global|worldwide|all regions", structured):
+            return excluded("공식 영향 지역에서 한국 미확인")
+    if str(item.get("id", "")).startswith("component:"):
+        if re.search(korean, title, re.I) and not re.search(negative, title, re.I):
+            return confirmed("한국 지역 구성요소 공지")
+        if "," in title or re.search(r"\b(north america|south america|europe|asia|africa|oceania|middle east)\b", title, re.I):
+            return excluded("한국으로 특정되지 않은 지역 구성요소")
+    # Ignore past-status text; location mentions in old updates are not current evidence.
+    body = re.split(r"previous status:|이전 상태:", body, flags=re.I)[0]
+    statements = [title] + re.split(r"\n|(?<=[.!?])\s+", body)
+    positive = r"affect|impact|error|outage|disrupt|degrad|unavailable|unable|issue|fail|latency|incident|maintenance|영향|장애|오류|점검|지연"
+    global_scope = r"worldwide|globally|global (?:outage|incident|disruption)|all regions|all geographies|all locations|all customers|all users|전 세계|전세계|모든 지역|모든 사용자"
+    for statement in statements:
+        if re.search(negative, statement, re.I):
+            continue
+        if re.search(r"recommend|encourage|as a workaround|please|권장|권고", statement, re.I):
+            continue
+        has_korea = re.search(korean, statement, re.I)
+        if has_korea and re.search(positive, statement, re.I):
+            return confirmed("공식 공지에 한국 영향 명시")
+        if re.search(global_scope, statement, re.I) and re.search(positive, statement, re.I):
+            if re.search(r"limited to|confined to|only in|all (?:users|customers|regions|locations) (?:in|within|from|across) |일부 지역에 한정", statement, re.I):
+                continue
+            return confirmed("공식 공지의 전 세계 영향 범위")
+    return excluded("한국 영향 근거 미확인")
+
+
+def visible_records(state: dict) -> list[dict]:
+    values = list(state.get("active", {}).values())
+    if not state.get("korea_only"):
+        return values
+    return [v for v in values if korea_impact(v["service"], v["incident"])["confirmed"]]
+
+
 def service_brief(service: str, items: list[dict]) -> list[str]:
     if not items:
         return ["상태: 현재 활성 공지 없음"]
@@ -319,6 +376,9 @@ def service_update(service: str, items: list[dict], changes: list[str], *, corre
     if correction:
         lines.append("이전 복구 알림은 공지 ID 변경을 복구로 잘못 판단한 결과입니다.")
     lines.extend(service_brief(service, items))
+    if os.getenv("KOREA_ONLY", "") == "true" and items:
+        bases = list(dict.fromkeys(korea_impact(service, item)["basis"] for item in items))
+        lines.append("한국 영향 근거: " + " / ".join(bases[:2]))
     stamp = datetime.now(timezone(timedelta(hours=9))).strftime("%m/%d %H:%M")
     lines.append("확인: " + stamp + " (한국 시간)")
     page = next((s["page"] for s in SOURCES if s["service"] == service), "")
@@ -347,9 +407,10 @@ def issue_grade(item: dict) -> tuple[int, str, str]:
 
 
 def dashboard_text(state: dict) -> str:
-    current = list(state.get("active", {}).values())
+    current = visible_records(state)
     stamp = datetime.fromisoformat(state["checked_at"]).astimezone(timezone(timedelta(hours=9)))
-    lines = ["📊 서비스 이슈 상태판", stamp.strftime("%m/%d %H:%M") + " · 한국 시간",
+    title = "🇰🇷 한국 영향 확인 상태판" if state.get("korea_only") else "📊 서비스 이슈 상태판"
+    lines = [title, stamp.strftime("%m/%d %H:%M") + " · 한국 시간",
              "━━━━━━━━━━━━━━━━━━"]
     grades = [(0, "🔴", "심각"), (1, "🟠", "주요"), (2, "🟡", "경미"),
               (3, "❔", "등급 미제공"), (4, "🔵", "점검")]
@@ -373,14 +434,20 @@ def dashboard_text(state: dict) -> str:
         _, icon, grade = issue_grade(items[0])
         lines.append(icon + " " + source["service"] + " · " + grade + " · " + str(len(items)) + "건")
         lines.extend("  " + line for line in service_brief(source["service"], items)[:2])
+        if state.get("korea_only"):
+            bases = list(dict.fromkeys(korea_impact(source["service"], item)["basis"] for item in items))
+            lines.append("  근거: " + " / ".join(bases[:2]))
         lines.extend([source["page"], ""])
     if quiet:
-        lines.extend(["⚪ 활성 공지 없음 · " + str(len(quiet)) + "개 서비스", " / ".join(quiet), ""])
+        lines.extend([("⚪ 한국 영향 확인 공지 없음 · " if state.get("korea_only") else "⚪ 활성 공지 없음 · ") + str(len(quiet)) + "개 서비스", " / ".join(quiet), ""])
     lines.extend(["━━━━━━━━━━━━━━━━━━", "등급은 공식 영향도·상태 기준 · 미제공 값은 추정하지 않음",
                   "건수에는 지역·구성요소·점검 공지가 포함됩니다.",
                   "전체 15분 · 활성 장애 서비스 약 5분 추적",
                   "복구 시 추적 해제 · 변화만 별도 알림",
                   "공지 없음이 전체 정상 보장은 아닙니다."])
+    if state.get("korea_only"):
+        lines.extend(["한국 지역 또는 전 세계 영향이 명시된 공지만 표시",
+                      "해외 한정·영향 미확인 공지는 제외 (한국 무영향 판정은 아님)"])
     return "\n".join(lines)
 
 
@@ -425,16 +492,20 @@ def run() -> int:
         else:
             migrated[key] = old
     old_active = migrated
+    korea_only = os.getenv("KOREA_ONLY", "") == "true"
+    def relevant(service, item):
+        return not korea_only or korea_impact(service, item)["confirmed"]
     active_only = os.getenv("MONITOR_ACTIVE_ONLY", "") == "true"
     sources = SOURCES
     if active_only and not previous.get("collection_failure"):
-        active_services = {item.get("service") for item in old_active.values()}
+        active_services = {item.get("service") for item in old_active.values() if relevant(item["service"], item["incident"])}
         sources = [source for source in SOURCES if source["service"] in active_services]
         if not sources:
             print("No active incidents; waiting for the next full check")
             return 0
     old_seen = set(previous.get("seen", []))
-    current: dict[str, dict] = {}
+    selected_services = {source["service"] for source in sources}
+    current: dict[str, dict] = {key: value for key, value in old_active.items() if value.get("service") not in selected_services}
     failures = []
     transitions = {}
     for source in sources:
@@ -451,18 +522,18 @@ def run() -> int:
                 sig = fingerprint(service, item)
                 current[incident_id] = {"signature": sig, "incident": item, "service": service}
                 old = old_active.get(incident_id)
-                if old is None and previous.get("initialized"):
+                if relevant(service, item) and (old is None or not relevant(service, old["incident"])) and previous.get("initialized"):
                     transitions.setdefault(service, []).append("NEW INCIDENT")
-                elif old is not None and old.get("signature") != sig:
+                elif relevant(service, item) and old is not None and old.get("signature") != sig:
                     transitions.setdefault(service, []).append("INCIDENT UPDATE")
             for incident_id, old in old_active.items():
                 if old.get("service") == service and incident_id not in service_ids:
                     if service == "Microsoft 365" and incident_id not in resolved_ids:
                         item = {**old["incident"], "status": "recovery_unconfirmed"}
                         current[incident_id] = {**old, "incident": item, "signature": fingerprint(service, item)}
-                        if old["incident"].get("status") != "recovery_unconfirmed":
+                        if relevant(service, old["incident"]) and old["incident"].get("status") != "recovery_unconfirmed":
                             transitions.setdefault(service, []).append("RECOVERY UNCONFIRMED")
-                    else:
+                    elif relevant(service, old["incident"]):
                         transitions.setdefault(service, []).append("INCIDENT RECOVERED")
             print(f"OK {service}: {len(found)} active notices")
         except Exception as e:  # keep collecting other independent feeds
@@ -475,10 +546,10 @@ def run() -> int:
         if old.get("service") in failed_services and incident_id not in current:
             current[incident_id] = old
 
-    if ms_correction and any(v["service"] == "Microsoft 365" for v in current.values()):
+    if ms_correction and any(v["service"] == "Microsoft 365" and relevant(v["service"], v["incident"]) for v in current.values()):
         transitions.setdefault("Microsoft 365", []).append("INCIDENT UPDATE")
     notifications = [
-        service_update(service, [v["incident"] for v in current.values() if v["service"] == service],
+        service_update(service, [v["incident"] for v in current.values() if v["service"] == service and relevant(service, v["incident"])],
                        changes, correction=ms_correction and service == "Microsoft 365")
         for service, changes in transitions.items()
     ]
@@ -512,6 +583,12 @@ def run() -> int:
     active_signatures = {v["signature"] for v in current.values()}
     seen = list(dict.fromkeys(x for x in seen if x in active_signatures or x == collection_failure))[-500:]
     new_state = {"initialized": True, "checked_at": datetime.now(timezone.utc).isoformat(), "active": current, "seen": seen, "collection_failure": collection_failure}
+    new_state["korea_only"] = korea_only
+    if korea_only:
+        for record in current.values():
+            record["korea_impact"] = korea_impact(record["service"], record["incident"])
+        included = sum(v["korea_impact"]["confirmed"] for v in current.values())
+        print(f"Korea scope: {included} included; {len(current) - included} excluded")
     if previous.get("dashboard"):
         new_state["dashboard"] = previous["dashboard"]
     if os.getenv("TELEGRAM_DASHBOARD", "") == "true":

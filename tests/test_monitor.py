@@ -100,7 +100,7 @@ class StateTests(unittest.TestCase):
                         self.assertEqual(0, monitor.run())
                 poll(entries)
                 self.assertEqual([], messages)
-                self.assertEqual({}, json.loads(state_path.read_text())["active"])
+                self.assertEqual({}, json.loads(state_path.read_text(encoding="utf-8"))["active"])
                 poll([("ec2-us-east-1", 300, "Service impact: API errors", "reopened")])
                 self.assertEqual(1, len(messages))
                 self.assertIn("새 장애", messages[-1])
@@ -126,7 +126,7 @@ class StateTests(unittest.TestCase):
             with patch.object(monitor, "SOURCES", [source]), patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "get", return_value=json.dumps(good_payload).encode()), patch.object(monitor, "send", side_effect=messages.append):
                 self.assertEqual(0, monitor.run())  # first pass establishes baseline
                 self.assertEqual([], messages)
-                state = json.loads(state_path.read_text())
+                state = json.loads(state_path.read_text(encoding="utf-8"))
                 state["initialized"] = True
                 state["active"] = {}
                 state_path.write_text(json.dumps(state))
@@ -154,7 +154,7 @@ class StateTests(unittest.TestCase):
                 self.assertEqual(1, monitor.run())
             self.assertEqual(1, len(messages))
             self.assertIn("STATUS COLLECTION FAILURE", messages[0])
-            self.assertEqual({"Fixture:evt"}, set(json.loads(state_path.read_text())["active"]))
+            self.assertEqual({"Fixture:evt"}, set(json.loads(state_path.read_text(encoding="utf-8"))["active"]))
 
 
 if __name__ == "__main__":
@@ -307,7 +307,7 @@ class MicrosoftRecoveryTests(unittest.TestCase):
                 self.assertEqual(1, len(messages))
                 self.assertIn("장애 내용 변경", messages[0])
                 self.assertNotIn("복구 확인", messages[0])
-                self.assertEqual("service_degradation", next(iter(json.loads(state_path.read_text())["active"].values()))["incident"]["status"])
+                self.assertEqual("service_degradation", next(iter(json.loads(state_path.read_text(encoding="utf-8"))["active"].values()))["incident"]["status"])
 
     def test_missing_notice_stays_tracked_until_explicit_restoration(self):
         with tempfile.TemporaryDirectory() as td:
@@ -320,13 +320,13 @@ class MicrosoftRecoveryTests(unittest.TestCase):
                 poll(self.feed("one"))
                 poll(b"<rss><channel/></rss>")
                 self.assertIn("복구 미확인", messages[-1])
-                self.assertEqual(1, len(json.loads(state_path.read_text())["active"]))
+                self.assertEqual(1, len(json.loads(state_path.read_text(encoding="utf-8"))["active"]))
                 count = len(messages)
                 poll(b"<rss><channel/></rss>")
                 self.assertEqual(count, len(messages))
                 poll(self.feed("new-guid", "ServiceRestored"))
                 self.assertIn("복구 확인", messages[-1])
-                self.assertEqual({}, json.loads(state_path.read_text())["active"])
+                self.assertEqual({}, json.loads(state_path.read_text(encoding="utf-8"))["active"])
                 poll(self.feed("new-guid", "ServiceRestored"))
                 self.assertEqual(count + 1, len(messages))
 
@@ -357,3 +357,90 @@ class MicrosoftRecoveryTests(unittest.TestCase):
                 send.assert_called_once()
                 self.assertIn("활성 공지: 5건", send.call_args.args[0])
                 self.assertNotIn("raw vendor prose", send.call_args.args[0])
+
+class KoreaImpactTests(unittest.TestCase):
+    def test_active_only_checks_korean_service_and_retains_other_snapshots(self):
+        source = {"service": "AWS", "kind": "rss", "url": "fixture", "page": "https://health.aws.amazon.com"}
+        kr = {"id": "aws:ec2-ap-northeast-2:errors", "name": "API errors", "body": "", "status": "investigating", "updated_at": ""}
+        foreign = {"id": "component:prg", "name": "Prague, Czechia", "body": "", "status": "major_outage", "updated_at": ""}
+        with tempfile.TemporaryDirectory() as td:
+            state_path = Path(td) / "state.json"
+            state_path.write_text(json.dumps({"initialized": True, "active": {
+                "AWS:" + kr["id"]: {"service": "AWS", "incident": kr, "signature": monitor.fingerprint("AWS", kr)},
+                "Cloudflare:component:prg": {"service": "Cloudflare", "incident": foreign, "signature": monitor.fingerprint("Cloudflare", foreign)}
+            }, "seen": []}))
+            with patch.dict(os.environ, {"KOREA_ONLY": "true", "MONITOR_ACTIVE_ONLY": "true"}), patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "SOURCES", [source, {**source, "service": "Cloudflare"}]), patch.object(monitor, "incidents", return_value=[kr]) as poll, patch.object(monitor, "send") as send:
+                self.assertEqual(0, monitor.run())
+                poll.assert_called_once_with(source)
+                send.assert_not_called()
+                state = json.loads(state_path.read_text(encoding="utf-8"))
+                self.assertIn("Cloudflare:component:prg", state["active"])
+                self.assertEqual(1, len(monitor.visible_records(state)))
+
+    def test_confirmed_scope_and_exclusions(self):
+        cases = [
+            ("AWS", {"id": "aws:ec2-ap-northeast-2:errors", "name": "API errors"}, True),
+            ("AWS", {"id": "aws:ec2-ap-northeast-1:errors", "body": "All users affected worldwide"}, False),
+            ("Cloudflare", {"id": "component:icn", "name": "Seoul, South Korea - (ICN) status"}, True),
+            ("Cloudflare", {"id": "component:prg", "name": "Prague, Czechia - (PRG) status", "body": "Global outage"}, False),
+            ("Cloudflare", {"id": "component:asia", "name": "Asia status"}, False),
+            ("Google Cloud", {"scope_regions": [{"id": "asia-northeast3"}]}, True),
+            ("Google Cloud", {"scope_regions": [{"id": "us-east1"}], "body": "All users affected"}, False),
+            ("Azure", {"name": "Service degradation in Korea Central"}, True),
+            ("OpenAI", {"body": "All users are experiencing elevated errors."}, True),
+            ("Microsoft 365", {"body": "All users may be unable to access email."}, True),
+            ("GitHub", {"body": "We are investigating a global outage."}, True),
+            ("Slack", {"body": "Some users are experiencing errors."}, False),
+            ("Slack", {"body": "We recommend all users retry failed requests."}, False),
+            ("Slack", {"body": "The errors are unrelated to South Korea."}, False),
+            ("Zoom", {"body": "South Korea is not affected."}, False),
+            ("Zoom", {"body": "This issue does not affect Seoul."}, False),
+            ("Zoom", {"body": "No impact to South Korea. All users in Europe are affected."}, False),
+            ("Cloudflare", {"body": "Current status: Investigating. Previous status: All users affected worldwide."}, False),
+        ]
+        for service, item, expected in cases:
+            with self.subTest(service=service, item=item):
+                self.assertEqual(expected, monitor.korea_impact(service, item)["confirmed"])
+
+    def test_dashboard_hides_foreign_and_unknown_notices(self):
+        state = {"korea_only": True, "checked_at": "2026-11-13T01:00:00+00:00", "active": {
+            "kr": {"service": "AWS", "incident": {"id": "aws:ec2-ap-northeast-2:errors", "name": "API errors", "status": "investigating"}},
+            "foreign": {"service": "Cloudflare", "incident": {"id": "component:prg", "name": "Prague, Czechia", "status": "major_outage"}},
+            "unknown": {"service": "Zoom", "incident": {"id": "one", "name": "Some users impacted", "status": "major_outage"}},
+        }}
+        records = monitor.visible_records(state)
+        self.assertEqual(["AWS"], [v["service"] for v in records])
+        text = monitor.dashboard_text(state)
+        self.assertIn("한국 영향 확인 상태판", text)
+        self.assertNotIn("Prague", text)
+        self.assertIn("한국 영향 확인 공지 없음", text)
+        self.assertIn("🔴 심각 0", text)
+
+    def test_filter_removal_is_not_reported_as_recovery(self):
+        source = {"service": "Cloudflare", "kind": "statuspage", "url": "fixture", "page": "https://www.cloudflarestatus.com"}
+        item = {"id": "component:prg", "name": "Prague, Czechia", "body": "", "status": "major_outage", "updated_at": ""}
+        with tempfile.TemporaryDirectory() as td:
+            state_path = Path(td) / "state.json"
+            state_path.write_text(json.dumps({"initialized": True, "active": {
+                "Cloudflare:component:prg": {"service": "Cloudflare", "incident": item, "signature": monitor.fingerprint("Cloudflare", item)}
+            }, "seen": []}))
+            with patch.dict(os.environ, {"KOREA_ONLY": "true"}), patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "SOURCES", [source]), patch.object(monitor, "incidents", return_value=[]), patch.object(monitor, "send") as send:
+                self.assertEqual(0, monitor.run())
+                send.assert_not_called()
+
+    def test_newly_confirmed_korea_scope_sends_one_notice(self):
+        source = {"service": "OpenAI", "kind": "statuspage", "url": "fixture", "page": "https://status.openai.com"}
+        old = {"id": "one", "name": "API errors", "status": "investigating", "body": "Some users affected", "updated_at": ""}
+        new = {**old, "body": "All users worldwide are affected"}
+        with tempfile.TemporaryDirectory() as td:
+            state_path = Path(td) / "state.json"
+            state_path.write_text(json.dumps({"initialized": True, "active": {
+                "OpenAI:one": {"service": "OpenAI", "incident": old, "signature": monitor.fingerprint("OpenAI", old)}
+            }, "seen": []}))
+            with patch.dict(os.environ, {"KOREA_ONLY": "true"}), patch.object(monitor, "STATE_PATH", state_path), patch.object(monitor, "SOURCES", [source]), patch.object(monitor, "incidents", return_value=[new]), patch.object(monitor, "send") as send:
+                self.assertEqual(0, monitor.run())
+                send.assert_called_once()
+                self.assertIn("한국 영향 근거", send.call_args.args[0])
+                send.reset_mock()
+                self.assertEqual(0, monitor.run())
+                send.assert_not_called()
