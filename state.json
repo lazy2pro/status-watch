@@ -1,19 +1,19 @@
 {
   "initialized": true,
-  "checked_at": "2026-11-17T22:45:25.283512+00:00",
+  "checked_at": "2026-11-17T23:00:12.035629+00:00",
   "active": {
     "Microsoft 365:m365:eacd93ef535d24a994019412": {
-      "signature": "fa0394296fe7544de7a6e6a133fdc8b8d580d654ba74cedc5f27dc0754e9a3c7",
+      "signature": "df29174b93893d409026443e6a1a641c33e0b2fbfc8bab8c44bb997f5165909b",
       "incident": {
         "id": "m365:eacd93ef535d24a994019412",
         "name": "Microsoft Admin Center",
         "status": "investigating",
         "impact": "unknown",
-        "updated_at": "2026-11-17T22:45:00+00:00",
+        "updated_at": "2026-11-17T23:00:00+00:00",
         "url": "https://status.cloud.microsoft/",
         "body": "<div>This site is updated when service issues are preventing tenant administrators from accessing Service health in the Microsoft 365 admin center. Alternatively, customers can reference&nbsp;<a target=\"_blank\" href=\"https://www.twitter.com/MSFT365Status\">https://www.twitter.com/MSFT365Status</a>&nbsp;for additional insights into widespread, active incidents.</div>",
         "source_status": "Available",
-        "published_at": "Tue, 17 Nov 2026 22:45:00 Z",
+        "published_at": "Tue, 17 Nov 2026 23:00:00 Z",
         "first_observed_at": "2026-11-13T00:57:06.252189+00:00",
         "first_observed_basis": "repository state 3ac7fcc023fcef200173f21136ed457559b94d32; observed, not official incident start",
         "severity_assessment": {
@@ -218,6 +218,32 @@
         "basis": "한국 영향 근거 미확인"
       }
     },
+    "Cloudflare:component:y12kn5nkvb44": {
+      "signature": "06a6a57669a2374b10e8ba83f4fd5b837be696c69b32865a8d4f2d44f4503f47",
+      "incident": {
+        "id": "component:y12kn5nkvb44",
+        "name": "Amman, Jordan - (AMM) status",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-17T22:51:37.953Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": "",
+        "first_observed_at": "2026-11-17T23:00:10.901067+00:00",
+        "first_observed_basis": "monitor observation",
+        "severity_assessment": {
+          "rank": 4,
+          "icon": "🔵",
+          "label": "점검",
+          "basis": "공식 점검 상태",
+          "source": "vendor"
+        }
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
     "Cloudflare:component:fs7l9rdk9kq5": {
       "signature": "5c24f51efd9e76fdc374fa65d9c3e639647d1f4d4e425cf0c2bbea54d342a078",
       "incident": {
@@ -417,6 +443,32 @@
           "icon": "🟠",
           "label": "주요",
           "basis": "공식 주요 영향·일부 장애",
+          "source": "vendor"
+        }
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
+    "Cloudflare:component:qvf223pw6cfx": {
+      "signature": "3db81a1f8488efaf389718a06897d12e1878603b614d6b2ea42827f1564e9140",
+      "incident": {
+        "id": "component:qvf223pw6cfx",
+        "name": "Cape Town, South Africa - (CPT) status",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-17T22:46:37.218Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": "",
+        "first_observed_at": "2026-11-17T23:00:10.901429+00:00",
+        "first_observed_basis": "monitor observation",
+        "severity_assessment": {
+          "rank": 4,
+          "icon": "🔵",
+          "label": "점검",
+          "basis": "공식 점검 상태",
           "source": "vendor"
         }
       },
@@ -1466,6 +1518,32 @@
         "basis": "한국으로 특정되지 않은 지역 구성요소"
       }
     },
+    "Cloudflare:component:gw1cztbpft9b": {
+      "signature": "1b3f01c3d49a41c8633705f568cc584d44e61671174fc41b27aeff2feeedb0b5",
+      "incident": {
+        "id": "component:gw1cztbpft9b",
+        "name": "Kathmandu, Nepal - (KTM) status",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-17T22:59:37.172Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": "",
+        "first_observed_at": "2026-11-17T23:00:10.902976+00:00",
+        "first_observed_basis": "monitor observation",
+        "severity_assessment": {
+          "rank": 4,
+          "icon": "🔵",
+          "label": "점검",
+          "basis": "공식 점검 상태",
+          "source": "vendor"
+        }
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
     "Cloudflare:component:3mj4c8m14ncw": {
       "signature": "b84c3446d2bc786568a51c982a661dcb907b14447bc1be4a12b2ed283618c0a8",
       "incident": {
@@ -1529,32 +1607,6 @@
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
-        "first_observed_basis": "monitor observation",
-        "severity_assessment": {
-          "rank": 4,
-          "icon": "🔵",
-          "label": "점검",
-          "basis": "공식 점검 상태",
-          "source": "vendor"
-        }
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국으로 특정되지 않은 지역 구성요소"
-      }
-    },
-    "Cloudflare:component:wg0b1zzm2f2w": {
-      "signature": "8f99975020fec27a6994973d8ccdb11778401e6389eaa4dca16f82d5b95e1781",
-      "incident": {
-        "id": "component:wg0b1zzm2f2w",
-        "name": "Santiago, Chile - (SCL) status",
-        "status": "under_maintenance",
-        "impact": "under_maintenance",
-        "updated_at": "2026-11-17T22:26:31.659Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": "",
-        "first_observed_at": "2026-11-17T22:30:23.172981+00:00",
         "first_observed_basis": "monitor observation",
         "severity_assessment": {
           "rank": 4,
@@ -1821,32 +1873,6 @@
           "icon": "🟠",
           "label": "주요",
           "basis": "공식 주요 영향·일부 장애",
-          "source": "vendor"
-        }
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국으로 특정되지 않은 지역 구성요소"
-      }
-    },
-    "Cloudflare:component:18p6r93swmbl": {
-      "signature": "1c8fbdf886eb20134e0c246dda5ed0239430b4bab066ee4ad9685b7a4408e764",
-      "incident": {
-        "id": "component:18p6r93swmbl",
-        "name": "Singapore, Singapore - (SIN) status",
-        "status": "under_maintenance",
-        "impact": "under_maintenance",
-        "updated_at": "2026-11-17T22:00:23.766Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": "",
-        "first_observed_at": "2026-11-17T18:15:14.542766+00:00",
-        "first_observed_basis": "monitor observation",
-        "severity_assessment": {
-          "rank": 4,
-          "icon": "🔵",
-          "label": "점검",
-          "basis": "공식 점검 상태",
           "source": "vendor"
         }
       },
@@ -2454,6 +2480,32 @@
         "basis": "한국 영향 근거 미확인"
       }
     },
+    "Zoom:2ht5zjrswf7h": {
+      "signature": "09aa1c131c1f3993ac57478efded2a959268c1d600e1ecce4059b4dcfe1ac322",
+      "incident": {
+        "id": "2ht5zjrswf7h",
+        "name": "Service degradation affected a subset of users attempting to approve attendees for Webinar Registrations in the North America region.",
+        "status": "monitoring",
+        "impact": "none",
+        "updated_at": "2026-11-17T14:52:38.333-08:00",
+        "url": "https://stspg.io/yggbcbtz53v4",
+        "body": "On 11/17/2026, Between 09:40 UTC to 20:05 UTC, a subset of users may have experienced intermittent issues with Webinar Registrations when approving attendees. \n\nThis incident has been resolved and the affected services have been restored.",
+        "first_observed_at": "2026-11-17T23:00:12.034995+00:00",
+        "first_observed_basis": "monitor observation",
+        "severity_assessment": {
+          "rank": 3,
+          "icon": "❔",
+          "label": "등급 미제공",
+          "basis": "심각도 판단 근거 부족",
+          "source": "vendor"
+        }
+      },
+      "service": "Zoom",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국 영향 근거 미확인"
+      }
+    },
     "Zoom:component:773zkp1jzkgl": {
       "signature": "d63ecac114f3c9228aefe4ac6c4382173bb6fd499b6c3efacd70ac6deef1d7e1",
       "incident": {
@@ -2508,120 +2560,122 @@
     }
   },
   "seen": [
-    "06fda909eee836ed0eba1c09f4d0ee9a9f447d8c7f03bbd74dd15ff884bca998",
-    "904d6cf1f292ea396fe4b9595afaaaa7e31edf7ad56c8000881c947fc96e4347",
-    "800be96b7bf8f952a2afdab18d1d5a66c7f90f3fd8a85ab6ff1332c2e25b874c",
-    "0ec65163141b8fd5e19c97fab9a2c69268d4d6300de5976176121f56263c92ae",
-    "bc53e44150b604c8172b97792c13e190e86e0bed18ec6424ece5785ed199ad97",
-    "6e41433bdc95e66a31b6cdb405f06fd0309ed72dba1b995ff4d757715a6e9d1f",
-    "3eca1e49ca42f59dd0e36f2cdaa08b837d9b7ead66c93bf33131f0aff85d8594",
-    "f84d7b8f7d78fe5f18a611a5ca8df6cb3121285ad7029e9a4e5a059987766f18",
-    "c93a6289292d12d8175dc40d4c7e96e73baf8d878a85d031ddfd9c7175f017ec",
-    "4cbca5240eb9f2a949c6126802974481a10ef438de4541bcefcbacf4e7465aa7",
-    "527d1e3d3ece3eb531d230edbb350234c86d2f1475ff9e0fa9c23d004f17bd29",
-    "7d1c573c8d223ce92c612452e4394eda682dc6c86412a9eb3a6406ac143c8e5e",
-    "bd8dd506fe458b360750d50f936fa32412de63b4c4cf46f7d6ad5f5a1b78d756",
-    "d63ecac114f3c9228aefe4ac6c4382173bb6fd499b6c3efacd70ac6deef1d7e1",
-    "9e36ed214b0b5f1bbe9e679b8184eb6ee5cb6de45576b70462ba4a858c6a4d10",
-    "621fa8e96d0fac3e9b06194a1a4b55fd6ad78d0f10e2282f0b1fbc3f4f6cac88",
-    "2fa227f9b2f2ab0a0b091821739e337a3db1bf3eded61f03898c42e753776e79",
-    "ab3fb7c478428730b0ca9549d0e8ba40d3c6b08b67d1d32eba14d83f726da89b",
-    "6b3362912e65c43434c7eb0de2d4aa09100684e7f337c91e6eb740926b71f6f3",
-    "cab6a2871f9194bc42aa9b827162ea0bf9936cd9966e3519d6d2a318f7146de9",
-    "94681ced3a0f44a14eaef743fa2e75419eceb064e017fddfddf186bb8678198e",
-    "bada59791b06d8ef0d0f6864d7711fe8a0be364351a4aa89b21451aa7d70333d",
-    "4dc4ac1ff3a4bb4dc55db387287a7d64b863fa83fbd8b4fe0a29875fd6e32f92",
-    "33fca55074dd41a4950db2a4f20348a1d5a096865e7cb7e0726a95596a2ccb7a",
-    "9ced9e3519de4e6333afe8c358700ce296b8309eedad45392e67cc6df2b3268d",
-    "5c24f51efd9e76fdc374fa65d9c3e639647d1f4d4e425cf0c2bbea54d342a078",
-    "1c8fbdf886eb20134e0c246dda5ed0239430b4bab066ee4ad9685b7a4408e764",
-    "0d6475a6d1b9764a1f835c8acb48ce52c9411bbc94752aeec15f16decc0f464b",
-    "a7a10f2dff87c58562d8bdd2ad91bced02aa12e098a6ab08a457ba65687be48d",
-    "5875e78c3331b270992ca2d00166e47dfd31cd5bec5b7898ae2871e3dd7fd5f6",
-    "1873f99151bb30594f727d32bbab7a7a41009ca0a1c8aa197e8101e63c532488",
-    "0dfb9dbcaefcd91e8417e16bf5eff6c7abb9b5f26a0af09fa7ff61eb6e9884ea",
-    "809c8d20c41ff58e6ebb1fde028a8cffdc9b15d57797bb528f909360c6c0b520",
-    "0e6bff48e6e50c543c89e424eb61782c4b2f9db6f5d1e9bec7ac4e6d0b18858c",
-    "9b2acfb1aced4afc0cada0e6d63b192b0311fd8b4dacdb6dd1fb574a4612c0fd",
-    "9d6a0dd076018dfaea4744c0134739c0c3838c8c83ce054f03effb6d42730a0a",
-    "26e3f1be6b430c49d6426ecd2a758168f2ec048b1478fe96b6644113f3246fa2",
-    "bd8628dc07d90816053083d125754ba129743bb552b32a42ba20e13decd89afb",
-    "8f99975020fec27a6994973d8ccdb11778401e6389eaa4dca16f82d5b95e1781",
-    "61bae7e5159bf136f4fac6b79cb67362f3b02632c9d2b0fe0fcef7ab2a467ed2",
-    "0fc0624af513404bc46e436bae4cef7a4c619ad24a12cadc22deb83703032781",
-    "3110ace0c7cadf295df2e70adbd3907870f1245c521bb3df4dfa68d04e500311",
-    "dfb72023e65b1346eeca5f2388769a2fcefb358ac27d6d180cf95fa8184f1f40",
-    "a674d8f9d3f7454b4812384b024bfc3dd73d640bdf0eacb025d3e9515a8941fa",
-    "3124ab34684b08b6d28bf16562f13e73af0831ede3ee72b953028a423191247e",
-    "5c6f08586d3f2cd150a8b06618220c458fa9b01d318894e63e9bfe647a9cd8a9",
-    "7ba0414ccb62c3df3c4abedd7fe82a7787215f46ac7076ec40c5c0625d3fe020",
-    "2f35877afb589b338aa5a3187e3fdde19f0f66adfe6bbc915c68fb26bd4371df",
-    "8924751bc72954c2a8964956f349837a865e90bb0b88dc3e2155fc6c28b7f1b3",
-    "2434b4bc69b6d0ec0b19b61d6dfab2e63708afbc5a3d89707deb4adf870d12e1",
-    "b546ee02e404c2b3fadf9db840097751d6ccbd57ef80bfc76b0e37aa36616021",
     "57d07c1c0578217df6f5ac31414b36c706e4ccd9f28cf3651643eae9d4efe312",
-    "11619d2d10619b68838a7da5ec0c41b82174749559ab4b77fef99dc38ba3fea4",
-    "5f8ee85e8cb958d35d34f81d7ff32ed931381f27f03b5892e367e801be6f123e",
+    "5875e78c3331b270992ca2d00166e47dfd31cd5bec5b7898ae2871e3dd7fd5f6",
+    "61bae7e5159bf136f4fac6b79cb67362f3b02632c9d2b0fe0fcef7ab2a467ed2",
     "ad7ed757c1a9bfdcd44756c6292baec45d76f73da44e2437cf83401958ecb232",
-    "67382949dabfab645ca1f1f4fe641c2acd55ed7d362ba810c92bdec52671f4bd",
-    "35d7d4f2d09acb9c2fbb712a4120ed5148c9d598b9d81ad1d86a5b8bc3c50a6c",
-    "585ad1953b4a5ff05d7d6cb2160d8fb44f9a0fe379657fec26d8805d9abff20b",
-    "81de50c5eb91a37e16aa77e1d414796a7c805f93b2d1a9949831cec821a1b3e5",
-    "59a63d717d3967a602755beddd031c4363d933001d66cb0d59708a14318dfe05",
-    "0ea02eb43dcf69296f79bc689841c26aa040eb2ca03ed3564d64085f7291266b",
-    "df28f91e681cd7680ab38ffaac0bd4beeacfaf405604f04f6e36377fc9c9fd17",
-    "31de56459e3c8de27c705d3d1a5bde4aac549b4cb946c65eae840b588517ea06",
-    "241547b424ab85a64476d587b871d33be65657160cbadb14a686d4ef5523b152",
-    "c5307026235197cce27c173bf4f0c9fefee2767d91ada974868fc861cd85de03",
-    "271fc2a650b5fc545f6df00dcb25a1af974b65d1f641d66c8ede6c830feca7d5",
-    "083f4ff82d859a487db5a3706d0749295a2249052214125a2f973bf128f62b75",
-    "6ffaeecfcec898f35193b5c9c0aa705db64fd96e7d9a3b84347aafbfccefe326",
-    "9ab41553f809857e186439b154776d28e76f3c9c3b424a3de05e455b0cdf7d9d",
-    "b84c3446d2bc786568a51c982a661dcb907b14447bc1be4a12b2ed283618c0a8",
-    "0700005c8986c9836c735956de6ee8a02e56587a053ebeec3a459d2b668cf0f9",
-    "a424211c51effcc03439d45d5af6432d569fcd2200af25191d173db2ed2f044d",
-    "f8d30d4f11b3ef737f2c9a1a75237b2b81c4faf9368d1b3446d9cb33b44252d6",
-    "06240f23be1841f44a58b450df10f3a2dc23d0a8b0534d164ecbfa2b547557fe",
-    "6ae6767b199c9ddc446e3b843498d80a9b4d69ef49255cf59a1fea68085a3b1a",
-    "745acf50460063fdc5b038dbcddd7f4bfdb29f1cb999c39203aff41500d0fd96",
-    "6d4b50343d69695e9c3db27e73f5636a28e5c406d41b3c0aeedb7c132eb90477",
-    "e81a4eb0c7db4cea19fa63e2aff19881422d41ec9282aac85c5e19e57e5f8119",
-    "ee8862d3014082ad7f8b914193fc516503b3957667dfd6c5e3164c6cb7f9f35b",
-    "19eeafadd471bb3aad556418548d608b72958a6859c4041cb3393c79b9e98634",
-    "6a872b5e5f076742ce08b420ecdd06ef48b650364760a585ca174f3fe5b4518a",
-    "2090735111ea644c7ac995d69761760eac00b871d34cec6ebfd650ed4325c22b",
-    "6972c22970168ef7c04dd981613a17376e6b3b18fcb431d1596c86e7c02f8735",
-    "b27bbbe24223cfd19bbc95c64f4ab5fa4b8dc54a98fa575f31c58b7edb86faac",
-    "f4a094270acf4dad59f3734a490c9f0e14b2bc8f25ddcb72c06e235692642dda",
     "9f7d5b124e61c1af91d6ebb17c89a398bc1c070b608855373714b01125e53aa4",
-    "1843d230520e16a04cc3ff787c5c6e405dd13c3a8b2b3760f49412c20cb033f6",
-    "8db915ea091e0c7601251ed4c8daa7452f514b006abef3bbafc3c1dcb8f3e5b1",
-    "db9af33fb7ba85967e347775d5791f8493229fe15d56a8420f54fc31397101d4",
-    "7bfa679d1c5cddda05a36c58ffd144022b29ab18a9fc1c98a65ac6cfba46418e",
-    "1cbe2aeea9694027ba2f71421f14df6998c57614837a06decd7e1ddea3154f1a",
-    "c27bde12a9088a61ec819deedc8740b88bd9b91bff814db1308ad6aae7dd09c6",
-    "fa0394296fe7544de7a6e6a133fdc8b8d580d654ba74cedc5f27dc0754e9a3c7",
-    "54cc238bddf90a0d195d4f122ba7118e82f90d68c583c095499aa77b27360edf",
+    "bd8628dc07d90816053083d125754ba129743bb552b32a42ba20e13decd89afb",
+    "2090735111ea644c7ac995d69761760eac00b871d34cec6ebfd650ed4325c22b",
+    "cab6a2871f9194bc42aa9b827162ea0bf9936cd9966e3519d6d2a318f7146de9",
     "4e0e8cc4da28688eb55b213373453e894bea3d8afe8ca0d05525f362841699e4",
-    "12db50dd007973e568d444d0e459ca6829f243b1e48c42aaf9919fb533c58788"
+    "6e41433bdc95e66a31b6cdb405f06fd0309ed72dba1b995ff4d757715a6e9d1f",
+    "b546ee02e404c2b3fadf9db840097751d6ccbd57ef80bfc76b0e37aa36616021",
+    "083f4ff82d859a487db5a3706d0749295a2249052214125a2f973bf128f62b75",
+    "54cc238bddf90a0d195d4f122ba7118e82f90d68c583c095499aa77b27360edf",
+    "904d6cf1f292ea396fe4b9595afaaaa7e31edf7ad56c8000881c947fc96e4347",
+    "6972c22970168ef7c04dd981613a17376e6b3b18fcb431d1596c86e7c02f8735",
+    "0d6475a6d1b9764a1f835c8acb48ce52c9411bbc94752aeec15f16decc0f464b",
+    "585ad1953b4a5ff05d7d6cb2160d8fb44f9a0fe379657fec26d8805d9abff20b",
+    "06240f23be1841f44a58b450df10f3a2dc23d0a8b0534d164ecbfa2b547557fe",
+    "271fc2a650b5fc545f6df00dcb25a1af974b65d1f641d66c8ede6c830feca7d5",
+    "6a872b5e5f076742ce08b420ecdd06ef48b650364760a585ca174f3fe5b4518a",
+    "1843d230520e16a04cc3ff787c5c6e405dd13c3a8b2b3760f49412c20cb033f6",
+    "bada59791b06d8ef0d0f6864d7711fe8a0be364351a4aa89b21451aa7d70333d",
+    "e81a4eb0c7db4cea19fa63e2aff19881422d41ec9282aac85c5e19e57e5f8119",
+    "4dc4ac1ff3a4bb4dc55db387287a7d64b863fa83fbd8b4fe0a29875fd6e32f92",
+    "745acf50460063fdc5b038dbcddd7f4bfdb29f1cb999c39203aff41500d0fd96",
+    "241547b424ab85a64476d587b871d33be65657160cbadb14a686d4ef5523b152",
+    "35d7d4f2d09acb9c2fbb712a4120ed5148c9d598b9d81ad1d86a5b8bc3c50a6c",
+    "2434b4bc69b6d0ec0b19b61d6dfab2e63708afbc5a3d89707deb4adf870d12e1",
+    "2f35877afb589b338aa5a3187e3fdde19f0f66adfe6bbc915c68fb26bd4371df",
+    "809c8d20c41ff58e6ebb1fde028a8cffdc9b15d57797bb528f909360c6c0b520",
+    "bc53e44150b604c8172b97792c13e190e86e0bed18ec6424ece5785ed199ad97",
+    "6b3362912e65c43434c7eb0de2d4aa09100684e7f337c91e6eb740926b71f6f3",
+    "c93a6289292d12d8175dc40d4c7e96e73baf8d878a85d031ddfd9c7175f017ec",
+    "db9af33fb7ba85967e347775d5791f8493229fe15d56a8420f54fc31397101d4",
+    "59a63d717d3967a602755beddd031c4363d933001d66cb0d59708a14318dfe05",
+    "f4a094270acf4dad59f3734a490c9f0e14b2bc8f25ddcb72c06e235692642dda",
+    "3124ab34684b08b6d28bf16562f13e73af0831ede3ee72b953028a423191247e",
+    "b84c3446d2bc786568a51c982a661dcb907b14447bc1be4a12b2ed283618c0a8",
+    "b27bbbe24223cfd19bbc95c64f4ab5fa4b8dc54a98fa575f31c58b7edb86faac",
+    "0ec65163141b8fd5e19c97fab9a2c69268d4d6300de5976176121f56263c92ae",
+    "26e3f1be6b430c49d6426ecd2a758168f2ec048b1478fe96b6644113f3246fa2",
+    "0ea02eb43dcf69296f79bc689841c26aa040eb2ca03ed3564d64085f7291266b",
+    "3110ace0c7cadf295df2e70adbd3907870f1245c521bb3df4dfa68d04e500311",
+    "7d1c573c8d223ce92c612452e4394eda682dc6c86412a9eb3a6406ac143c8e5e",
+    "f8d30d4f11b3ef737f2c9a1a75237b2b81c4faf9368d1b3446d9cb33b44252d6",
+    "8924751bc72954c2a8964956f349837a865e90bb0b88dc3e2155fc6c28b7f1b3",
+    "81de50c5eb91a37e16aa77e1d414796a7c805f93b2d1a9949831cec821a1b3e5",
+    "5c24f51efd9e76fdc374fa65d9c3e639647d1f4d4e425cf0c2bbea54d342a078",
+    "5f8ee85e8cb958d35d34f81d7ff32ed931381f27f03b5892e367e801be6f123e",
+    "12db50dd007973e568d444d0e459ca6829f243b1e48c42aaf9919fb533c58788",
+    "7bfa679d1c5cddda05a36c58ffd144022b29ab18a9fc1c98a65ac6cfba46418e",
+    "f84d7b8f7d78fe5f18a611a5ca8df6cb3121285ad7029e9a4e5a059987766f18",
+    "31de56459e3c8de27c705d3d1a5bde4aac549b4cb946c65eae840b588517ea06",
+    "800be96b7bf8f952a2afdab18d1d5a66c7f90f3fd8a85ab6ff1332c2e25b874c",
+    "9ab41553f809857e186439b154776d28e76f3c9c3b424a3de05e455b0cdf7d9d",
+    "df28f91e681cd7680ab38ffaac0bd4beeacfaf405604f04f6e36377fc9c9fd17",
+    "06fda909eee836ed0eba1c09f4d0ee9a9f447d8c7f03bbd74dd15ff884bca998",
+    "bd8dd506fe458b360750d50f936fa32412de63b4c4cf46f7d6ad5f5a1b78d756",
+    "1cbe2aeea9694027ba2f71421f14df6998c57614837a06decd7e1ddea3154f1a",
+    "7ba0414ccb62c3df3c4abedd7fe82a7787215f46ac7076ec40c5c0625d3fe020",
+    "621fa8e96d0fac3e9b06194a1a4b55fd6ad78d0f10e2282f0b1fbc3f4f6cac88",
+    "5c6f08586d3f2cd150a8b06618220c458fa9b01d318894e63e9bfe647a9cd8a9",
+    "0e6bff48e6e50c543c89e424eb61782c4b2f9db6f5d1e9bec7ac4e6d0b18858c",
+    "19eeafadd471bb3aad556418548d608b72958a6859c4041cb3393c79b9e98634",
+    "a674d8f9d3f7454b4812384b024bfc3dd73d640bdf0eacb025d3e9515a8941fa",
+    "0dfb9dbcaefcd91e8417e16bf5eff6c7abb9b5f26a0af09fa7ff61eb6e9884ea",
+    "a424211c51effcc03439d45d5af6432d569fcd2200af25191d173db2ed2f044d",
+    "0700005c8986c9836c735956de6ee8a02e56587a053ebeec3a459d2b668cf0f9",
+    "ee8862d3014082ad7f8b914193fc516503b3957667dfd6c5e3164c6cb7f9f35b",
+    "6d4b50343d69695e9c3db27e73f5636a28e5c406d41b3c0aeedb7c132eb90477",
+    "9b2acfb1aced4afc0cada0e6d63b192b0311fd8b4dacdb6dd1fb574a4612c0fd",
+    "0fc0624af513404bc46e436bae4cef7a4c619ad24a12cadc22deb83703032781",
+    "ab3fb7c478428730b0ca9549d0e8ba40d3c6b08b67d1d32eba14d83f726da89b",
+    "6ffaeecfcec898f35193b5c9c0aa705db64fd96e7d9a3b84347aafbfccefe326",
+    "9ced9e3519de4e6333afe8c358700ce296b8309eedad45392e67cc6df2b3268d",
+    "c27bde12a9088a61ec819deedc8740b88bd9b91bff814db1308ad6aae7dd09c6",
+    "3eca1e49ca42f59dd0e36f2cdaa08b837d9b7ead66c93bf33131f0aff85d8594",
+    "c5307026235197cce27c173bf4f0c9fefee2767d91ada974868fc861cd85de03",
+    "d63ecac114f3c9228aefe4ac6c4382173bb6fd499b6c3efacd70ac6deef1d7e1",
+    "67382949dabfab645ca1f1f4fe641c2acd55ed7d362ba810c92bdec52671f4bd",
+    "8db915ea091e0c7601251ed4c8daa7452f514b006abef3bbafc3c1dcb8f3e5b1",
+    "4cbca5240eb9f2a949c6126802974481a10ef438de4541bcefcbacf4e7465aa7",
+    "1873f99151bb30594f727d32bbab7a7a41009ca0a1c8aa197e8101e63c532488",
+    "33fca55074dd41a4950db2a4f20348a1d5a096865e7cb7e0726a95596a2ccb7a",
+    "dfb72023e65b1346eeca5f2388769a2fcefb358ac27d6d180cf95fa8184f1f40",
+    "9d6a0dd076018dfaea4744c0134739c0c3838c8c83ce054f03effb6d42730a0a",
+    "527d1e3d3ece3eb531d230edbb350234c86d2f1475ff9e0fa9c23d004f17bd29",
+    "2fa227f9b2f2ab0a0b091821739e337a3db1bf3eded61f03898c42e753776e79",
+    "11619d2d10619b68838a7da5ec0c41b82174749559ab4b77fef99dc38ba3fea4",
+    "a7a10f2dff87c58562d8bdd2ad91bced02aa12e098a6ab08a457ba65687be48d",
+    "94681ced3a0f44a14eaef743fa2e75419eceb064e017fddfddf186bb8678198e",
+    "6ae6767b199c9ddc446e3b843498d80a9b4d69ef49255cf59a1fea68085a3b1a",
+    "9e36ed214b0b5f1bbe9e679b8184eb6ee5cb6de45576b70462ba4a858c6a4d10",
+    "df29174b93893d409026443e6a1a641c33e0b2fbfc8bab8c44bb997f5165909b",
+    "06a6a57669a2374b10e8ba83f4fd5b837be696c69b32865a8d4f2d44f4503f47",
+    "3db81a1f8488efaf389718a06897d12e1878603b614d6b2ea42827f1564e9140",
+    "1b3f01c3d49a41c8633705f568cc584d44e61671174fc41b27aeff2feeedb0b5",
+    "09aa1c131c1f3993ac57478efded2a959268c1d600e1ecce4059b4dcfe1ac322"
   ],
   "collection_failure": null,
   "source_checks": {
-    "Microsoft 365": "2026-11-17T22:45:23.670526+00:00",
-    "Azure": "2026-11-17T22:45:23.789193+00:00",
-    "Google Workspace": "2026-11-17T22:45:23.855294+00:00",
-    "Google Cloud": "2026-11-17T22:45:23.920594+00:00",
-    "AWS": "2026-11-17T22:45:23.950653+00:00",
-    "Cloudflare": "2026-11-17T22:45:24.218263+00:00",
-    "GitHub": "2026-11-17T22:45:24.454154+00:00",
-    "OpenAI": "2026-11-17T22:45:24.668406+00:00",
-    "Slack": "2026-11-17T22:45:24.769093+00:00",
-    "Zoom": "2026-11-17T22:45:25.283219+00:00"
+    "Microsoft 365": "2026-11-17T23:00:10.102287+00:00",
+    "Azure": "2026-11-17T23:00:10.435826+00:00",
+    "Google Workspace": "2026-11-17T23:00:10.488894+00:00",
+    "Google Cloud": "2026-11-17T23:00:10.571759+00:00",
+    "AWS": "2026-11-17T23:00:10.790361+00:00",
+    "Cloudflare": "2026-11-17T23:00:10.899556+00:00",
+    "GitHub": "2026-11-17T23:00:11.118745+00:00",
+    "OpenAI": "2026-11-17T23:00:11.311686+00:00",
+    "Slack": "2026-11-17T23:00:11.355495+00:00",
+    "Zoom": "2026-11-17T23:00:12.034975+00:00"
   },
-  "full_checked_at": "2026-11-17T22:45:23.291160+00:00",
+  "full_checked_at": "2026-11-17T23:00:10.038498+00:00",
   "korea_only": true,
   "dashboard": {
     "message_id": 25,
-    "signature": "a2b0eb380852bf26a7bce2779de16abd4aef699d36cb7c3700a226ce3741f9eb"
+    "signature": "6755a7e791a737eae90f2bfff1d60bf07fa971c587038b6796d9b46c6754a9ef"
   }
 }
