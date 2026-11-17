@@ -1,19 +1,19 @@
 {
   "initialized": true,
-  "checked_at": "2026-11-17T08:30:14.540728+00:00",
+  "checked_at": "2026-11-17T08:45:15.378866+00:00",
   "active": {
     "Microsoft 365:m365:eacd93ef535d24a994019412": {
-      "signature": "e5a63adf6508526f6ed26a4e93ca62aad9741783f7d8516c750fc290b156744f",
+      "signature": "55a82a23e07608b2ae7fa83699400e5643b852028ca3169ccbdb122f25c749af",
       "incident": {
         "id": "m365:eacd93ef535d24a994019412",
         "name": "Microsoft Admin Center",
         "status": "investigating",
         "impact": "unknown",
-        "updated_at": "2026-11-17T08:30:00+00:00",
+        "updated_at": "2026-11-17T08:45:00+00:00",
         "url": "https://status.cloud.microsoft/",
         "body": "<div>This site is updated when service issues are preventing tenant administrators from accessing Service health in the Microsoft 365 admin center. Alternatively, customers can reference&nbsp;<a target=\"_blank\" href=\"https://www.twitter.com/MSFT365Status\">https://www.twitter.com/MSFT365Status</a>&nbsp;for additional insights into widespread, active incidents.</div>",
         "source_status": "Available",
-        "published_at": "Tue, 17 Nov 2026 08:30:00 Z",
+        "published_at": "Tue, 17 Nov 2026 08:45:00 Z",
         "first_observed_at": "2026-11-13T00:57:06.252189+00:00",
         "first_observed_basis": "repository state 3ac7fcc023fcef200173f21136ed457559b94d32; observed, not official incident start",
         "severity_assessment": {
@@ -193,13 +193,13 @@
       }
     },
     "Cloudflare:component:2htqrtyxmmtr": {
-      "signature": "8a016745762b387f6c3768ae901ad95c24836e898db0726cf4b6a7ff1497abdd",
+      "signature": "d2a77a6f2510402ececfa4bc8fe3bf486097209e3102c8099a7d4c35af5b162b",
       "incident": {
         "id": "component:2htqrtyxmmtr",
         "name": "Arica, Chile - (ARI) status",
         "status": "partial_outage",
         "impact": "partial_outage",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "updated_at": "2026-11-17T08:32:31.496Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -219,13 +219,13 @@
       }
     },
     "Cloudflare:component:rfkpkllgfmrq": {
-      "signature": "9e39f0fc57b33cec181257dcfbd77c30f92d31945e12f613064ed9855f5cc9d9",
+      "signature": "c376bb110cf965800dce40b36b959f9e3d0c8988413a3ed93946f58238d25a0c",
       "incident": {
         "id": "component:rfkpkllgfmrq",
         "name": "Algiers, Algeria - (ALG) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-17T04:49:21.393Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -245,13 +245,13 @@
       }
     },
     "Cloudflare:component:p2w5bf74rw6p": {
-      "signature": "8289184030f01e08afc5fec465ce8d3d4d6b57298c93aa3166b0b12d4e6f5c94",
+      "signature": "9b2acfb1aced4afc0cada0e6d63b192b0311fd8b4dacdb6dd1fb574a4612c0fd",
       "incident": {
         "id": "component:p2w5bf74rw6p",
         "name": "Annaba, Algeria - (AAE) status",
         "status": "partial_outage",
         "impact": "partial_outage",
-        "updated_at": "2026-11-10T17:16:11.037Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -271,13 +271,13 @@
       }
     },
     "Cloudflare:component:76swzd6htswh": {
-      "signature": "2e0bf6a7e0e36074c3a02eb363b26cfb2ec59340999105398e0040f9a9311699",
+      "signature": "11619d2d10619b68838a7da5ec0c41b82174749559ab4b77fef99dc38ba3fea4",
       "incident": {
         "id": "component:76swzd6htswh",
         "name": "Baku, Azerbaijan - (GYD) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "updated_at": "2026-11-17T08:32:31.496Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -323,13 +323,13 @@
       }
     },
     "Cloudflare:component:6vll3w5p50f9": {
-      "signature": "b625c6c0eff0a627e0e83baa0dae3caba503ca103231197c6595b6d262743cc3",
+      "signature": "6a872b5e5f076742ce08b420ecdd06ef48b650364760a585ca174f3fe5b4518a",
       "incident": {
         "id": "component:6vll3w5p50f9",
         "name": "Belo Horizonte, Brazil - (CNF) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-10T17:16:11.037Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -365,32 +365,6 @@
           "icon": "🟠",
           "label": "주요",
           "basis": "공식 주요 영향·일부 장애",
-          "source": "vendor"
-        }
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국으로 특정되지 않은 지역 구성요소"
-      }
-    },
-    "Cloudflare:component:504hxt9xvdth": {
-      "signature": "8ba2dc8ac7a5e76ff40c0db5289b3c84a3c4ea2b0323cd36e7774cabac82474a",
-      "incident": {
-        "id": "component:504hxt9xvdth",
-        "name": "Brasilia, Brazil - (BSB) status",
-        "status": "under_maintenance",
-        "impact": "under_maintenance",
-        "updated_at": "2026-11-17T08:30:01.447Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": "",
-        "first_observed_at": "2026-11-17T07:15:13.079358+00:00",
-        "first_observed_basis": "monitor observation",
-        "severity_assessment": {
-          "rank": 4,
-          "icon": "🔵",
-          "label": "점검",
-          "basis": "공식 점검 상태",
           "source": "vendor"
         }
       },
@@ -453,13 +427,13 @@
       }
     },
     "Cloudflare:component:fvqfrchfl8yc": {
-      "signature": "e1435327a859a92dbb0d5cc93a5b2fb57808ebc752bae20715881df60c514c3d",
+      "signature": "0e6bff48e6e50c543c89e424eb61782c4b2f9db6f5d1e9bec7ac4e6d0b18858c",
       "incident": {
         "id": "component:fvqfrchfl8yc",
         "name": "Sydney, Australia - (SYD) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-10T20:00:29.369Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -479,13 +453,13 @@
       }
     },
     "Cloudflare:component:47440brmvtq2": {
-      "signature": "914e1b06722a4c8fb760090d0006e396f87940f70a05be8ae1b8618688decdbd",
+      "signature": "6e41433bdc95e66a31b6cdb405f06fd0309ed72dba1b995ff4d757715a6e9d1f",
       "incident": {
         "id": "component:47440brmvtq2",
         "name": "Gaborone, Botswana - (GBE) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-16T03:53:00.420Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -583,13 +557,13 @@
       }
     },
     "Cloudflare:component:rq86nd41r4t4": {
-      "signature": "e4b4d80978a8cfa3a3949645fea3168b29c5caded60814e48fe9125579b9b56d",
+      "signature": "df28f91e681cd7680ab38ffaac0bd4beeacfaf405604f04f6e36377fc9c9fd17",
       "incident": {
         "id": "component:rq86nd41r4t4",
         "name": "Lagos, Nigeria - (LOS) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-16T15:35:50.719Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-16T15:45:16.533601+00:00",
@@ -609,13 +583,13 @@
       }
     },
     "Cloudflare:component:hf1csyqv3x7s": {
-      "signature": "fc706b961b279c52acab72c2f42bc6436cf27eabf64a4264dbb70eb1b03ab010",
+      "signature": "7d1c573c8d223ce92c612452e4394eda682dc6c86412a9eb3a6406ac143c8e5e",
       "incident": {
         "id": "component:hf1csyqv3x7s",
         "name": "Dhaka, Bangladesh - (DAC) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "updated_at": "2026-11-17T08:34:01.422Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T12:15:13.393889+00:00",
@@ -687,13 +661,13 @@
       }
     },
     "Cloudflare:component:gg8xxj0j3d32": {
-      "signature": "2df61fbc41562ab69c4a609a012fdf472d4125d5a3c801bf941748d7df6ef181",
+      "signature": "560b3b23f89e3ee922f0505c42c73d5e4316b590a5f52a78230888f1ce58e762",
       "incident": {
         "id": "component:gg8xxj0j3d32",
         "name": "Riyadh, Saudi Arabia - (RUH) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-17T08:30:12.231495+00:00",
@@ -843,13 +817,13 @@
       }
     },
     "Cloudflare:component:d9k4n6zjlqmt": {
-      "signature": "cc496eeadf6494a5864d58124c4fdef035ae1ad1b6dafac50fc38129ffcb88b3",
+      "signature": "26e3f1be6b430c49d6426ecd2a758168f2ec048b1478fe96b6644113f3246fa2",
       "incident": {
         "id": "component:d9k4n6zjlqmt",
         "name": "Kyiv, Ukraine - (KBP) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-10T17:16:11.037Z",
+        "updated_at": "2026-11-17T08:37:31.523Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -921,13 +895,13 @@
       }
     },
     "Cloudflare:component:68bsmrhm5xgq": {
-      "signature": "ee4b52a6cd544dccbc9d4cfcaa8a976964fc9fa07e2af6d8fff8fcc653980641",
+      "signature": "de6528828f61f8a30b8b44bffab389948f3c2adbedea790128cf9b7e571d62f5",
       "incident": {
         "id": "component:68bsmrhm5xgq",
         "name": "Joinville, Brazil - (JOI) status",
         "status": "partial_outage",
         "impact": "partial_outage",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "updated_at": "2026-11-17T08:32:50.752Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -999,13 +973,13 @@
       }
     },
     "Cloudflare:component:f5st51ky316y": {
-      "signature": "2aa781d928d8a27ab69ba1dca95835ce6e027048a7482346d90f4ce856a7f0be",
+      "signature": "2434b4bc69b6d0ec0b19b61d6dfab2e63708afbc5a3d89707deb4adf870d12e1",
       "incident": {
         "id": "component:f5st51ky316y",
         "name": "Tunis, Tunisia - (TUN) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-13T03:24:30.713Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -1025,13 +999,13 @@
       }
     },
     "Cloudflare:component:wf2gdmxg7cv3": {
-      "signature": "064ccebda6420789d6747f79fc9feabc6fd1d513451e9ebb80a93c905718dbf2",
+      "signature": "1b3540cc1e9e606cf2223c8d40b3f343d839d958444cda5eae3ec50f3ff7837e",
       "incident": {
         "id": "component:wf2gdmxg7cv3",
         "name": "Hong Kong - (HKG) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "updated_at": "2026-11-17T08:39:31.820Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -1050,40 +1024,14 @@
         "basis": "한국 영향 근거 미확인"
       }
     },
-    "Cloudflare:component:bnjvsmmllkb9": {
-      "signature": "9ce05a155b5dcdc724a56e0287b2e2c5b722073c5d6e1f40e936ad32d2deb041",
-      "incident": {
-        "id": "component:bnjvsmmllkb9",
-        "name": "Lima, Peru - (LIM) status",
-        "status": "under_maintenance",
-        "impact": "under_maintenance",
-        "updated_at": "2026-11-17T08:30:01.447Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": "",
-        "first_observed_at": "2026-11-17T07:15:13.080776+00:00",
-        "first_observed_basis": "monitor observation",
-        "severity_assessment": {
-          "rank": 4,
-          "icon": "🔵",
-          "label": "점검",
-          "basis": "공식 점검 상태",
-          "source": "vendor"
-        }
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국으로 특정되지 않은 지역 구성요소"
-      }
-    },
     "Cloudflare:component:qrvlk1ck1dv2": {
-      "signature": "066be3f1ab5772b8700b5fcb602de40d6b14c990ac04deedb34f0dfa2d4eea8d",
+      "signature": "ac78be50201b6f08b394eee18695f6ae174ac0e9edeeeaa3fe8846f96adb6d29",
       "incident": {
         "id": "component:qrvlk1ck1dv2",
         "name": "Kinshasa, Congo - Kinshasa - (FIH) status",
         "status": "partial_outage",
         "impact": "partial_outage",
-        "updated_at": "2026-11-17T07:41:01.452Z",
+        "updated_at": "2026-11-17T08:37:31.523Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-17T07:45:11.905683+00:00",
@@ -1129,13 +1077,13 @@
       }
     },
     "Cloudflare:component:pd8tz1050d4g": {
-      "signature": "d5dce6506593cbd7623f50513c1c1d207c018e92b5396fba0af4142f3974d8dc",
+      "signature": "5df5c7120cc359b9b3d99097a37398939913b1cb9b1e91fd6d3e9bd3270479dd",
       "incident": {
         "id": "component:pd8tz1050d4g",
         "name": "Panama City, Panama - (PTY) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "updated_at": "2026-11-17T08:34:01.422Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -1181,13 +1129,13 @@
       }
     },
     "Cloudflare:component:gfbkjpmmjmkj": {
-      "signature": "edf3fe96c0ad6be025021c2bb5c1421cefb3ad9624786da66b64664e3dc92dad",
+      "signature": "c0ca1dacfa411a5dfb9c9a1271a5dde63114873d5c6d447510220fce0e97f9c5",
       "incident": {
         "id": "component:gfbkjpmmjmkj",
         "name": "Minneapolis, United States - (MSP) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-12T10:00:21.568Z",
+        "updated_at": "2026-11-17T08:44:31.559Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -1337,13 +1285,13 @@
       }
     },
     "Cloudflare:component:nbxgf9nycs42": {
-      "signature": "7d75fa2ddd9f51335b2033712fc553390f3e3bdbb50a4e6b9ed6d782ac5d25b0",
+      "signature": "8a09166203d2922a459dabfb5ea94c2db0409c312c5b0659c6a3c5e605bd3471",
       "incident": {
         "id": "component:nbxgf9nycs42",
         "name": "Omaha, United States - (OMA) status",
         "status": "partial_outage",
         "impact": "partial_outage",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "updated_at": "2026-11-17T08:32:01.433Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -1363,13 +1311,13 @@
       }
     },
     "Cloudflare:component:mslkxsqftrnn": {
-      "signature": "ffeef6f83eb1c9d82b31c7ef897f3c7fad906b83135c74e67d5d3bccb6b8420e",
+      "signature": "d83d247c947bf3e38c674b926f6fc94dad31828e13d1e0b3a48a77dd4c286504",
       "incident": {
         "id": "component:mslkxsqftrnn",
         "name": "Kolkata, India - (CCU) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-10T17:16:11.037Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -1389,13 +1337,13 @@
       }
     },
     "Cloudflare:component:hr78s04g1r5b": {
-      "signature": "d9e78613d6e969fd71191e17d7a8f5912eeb6aa8497eb46c8ea6d9820e42ab1b",
+      "signature": "8ddd6779ee4f1888cec4306ef5e54496c91e0d6942aac66e9e29217ade625ed5",
       "incident": {
         "id": "component:hr78s04g1r5b",
         "name": "Kuala Lumpur, Malaysia - (KUL) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "updated_at": "2026-11-17T08:34:01.422Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -1415,68 +1363,16 @@
       }
     },
     "Cloudflare:component:ks6zgqry9c1p": {
-      "signature": "d20b63fdc87b9ff4d684799011116c16a4dc4b7ff9207b1a63cf8026ab4877fd",
+      "signature": "dfb72023e65b1346eeca5f2388769a2fcefb358ac27d6d180cf95fa8184f1f40",
       "incident": {
         "id": "component:ks6zgqry9c1p",
         "name": "Saint Petersburg, Russia - (LED) status",
         "status": "partial_outage",
         "impact": "partial_outage",
-        "updated_at": "2026-11-10T17:16:11.037Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
-        "first_observed_basis": "monitor observation",
-        "severity_assessment": {
-          "rank": 1,
-          "icon": "🟠",
-          "label": "주요",
-          "basis": "공식 주요 영향·일부 장애",
-          "source": "vendor"
-        }
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국으로 특정되지 않은 지역 구성요소"
-      }
-    },
-    "Cloudflare:component:73mbn78m0yzm": {
-      "signature": "3134eafcf6ce9d1fe038abd58ee024bf40df55e15a162d07d10f7ee26db10965",
-      "incident": {
-        "id": "component:73mbn78m0yzm",
-        "name": "São Paulo, Brazil - (GRU) status",
-        "status": "under_maintenance",
-        "impact": "under_maintenance",
-        "updated_at": "2026-11-17T07:19:01.375Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": "",
-        "first_observed_at": "2026-11-17T07:30:12.061198+00:00",
-        "first_observed_basis": "monitor observation",
-        "severity_assessment": {
-          "rank": 4,
-          "icon": "🔵",
-          "label": "점검",
-          "basis": "공식 점검 상태",
-          "source": "vendor"
-        }
-      },
-      "service": "Cloudflare",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국으로 특정되지 않은 지역 구성요소"
-      }
-    },
-    "Cloudflare:component:hv4x3xbmz8b4": {
-      "signature": "b418d59fc2cda3288c5c519162ae156d9f769da944b296f70226b0c011d4dd13",
-      "incident": {
-        "id": "component:hv4x3xbmz8b4",
-        "name": "Sorocaba, Brazil - (SOD) status",
-        "status": "partial_outage",
-        "impact": "partial_outage",
-        "updated_at": "2026-11-17T06:55:50.834Z",
-        "url": "https://www.cloudflarestatus.com/",
-        "body": "",
-        "first_observed_at": "2026-11-17T07:00:14.283773+00:00",
         "first_observed_basis": "monitor observation",
         "severity_assessment": {
           "rank": 1,
@@ -1493,13 +1389,13 @@
       }
     },
     "Cloudflare:component:f72vw9sb48bb": {
-      "signature": "e5d1d26e585f83846eb90b608ff51200febfea515cad1323fd07abe19f9b8e1b",
+      "signature": "06fda909eee836ed0eba1c09f4d0ee9a9f447d8c7f03bbd74dd15ff884bca998",
       "incident": {
         "id": "component:f72vw9sb48bb",
         "name": "Lilongwe, Malawi - (LLW) status",
         "status": "partial_outage",
         "impact": "partial_outage",
-        "updated_at": "2026-11-10T17:16:11.948Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -1509,6 +1405,32 @@
           "icon": "🟠",
           "label": "주요",
           "basis": "공식 주요 영향·일부 장애",
+          "source": "vendor"
+        }
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
+    "Cloudflare:component:lc19ck0jpzs5": {
+      "signature": "264935127dff7c8616f3d8743c825d76553d0513f03e6ccbed6d9a163963c475",
+      "incident": {
+        "id": "component:lc19ck0jpzs5",
+        "name": "Male, Maldives - (MLE) status",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-17T08:39:31.820Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": "",
+        "first_observed_at": "2026-11-17T08:45:14.383774+00:00",
+        "first_observed_basis": "monitor observation",
+        "severity_assessment": {
+          "rank": 4,
+          "icon": "🔵",
+          "label": "점검",
+          "basis": "공식 점검 상태",
           "source": "vendor"
         }
       },
@@ -1597,13 +1519,13 @@
       }
     },
     "Cloudflare:component:mgy83jclb7m0": {
-      "signature": "95e428be30cdfd6c52c24aae26d7931abdf4614c2f25252289c7ebba29d973f3",
+      "signature": "c27bde12a9088a61ec819deedc8740b88bd9b91bff814db1308ad6aae7dd09c6",
       "incident": {
         "id": "component:mgy83jclb7m0",
         "name": "Campos dos Goytacazes, Brazil - (CAW) status",
         "status": "partial_outage",
         "impact": "partial_outage",
-        "updated_at": "2026-11-17T05:00:13.364Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -1675,13 +1597,13 @@
       }
     },
     "Cloudflare:component:8xc65dbhbrd5": {
-      "signature": "b5877060bd9a92892ec0c9cfcc1b5ed2c1e323176708b895f3b9ae99136f5241",
+      "signature": "6972c22970168ef7c04dd981613a17376e6b3b18fcb431d1596c86e7c02f8735",
       "incident": {
         "id": "component:8xc65dbhbrd5",
         "name": "Phnom Penh, Cambodia - (PNH) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-13T19:37:41.322Z",
+        "updated_at": "2026-11-17T08:39:31.820Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -1805,13 +1727,13 @@
       }
     },
     "Cloudflare:component:28ydsptn9dxx": {
-      "signature": "3899b16c5fef6ea09258c364f5fc16870c011bdd81bd1921c63cbb511dd19454",
+      "signature": "2e620470a5c4d4cc9b017147c2579bd29c97351937ae42c08c795e9850ab9b2a",
       "incident": {
         "id": "component:28ydsptn9dxx",
         "name": "Cincinnati, United States - (CVG) status",
         "status": "partial_outage",
         "impact": "partial_outage",
-        "updated_at": "2026-11-17T07:40:01.446Z",
+        "updated_at": "2026-11-17T08:38:01.421Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-17T07:45:11.907347+00:00",
@@ -1831,22 +1753,22 @@
       }
     },
     "Cloudflare:component:hl4j81pmzwby": {
-      "signature": "1afbc1080dc2d8e100c72d207d47c776a394870110cdbcf58619e9b324dcf408",
+      "signature": "19eeafadd471bb3aad556418548d608b72958a6859c4041cb3393c79b9e98634",
       "incident": {
         "id": "component:hl4j81pmzwby",
         "name": "Salvador, Brazil - (SSA) status",
-        "status": "partial_outage",
-        "impact": "partial_outage",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "status": "under_maintenance",
+        "impact": "under_maintenance",
+        "updated_at": "2026-11-17T08:37:31.523Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
         "first_observed_basis": "monitor observation",
         "severity_assessment": {
-          "rank": 1,
-          "icon": "🟠",
-          "label": "주요",
-          "basis": "공식 주요 영향·일부 장애",
+          "rank": 4,
+          "icon": "🔵",
+          "label": "점검",
+          "basis": "공식 점검 상태",
           "source": "vendor"
         }
       },
@@ -2064,6 +1986,32 @@
         "basis": "한국으로 특정되지 않은 지역 구성요소"
       }
     },
+    "Cloudflare:component:7xlx52krlzcx": {
+      "signature": "363df352caba8d938b2068f4920b65da33a301c87974fa626c9ed51e11c3551d",
+      "incident": {
+        "id": "component:7xlx52krlzcx",
+        "name": "Malang, Indonesia - (MLG) status",
+        "status": "partial_outage",
+        "impact": "partial_outage",
+        "updated_at": "2026-11-17T08:39:31.820Z",
+        "url": "https://www.cloudflarestatus.com/",
+        "body": "",
+        "first_observed_at": "2026-11-17T08:45:14.385010+00:00",
+        "first_observed_basis": "monitor observation",
+        "severity_assessment": {
+          "rank": 1,
+          "icon": "🟠",
+          "label": "주요",
+          "basis": "공식 주요 영향·일부 장애",
+          "source": "vendor"
+        }
+      },
+      "service": "Cloudflare",
+      "korea_impact": {
+        "confirmed": false,
+        "basis": "한국으로 특정되지 않은 지역 구성요소"
+      }
+    },
     "Cloudflare:component:b4gyh6pxzb69": {
       "signature": "3eca1e49ca42f59dd0e36f2cdaa08b837d9b7ead66c93bf33131f0aff85d8594",
       "incident": {
@@ -2117,13 +2065,13 @@
       }
     },
     "Cloudflare:component:0bnls29mcbkc": {
-      "signature": "c2012b67b236c93f9050fa24cc46391b8710908438ddeeb1b01bbe8bba27e6e3",
+      "signature": "4e0874c003e4df653c9fb9b2988d8190bf8b33ec2ecb76c5c3d0b9adcf81a002",
       "incident": {
         "id": "component:0bnls29mcbkc",
         "name": "Astana, Kazakhstan - (NQZ) status",
         "status": "under_maintenance",
         "impact": "under_maintenance",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "updated_at": "2026-11-17T08:31:01.504Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-13T04:17:13.773775+00:00",
@@ -2195,13 +2143,13 @@
       }
     },
     "Cloudflare:component:u7g196hop024": {
-      "signature": "2d1931b6cc66a14654935cfbf7c58e0f5b252370920888b412c4c8c86de122e6",
+      "signature": "005a9e3a2d0f3fb6c6d2542148ffa0251e8b7126d4abfc365808f5d74da4b07d",
       "incident": {
         "id": "component:u7g196hop024",
         "name": "Nagaon, India - (TEZ) status",
         "status": "partial_outage",
         "impact": "partial_outage",
-        "updated_at": "2026-11-17T08:30:01.447Z",
+        "updated_at": "2026-11-17T08:33:31.492Z",
         "url": "https://www.cloudflarestatus.com/",
         "body": "",
         "first_observed_at": "2026-11-16T05:45:12.156438+00:00",
@@ -2218,32 +2166,6 @@
       "korea_impact": {
         "confirmed": false,
         "basis": "한국으로 특정되지 않은 지역 구성요소"
-      }
-    },
-    "Zoom:w32cwc1kp2h9": {
-      "signature": "beddae73825b8597e0a0168d59a1332fb5cd92921ed86972b071909869fb13e6",
-      "incident": {
-        "id": "w32cwc1kp2h9",
-        "name": "Service Degradation Affecting My Files Functionality in Zoom Hub in US Region",
-        "status": "monitoring",
-        "impact": "minor",
-        "updated_at": "2026-11-17T00:24:55.770-08:00",
-        "url": "https://stspg.io/75bkr1786wml",
-        "body": "The service degradation affecting My Files functionality in Zoom Hub has been successfully resolved. \n\nOur team will continue to monitor the situation closely and keep you informed of any further developments.",
-        "first_observed_at": "2026-11-17T07:15:14.213088+00:00",
-        "first_observed_basis": "monitor observation",
-        "severity_assessment": {
-          "rank": 2,
-          "icon": "🟡",
-          "label": "경미",
-          "basis": "공식 경미 영향·성능 저하",
-          "source": "vendor"
-        }
-      },
-      "service": "Zoom",
-      "korea_impact": {
-        "confirmed": false,
-        "basis": "한국 영향 근거 미확인"
       }
     },
     "Zoom:t0wkzg9j0b08": {
@@ -2378,115 +2300,112 @@
     }
   },
   "seen": [
-    "2aa781d928d8a27ab69ba1dca95835ce6e027048a7482346d90f4ce856a7f0be",
-    "8d0184a39c9a65fa9504e5ec6e017bf0091dc23fad1d51bb276905e644cd5004",
-    "3eca1e49ca42f59dd0e36f2cdaa08b837d9b7ead66c93bf33131f0aff85d8594",
-    "ad7ed757c1a9bfdcd44756c6292baec45d76f73da44e2437cf83401958ecb232",
-    "73fb65a9450bdbc90ccf750d10a9139b351c5be092fb8adfe3e26c2ffda4bcfd",
-    "9e39f0fc57b33cec181257dcfbd77c30f92d31945e12f613064ed9855f5cc9d9",
-    "cab6a2871f9194bc42aa9b827162ea0bf9936cd9966e3519d6d2a318f7146de9",
-    "d1c52e24039e4e1d3577704a8e49c20a96cfb8422487b432c5bac1a6a62eeeba",
-    "6d4b50343d69695e9c3db27e73f5636a28e5c406d41b3c0aeedb7c132eb90477",
-    "cc496eeadf6494a5864d58124c4fdef035ae1ad1b6dafac50fc38129ffcb88b3",
+    "b234916cec464d60f68ebf55a55c0c853be04cc09189a2290e5aefdcc22d23d6",
+    "8db915ea091e0c7601251ed4c8daa7452f514b006abef3bbafc3c1dcb8f3e5b1",
+    "9ab41553f809857e186439b154776d28e76f3c9c3b424a3de05e455b0cdf7d9d",
+    "3124ab34684b08b6d28bf16562f13e73af0831ede3ee72b953028a423191247e",
+    "4cbca5240eb9f2a949c6126802974481a10ef438de4541bcefcbacf4e7465aa7",
+    "5eb23307fa331af5f51ac31f6caaf75ffc34c5dee364d7f9cf7e83b8f6defc9e",
+    "fa4fc8e04412a2d15fe39f5623825f7fa6d758ead55b12af8bf043b88c71fc2f",
     "2090735111ea644c7ac995d69761760eac00b871d34cec6ebfd650ed4325c22b",
-    "57d07c1c0578217df6f5ac31414b36c706e4ccd9f28cf3651643eae9d4efe312",
-    "1843d230520e16a04cc3ff787c5c6e405dd13c3a8b2b3760f49412c20cb033f6",
-    "a424211c51effcc03439d45d5af6432d569fcd2200af25191d173db2ed2f044d",
-    "6b3362912e65c43434c7eb0de2d4aa09100684e7f337c91e6eb740926b71f6f3",
-    "61bae7e5159bf136f4fac6b79cb67362f3b02632c9d2b0fe0fcef7ab2a467ed2",
-    "ad297c16fe6906e38485ccb401728fa249b56a70d290543f18084768cc981755",
-    "b5877060bd9a92892ec0c9cfcc1b5ed2c1e323176708b895f3b9ae99136f5241",
-    "edf3fe96c0ad6be025021c2bb5c1421cefb3ad9624786da66b64664e3dc92dad",
-    "0e10f247779fc3dc9f4efc5452925c8a8f4f4be228c5c36789e8edc5f3d499d8",
-    "8289184030f01e08afc5fec465ce8d3d4d6b57298c93aa3166b0b12d4e6f5c94",
-    "bd8dd506fe458b360750d50f936fa32412de63b4c4cf46f7d6ad5f5a1b78d756",
-    "e81a4eb0c7db4cea19fa63e2aff19881422d41ec9282aac85c5e19e57e5f8119",
     "0c9d0053a73f453a4c5d60304cd6f41c9cecd2cdefd1b821030d47949fde0956",
+    "0fc0624af513404bc46e436bae4cef7a4c619ad24a12cadc22deb83703032781",
+    "ad297c16fe6906e38485ccb401728fa249b56a70d290543f18084768cc981755",
+    "d35e0ee81e5df3085a55ca2ffb99fe18c3cfa80050a5155a462a1a40f38540dd",
+    "d63ecac114f3c9228aefe4ac6c4382173bb6fd499b6c3efacd70ac6deef1d7e1",
+    "0e10f247779fc3dc9f4efc5452925c8a8f4f4be228c5c36789e8edc5f3d499d8",
+    "9d6a0dd076018dfaea4744c0134739c0c3838c8c83ce054f03effb6d42730a0a",
+    "ad7ed757c1a9bfdcd44756c6292baec45d76f73da44e2437cf83401958ecb232",
+    "bfb8ec2b53499774a872b3d7ff69a0009f518de0b8e3a45178f977eaaef57d2d",
+    "cab6a2871f9194bc42aa9b827162ea0bf9936cd9966e3519d6d2a318f7146de9",
+    "0ef588eb5a24094f80852505e023b5b9770d35b825c968aec336ccfdae716668",
+    "57d07c1c0578217df6f5ac31414b36c706e4ccd9f28cf3651643eae9d4efe312",
+    "73fb65a9450bdbc90ccf750d10a9139b351c5be092fb8adfe3e26c2ffda4bcfd",
+    "b2f1e1c8a52ea0aa78a1020e9dc5f9676f73a4886e39a4bd7ab94c452be2b283",
+    "c5307026235197cce27c173bf4f0c9fefee2767d91ada974868fc861cd85de03",
+    "9ced9e3519de4e6333afe8c358700ce296b8309eedad45392e67cc6df2b3268d",
+    "3eca1e49ca42f59dd0e36f2cdaa08b837d9b7ead66c93bf33131f0aff85d8594",
+    "621fa8e96d0fac3e9b06194a1a4b55fd6ad78d0f10e2282f0b1fbc3f4f6cac88",
+    "61bae7e5159bf136f4fac6b79cb67362f3b02632c9d2b0fe0fcef7ab2a467ed2",
+    "e81a4eb0c7db4cea19fa63e2aff19881422d41ec9282aac85c5e19e57e5f8119",
+    "a424211c51effcc03439d45d5af6432d569fcd2200af25191d173db2ed2f044d",
     "2fa227f9b2f2ab0a0b091821739e337a3db1bf3eded61f03898c42e753776e79",
     "ea8499d549a3620ff4399e07d505c894557bbd5a9f99fa9b4f4a98af692f2229",
-    "ffeef6f83eb1c9d82b31c7ef897f3c7fad906b83135c74e67d5d3bccb6b8420e",
-    "c5307026235197cce27c173bf4f0c9fefee2767d91ada974868fc861cd85de03",
-    "9ab41553f809857e186439b154776d28e76f3c9c3b424a3de05e455b0cdf7d9d",
-    "bfb8ec2b53499774a872b3d7ff69a0009f518de0b8e3a45178f977eaaef57d2d",
-    "d63ecac114f3c9228aefe4ac6c4382173bb6fd499b6c3efacd70ac6deef1d7e1",
-    "35d7d4f2d09acb9c2fbb712a4120ed5148c9d598b9d81ad1d86a5b8bc3c50a6c",
-    "ee8862d3014082ad7f8b914193fc516503b3957667dfd6c5e3164c6cb7f9f35b",
-    "9d6a0dd076018dfaea4744c0134739c0c3838c8c83ce054f03effb6d42730a0a",
-    "b418d59fc2cda3288c5c519162ae156d9f769da944b296f70226b0c011d4dd13",
-    "95e428be30cdfd6c52c24aae26d7931abdf4614c2f25252289c7ebba29d973f3",
+    "6ffaeecfcec898f35193b5c9c0aa705db64fd96e7d9a3b84347aafbfccefe326",
+    "8d0184a39c9a65fa9504e5ec6e017bf0091dc23fad1d51bb276905e644cd5004",
     "5c6f08586d3f2cd150a8b06618220c458fa9b01d318894e63e9bfe647a9cd8a9",
-    "0ef588eb5a24094f80852505e023b5b9770d35b825c968aec336ccfdae716668",
+    "d1c52e24039e4e1d3577704a8e49c20a96cfb8422487b432c5bac1a6a62eeeba",
     "d64cdd10d6ba7f296a88e0c8b2cbcf3cebf6ebff2567dc51930ce48543bb3de3",
-    "b625c6c0eff0a627e0e83baa0dae3caba503ca103231197c6595b6d262743cc3",
-    "3124ab34684b08b6d28bf16562f13e73af0831ede3ee72b953028a423191247e",
-    "3134eafcf6ce9d1fe038abd58ee024bf40df55e15a162d07d10f7ee26db10965",
-    "0fc0624af513404bc46e436bae4cef7a4c619ad24a12cadc22deb83703032781",
-    "8db915ea091e0c7601251ed4c8daa7452f514b006abef3bbafc3c1dcb8f3e5b1",
-    "fa4fc8e04412a2d15fe39f5623825f7fa6d758ead55b12af8bf043b88c71fc2f",
-    "e1435327a859a92dbb0d5cc93a5b2fb57808ebc752bae20715881df60c514c3d",
+    "8924751bc72954c2a8964956f349837a865e90bb0b88dc3e2155fc6c28b7f1b3",
+    "0d6475a6d1b9764a1f835c8acb48ce52c9411bbc94752aeec15f16decc0f464b",
+    "241547b424ab85a64476d587b871d33be65657160cbadb14a686d4ef5523b152",
+    "35d7d4f2d09acb9c2fbb712a4120ed5148c9d598b9d81ad1d86a5b8bc3c50a6c",
+    "6b3362912e65c43434c7eb0de2d4aa09100684e7f337c91e6eb740926b71f6f3",
+    "ee8862d3014082ad7f8b914193fc516503b3957667dfd6c5e3164c6cb7f9f35b",
+    "b546ee02e404c2b3fadf9db840097751d6ccbd57ef80bfc76b0e37aa36616021",
+    "083f4ff82d859a487db5a3706d0749295a2249052214125a2f973bf128f62b75",
     "f84d7b8f7d78fe5f18a611a5ca8df6cb3121285ad7029e9a4e5a059987766f18",
     "ab3fb7c478428730b0ca9549d0e8ba40d3c6b08b67d1d32eba14d83f726da89b",
-    "6ffaeecfcec898f35193b5c9c0aa705db64fd96e7d9a3b84347aafbfccefe326",
-    "3899b16c5fef6ea09258c364f5fc16870c011bdd81bd1921c63cbb511dd19454",
-    "59a63d717d3967a602755beddd031c4363d933001d66cb0d59708a14318dfe05",
-    "083f4ff82d859a487db5a3706d0749295a2249052214125a2f973bf128f62b75",
-    "e4b4d80978a8cfa3a3949645fea3168b29c5caded60814e48fe9125579b9b56d",
-    "7ba0414ccb62c3df3c4abedd7fe82a7787215f46ac7076ec40c5c0625d3fe020",
-    "621fa8e96d0fac3e9b06194a1a4b55fd6ad78d0f10e2282f0b1fbc3f4f6cac88",
-    "0d6475a6d1b9764a1f835c8acb48ce52c9411bbc94752aeec15f16decc0f464b",
-    "d20b63fdc87b9ff4d684799011116c16a4dc4b7ff9207b1a63cf8026ab4877fd",
-    "b2f1e1c8a52ea0aa78a1020e9dc5f9676f73a4886e39a4bd7ab94c452be2b283",
-    "b546ee02e404c2b3fadf9db840097751d6ccbd57ef80bfc76b0e37aa36616021",
     "0dfb9dbcaefcd91e8417e16bf5eff6c7abb9b5f26a0af09fa7ff61eb6e9884ea",
-    "8924751bc72954c2a8964956f349837a865e90bb0b88dc3e2155fc6c28b7f1b3",
-    "066be3f1ab5772b8700b5fcb602de40d6b14c990ac04deedb34f0dfa2d4eea8d",
-    "914e1b06722a4c8fb760090d0006e396f87940f70a05be8ae1b8618688decdbd",
     "0700005c8986c9836c735956de6ee8a02e56587a053ebeec3a459d2b668cf0f9",
-    "b234916cec464d60f68ebf55a55c0c853be04cc09189a2290e5aefdcc22d23d6",
-    "77bf7fc9914384b94791e5b18329111a36b6903364281e3ae06f270280aabf7e",
     "377d47cdc1739eaaf5291781750298b0ef5f9f82fb626aff1269d2a5419dc435",
-    "4cbca5240eb9f2a949c6126802974481a10ef438de4541bcefcbacf4e7465aa7",
+    "bd8dd506fe458b360750d50f936fa32412de63b4c4cf46f7d6ad5f5a1b78d756",
+    "7ba0414ccb62c3df3c4abedd7fe82a7787215f46ac7076ec40c5c0625d3fe020",
     "c93a6289292d12d8175dc40d4c7e96e73baf8d878a85d031ddfd9c7175f017ec",
-    "241547b424ab85a64476d587b871d33be65657160cbadb14a686d4ef5523b152",
-    "e5d1d26e585f83846eb90b608ff51200febfea515cad1323fd07abe19f9b8e1b",
-    "9ced9e3519de4e6333afe8c358700ce296b8309eedad45392e67cc6df2b3268d",
-    "5eb23307fa331af5f51ac31f6caaf75ffc34c5dee364d7f9cf7e83b8f6defc9e",
-    "d35e0ee81e5df3085a55ca2ffb99fe18c3cfa80050a5155a462a1a40f38540dd",
-    "e5a63adf6508526f6ed26a4e93ca62aad9741783f7d8516c750fc290b156744f",
-    "8a016745762b387f6c3768ae901ad95c24836e898db0726cf4b6a7ff1497abdd",
-    "2e0bf6a7e0e36074c3a02eb363b26cfb2ec59340999105398e0040f9a9311699",
-    "8ba2dc8ac7a5e76ff40c0db5289b3c84a3c4ea2b0323cd36e7774cabac82474a",
+    "6d4b50343d69695e9c3db27e73f5636a28e5c406d41b3c0aeedb7c132eb90477",
+    "59a63d717d3967a602755beddd031c4363d933001d66cb0d59708a14318dfe05",
     "1477b4b8dbfcd16be4508c9cc31da338d44cde59ed7cfd2f3ea9c89efe2fe383",
-    "fc706b961b279c52acab72c2f42bc6436cf27eabf64a4264dbb70eb1b03ab010",
-    "2df61fbc41562ab69c4a609a012fdf472d4125d5a3c801bf941748d7df6ef181",
-    "ee4b52a6cd544dccbc9d4cfcaa8a976964fc9fa07e2af6d8fff8fcc653980641",
-    "064ccebda6420789d6747f79fc9feabc6fd1d513451e9ebb80a93c905718dbf2",
-    "9ce05a155b5dcdc724a56e0287b2e2c5b722073c5d6e1f40e936ad32d2deb041",
-    "d5dce6506593cbd7623f50513c1c1d207c018e92b5396fba0af4142f3974d8dc",
-    "7d75fa2ddd9f51335b2033712fc553390f3e3bdbb50a4e6b9ed6d782ac5d25b0",
-    "d9e78613d6e969fd71191e17d7a8f5912eeb6aa8497eb46c8ea6d9820e42ab1b",
-    "1afbc1080dc2d8e100c72d207d47c776a394870110cdbcf58619e9b324dcf408",
-    "c2012b67b236c93f9050fa24cc46391b8710908438ddeeb1b01bbe8bba27e6e3",
-    "2d1931b6cc66a14654935cfbf7c58e0f5b252370920888b412c4c8c86de122e6",
-    "beddae73825b8597e0a0168d59a1332fb5cd92921ed86972b071909869fb13e6"
+    "77bf7fc9914384b94791e5b18329111a36b6903364281e3ae06f270280aabf7e",
+    "1843d230520e16a04cc3ff787c5c6e405dd13c3a8b2b3760f49412c20cb033f6",
+    "55a82a23e07608b2ae7fa83699400e5643b852028ca3169ccbdb122f25c749af",
+    "d2a77a6f2510402ececfa4bc8fe3bf486097209e3102c8099a7d4c35af5b162b",
+    "c376bb110cf965800dce40b36b959f9e3d0c8988413a3ed93946f58238d25a0c",
+    "9b2acfb1aced4afc0cada0e6d63b192b0311fd8b4dacdb6dd1fb574a4612c0fd",
+    "11619d2d10619b68838a7da5ec0c41b82174749559ab4b77fef99dc38ba3fea4",
+    "6a872b5e5f076742ce08b420ecdd06ef48b650364760a585ca174f3fe5b4518a",
+    "0e6bff48e6e50c543c89e424eb61782c4b2f9db6f5d1e9bec7ac4e6d0b18858c",
+    "6e41433bdc95e66a31b6cdb405f06fd0309ed72dba1b995ff4d757715a6e9d1f",
+    "df28f91e681cd7680ab38ffaac0bd4beeacfaf405604f04f6e36377fc9c9fd17",
+    "7d1c573c8d223ce92c612452e4394eda682dc6c86412a9eb3a6406ac143c8e5e",
+    "560b3b23f89e3ee922f0505c42c73d5e4316b590a5f52a78230888f1ce58e762",
+    "26e3f1be6b430c49d6426ecd2a758168f2ec048b1478fe96b6644113f3246fa2",
+    "de6528828f61f8a30b8b44bffab389948f3c2adbedea790128cf9b7e571d62f5",
+    "2434b4bc69b6d0ec0b19b61d6dfab2e63708afbc5a3d89707deb4adf870d12e1",
+    "1b3540cc1e9e606cf2223c8d40b3f343d839d958444cda5eae3ec50f3ff7837e",
+    "ac78be50201b6f08b394eee18695f6ae174ac0e9edeeeaa3fe8846f96adb6d29",
+    "5df5c7120cc359b9b3d99097a37398939913b1cb9b1e91fd6d3e9bd3270479dd",
+    "c0ca1dacfa411a5dfb9c9a1271a5dde63114873d5c6d447510220fce0e97f9c5",
+    "8a09166203d2922a459dabfb5ea94c2db0409c312c5b0659c6a3c5e605bd3471",
+    "d83d247c947bf3e38c674b926f6fc94dad31828e13d1e0b3a48a77dd4c286504",
+    "8ddd6779ee4f1888cec4306ef5e54496c91e0d6942aac66e9e29217ade625ed5",
+    "dfb72023e65b1346eeca5f2388769a2fcefb358ac27d6d180cf95fa8184f1f40",
+    "06fda909eee836ed0eba1c09f4d0ee9a9f447d8c7f03bbd74dd15ff884bca998",
+    "264935127dff7c8616f3d8743c825d76553d0513f03e6ccbed6d9a163963c475",
+    "c27bde12a9088a61ec819deedc8740b88bd9b91bff814db1308ad6aae7dd09c6",
+    "6972c22970168ef7c04dd981613a17376e6b3b18fcb431d1596c86e7c02f8735",
+    "2e620470a5c4d4cc9b017147c2579bd29c97351937ae42c08c795e9850ab9b2a",
+    "19eeafadd471bb3aad556418548d608b72958a6859c4041cb3393c79b9e98634",
+    "363df352caba8d938b2068f4920b65da33a301c87974fa626c9ed51e11c3551d",
+    "4e0874c003e4df653c9fb9b2988d8190bf8b33ec2ecb76c5c3d0b9adcf81a002",
+    "005a9e3a2d0f3fb6c6d2542148ffa0251e8b7126d4abfc365808f5d74da4b07d"
   ],
   "collection_failure": null,
   "source_checks": {
-    "Microsoft 365": "2026-11-17T08:30:11.284056+00:00",
-    "Azure": "2026-11-17T08:30:11.333801+00:00",
-    "Google Workspace": "2026-11-17T08:30:11.454609+00:00",
-    "Google Cloud": "2026-11-17T08:30:11.634988+00:00",
-    "AWS": "2026-11-17T08:30:11.959749+00:00",
-    "Cloudflare": "2026-11-17T08:30:12.230015+00:00",
-    "GitHub": "2026-11-17T08:30:13.198353+00:00",
-    "OpenAI": "2026-11-17T08:30:13.586669+00:00",
-    "Slack": "2026-11-17T08:30:13.754190+00:00",
-    "Zoom": "2026-11-17T08:30:14.539418+00:00"
+    "Microsoft 365": "2026-11-17T08:45:13.855711+00:00",
+    "Azure": "2026-11-17T08:45:13.976276+00:00",
+    "Google Workspace": "2026-11-17T08:45:14.034891+00:00",
+    "Google Cloud": "2026-11-17T08:45:14.101899+00:00",
+    "AWS": "2026-11-17T08:45:14.249426+00:00",
+    "Cloudflare": "2026-11-17T08:45:14.381103+00:00",
+    "GitHub": "2026-11-17T08:45:14.598519+00:00",
+    "OpenAI": "2026-11-17T08:45:14.798611+00:00",
+    "Slack": "2026-11-17T08:45:14.874283+00:00",
+    "Zoom": "2026-11-17T08:45:15.377754+00:00"
   },
-  "full_checked_at": "2026-11-17T08:30:11.138115+00:00",
+  "full_checked_at": "2026-11-17T08:45:13.761393+00:00",
   "korea_only": true,
   "dashboard": {
     "message_id": 25,
-    "signature": "68d5bd2425b979037d2f97b17f7d9006ba5e75aac17d7b98e73d1218e77c11c4"
+    "signature": "c8ee337562377695ededf9cfcc6485337a4f549b874f4afa478d3b54365d2f80"
   }
 }
